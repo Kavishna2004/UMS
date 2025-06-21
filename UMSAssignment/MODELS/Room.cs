@@ -7,9 +7,9 @@ using UMSAssignment.ENUMS;
 
 namespace UMSAssignment.MODELS
 {
-    internal class Room : CommonModel
+    internal class Room 
     {
-      /*  public int RoomId { get; set; }*/
+        public int RoomId { get; set; }
         public UserRoom RoomName { get; set; }
         public string RoomType { get; set; }
     }

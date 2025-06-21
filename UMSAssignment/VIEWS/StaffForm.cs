@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -28,19 +29,30 @@ namespace UMSAssignment.VIEWS
             staffController = new StaffController();
             courseController = new CourseController();
 
+            cmdz.DataSource = Enum.GetValues(typeof(UserGender));
+            cmdTime.DataSource = Enum.GetValues(typeof(UserTimeslot));
+
             LoadStaff();
             LoadCourse();
         }
         private void LoadStaff()
         {
-            ViewStaffs.DataSource = null;
-            ViewStaffs.DataSource = staffController.GetAllStaffs();
+            var staffs = staffController.GetAllStaffs();
+            ViewStaffs.DataSource = staffs;
 
+            MessageBox.Show("Staffs count: " + staffs.Count);
+
+            ViewStaffs.DataSource = null;
+            ViewStaffs.DataSource = staffs;
+            //ViewStaffs.Columns.Clear();
+            //ViewStaffs.DataSource = staffController.GetAllStaffs();/*
+            
             if (ViewStaffs.Columns.Contains("CourseId"))
             {
                 ViewStaffs.Columns["CourseId"].Visible = false;
             }
             ViewStaffs.ClearSelection();
+            
             if (cmdCourse.SelectedValue == null)
             {
                 MessageBox.Show("Please select a course!");
@@ -49,19 +61,21 @@ namespace UMSAssignment.VIEWS
         }
         private void LoadCourse()
         {
-            var courses = courseController.GetAllCourse();
+            var courses = courseController.GetAllCourses();
             cmdCourse.DataSource = courses;
-            cmdCourse.DisplayMember = "Name";
-            cmdCourse.ValueMember = "Id";
+            cmdCourse.DisplayMember = "CourseName";
+            cmdCourse.ValueMember = "CourseId";
         }
         private void ClearForm() 
         {
             staname.Clear();
             stanic.Clear();
             staaddress.Clear();
+            cmdCourse.SelectedIndex = -1;
+            cmdTime.SelectedIndex = -1;
             cmdz.SelectedIndex = -1;
             selectedStaffId = -1;
-            cmdCourse.SelectedIndex = -1;
+           
 
         }
         private void StaffForm_Load(object sender, EventArgs e)
@@ -79,10 +93,10 @@ namespace UMSAssignment.VIEWS
             var confirmResult = MessageBox.Show("Are you sure to delete this staff?", "Confirm Delete", MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                staffController.DeleteStudent(selectedStaffId);
+                staffController.DeleteStaff(selectedStaffId);
                 LoadStaff();
                 ClearForm();
-                MessageBox.Show("Student Deleted Successfully");
+                MessageBox.Show("Staff Deleted Successfully");
 
             }
         }
@@ -90,7 +104,7 @@ namespace UMSAssignment.VIEWS
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(staname.Text) || string.IsNullOrWhiteSpace(stanic.Text) || string.IsNullOrWhiteSpace(cmdz.Text) ||
-               string.IsNullOrWhiteSpace(staaddress.Text))
+               string.IsNullOrWhiteSpace(staaddress.Text) || string.IsNullOrWhiteSpace(cmdTime.Text))
             {
                 MessageBox.Show("Please must fill in all staff details.");
                 return;
@@ -98,7 +112,7 @@ namespace UMSAssignment.VIEWS
 
             if (cmdz.SelectedValue == null)
             {
-                MessageBox.Show("Please select a section.");
+                MessageBox.Show("Please select a course.");
                 return;
             }
 
@@ -108,9 +122,19 @@ namespace UMSAssignment.VIEWS
                 StaffNIC = stanic.Text,
                 StaffAddress = staaddress.Text,
                 StaffGender = (UserGender)cmdz.SelectedValue,
-                CourseId = (UserCourse)cmdCourse.SelectedValue,
+                Timeslot = (UserTimeslot)cmdTime.SelectedValue,
+                CourseId = (int)cmdCourse.SelectedValue,
+                UserId = 3
                 
             };
+
+            Console.WriteLine("Inserted Staff: " + staff.StaffName);
+            Console.WriteLine("Gender: " + (int)staff.StaffGender);
+            Console.WriteLine("Timeslot: " + (int)staff.Timeslot);
+            Console.WriteLine("CourseId: " + staff.CourseId);
+            Console.WriteLine("UserId: " + staff.UserId);
+
+
 
             staffController.AddStaff(staff);
             LoadStaff();
@@ -146,7 +170,9 @@ namespace UMSAssignment.VIEWS
                 StaffNIC = stanic.Text,
                 StaffAddress = staaddress.Text,
                 StaffGender = (UserGender)cmdz.SelectedValue,
-                CourseId = (UserCourse)cmdCourse.SelectedValue,
+                Timeslot = (UserTimeslot)cmdTime.SelectedValue,
+                CourseId = (int)cmdCourse.SelectedValue,
+                UserId = 3
             };
 
             staffController.UpdateStaff(staff);
@@ -163,7 +189,7 @@ namespace UMSAssignment.VIEWS
 
         private void cmdz_SelectedIndexChanged(object sender, EventArgs e)
         {
-            {
+            /*{
                 cmdz.Items.Clear();
                 cmdz.Items.Add("Select Gender");
                 foreach (var gender in Enum.GetValues(typeof(UserGender)))
@@ -171,8 +197,10 @@ namespace UMSAssignment.VIEWS
                     cmdz.Items.Add(gender);
                 }
                 cmdz.SelectedIndex = 0;
+            }*/
         }
-            }
+
+               
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -181,7 +209,7 @@ namespace UMSAssignment.VIEWS
 
         private void cmdCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            {
+            /*{
                 cmdCourse.Items.Clear();
                 cmdCourse.Items.Add("Select Your Course");
                 foreach (var course in Enum.GetValues(typeof(UserCourse)))
@@ -190,12 +218,12 @@ namespace UMSAssignment.VIEWS
                 }
                 cmdCourse.SelectedIndex = 0;
             }
-
+*/
         }
 
         private void ViewStaffs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+           // Can't use
         }
         private void ViewStaffs_SelectionChanged(object sender, EventArgs e)
         {
@@ -213,8 +241,10 @@ namespace UMSAssignment.VIEWS
                     {
                         staname.Text = staff.StaffName;
                         staaddress.Text = staff.StaffAddress;
+                        cmdTime.SelectedValue = staff.Timeslot;
                         cmdz.SelectedValue = staff.StaffGender;
                         cmdCourse.SelectedValue = staff.CourseId;
+                        
                     }
                 }
             }

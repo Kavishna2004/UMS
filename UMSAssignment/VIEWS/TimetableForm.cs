@@ -20,17 +20,17 @@ namespace UMSAssignment.VIEWS
     {
         private readonly TimetableController timetableController;
         private readonly SubjectController subjectController;
-        private readonly RoomController roomController;
+        //private readonly RoomController roomController;
         private int selectedTimetabletId = -1;
         public TimetableForm()
         {
             InitializeComponent();
             timetableController = new TimetableController();
             subjectController = new SubjectController();
-            roomController = new RoomController();
+            //roomController = new RoomController();
 
             LoadSubject();
-            LoadRoom();
+            //LoadRoom();
 
         }
         private void LoadSubject()
@@ -49,13 +49,13 @@ namespace UMSAssignment.VIEWS
                 return;
             }
         }
-        private void LoadRoom()
+       /* private void LoadRoom()
         {
             var rooms = roomController.GetAllRooms();
             cmdRoom.DataSource = rooms;
             cmdRoom.DisplayMember = "RoomName";
             cmdRoom.ValueMember = "roomId";
-        }
+        }*/
         private void ClearForm()
         {
             cmdRoom.DataSource = null;
@@ -81,17 +81,25 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Please select a Room.");
                 return;
             }
+            
+            UserTimeslot selectedTimeslot;
+            if (!Enum.TryParse<UserTimeslot>(ttime.Text, out selectedTimeslot))
+            {
+                MessageBox.Show("Please select a valid timeslot.");
+                return;
+            }
 
             var timetable = new Timetable
             {
-                SubjectId = (UserSubject)cmdSubject.SelectedValue,
+                SubjectId = (int)cmdSubject.SelectedValue,
                 RoomId = (UserRoom)cmdRoom.SelectedValue,
-                TimeSlot = ttime.Text,
+                //TimeSlot = (UserTimeslot)ttime.Value,
+                TimeSlot = selectedTimeslot,
             };
 
             timetableController.AddTimetable(timetable);
             LoadSubject();
-            LoadRoom();
+            //LoadRoom();
             ClearForm();
             MessageBox.Show("Timetable Added Successfully");
         }
@@ -116,17 +124,25 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Please must fill in all timetable details.");
                 return;
             }
+            // ttime.Text-ல் இருந்து enum-ஆ convert பண்ணும் முயற்சி
+            if (!Enum.TryParse<UserTimeslot>(ttime.Text, out var timeSlot))
+            {
+                MessageBox.Show("Please select a valid timeslot.");
+                return;
+            }
 
             var timetable = new Timetable
             {
-                SubjectId = (UserSubject)cmdSubject.SelectedValue,
+                TimetableId = selectedTimetabletId,
+                SubjectId = (int)cmdSubject.SelectedValue,
                 RoomId = (UserRoom)cmdRoom.SelectedValue,
-                TimeSlot = ttime.Text,
+                TimeSlot = timeSlot,
             };
 
             timetableController.UpdateTimetable(timetable);
+
             LoadSubject();
-            LoadRoom();
+            //LoadRoom();
             ClearForm(); 
             MessageBox.Show("Timetable Updated Successfully");
 
@@ -145,7 +161,7 @@ namespace UMSAssignment.VIEWS
             {
                 timetableController.DeleteTimetable(selectedTimetabletId);
                 LoadSubject();
-                LoadRoom();
+                //LoadRoom();
                 ClearForm();
                 MessageBox.Show("Timetable Deleted Successfully");
             }
@@ -153,7 +169,7 @@ namespace UMSAssignment.VIEWS
 
         private void cmdSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            {
+            /*{
                 cmdSubject.Items.Clear();
                 cmdSubject.Items.Add("Select Subject");
                 foreach (var subject in Enum.GetValues(typeof(UserSubject)))
@@ -161,7 +177,7 @@ namespace UMSAssignment.VIEWS
                     cmdSubject.Items.Add(subject);
                 }
                 cmdSubject.SelectedIndex = 0;
-            }
+            }*/
         }
         private void cmdRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -178,6 +194,11 @@ namespace UMSAssignment.VIEWS
 
         private void ViewTimetable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+           
+        }
+
+        private void ViewTimetable_SelectionChanged(object sender, EventArgs e)
+        {
             if (ViewTimetable.SelectedRows.Count > 0)
             {
                 var row = ViewTimetable.SelectedRows[0];
@@ -190,8 +211,8 @@ namespace UMSAssignment.VIEWS
                     var timetables = timetableController.GetTimetableById(selectedTimetabletId);
                     if (timetables != null)
                     {
-                        ttime.Text = timetables.Timeslot;
-                        cmdSubject.SelectedValue = (UserSubject)timetables.SubjectId;
+                        ttime.Text = timetables.TimeSlot.ToString();
+                        cmdSubject.SelectedValue = timetables.SubjectId;
                         cmdRoom.SelectedValue = (UserRoom)timetables.RoomId;
                     }
                 }

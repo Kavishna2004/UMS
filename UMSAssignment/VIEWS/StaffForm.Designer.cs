@@ -43,6 +43,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cmdCourse = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmdTime = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ViewStaffs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(224, 142);
+            this.label3.Location = new System.Drawing.Point(220, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 2;
@@ -70,7 +72,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(202, 191);
+            this.label4.Location = new System.Drawing.Point(211, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 16);
             this.label4.TabIndex = 3;
@@ -80,7 +82,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(200, 244);
+            this.label5.Location = new System.Drawing.Point(211, 222);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 16);
             this.label5.TabIndex = 4;
@@ -89,7 +91,7 @@
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(705, 449);
+            this.btn_add.Location = new System.Drawing.Point(687, 359);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 5;
@@ -100,7 +102,7 @@
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(705, 520);
+            this.btn_update.Location = new System.Drawing.Point(687, 407);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(75, 23);
             this.btn_update.TabIndex = 6;
@@ -111,7 +113,7 @@
             // btn_dlt
             // 
             this.btn_dlt.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dlt.Location = new System.Drawing.Point(705, 578);
+            this.btn_dlt.Location = new System.Drawing.Point(687, 456);
             this.btn_dlt.Name = "btn_dlt";
             this.btn_dlt.Size = new System.Drawing.Size(75, 23);
             this.btn_dlt.TabIndex = 7;
@@ -122,9 +124,9 @@
             // ViewStaffs
             // 
             this.ViewStaffs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewStaffs.Location = new System.Drawing.Point(153, 385);
+            this.ViewStaffs.Location = new System.Drawing.Point(223, 326);
             this.ViewStaffs.Name = "ViewStaffs";
-            this.ViewStaffs.Size = new System.Drawing.Size(526, 254);
+            this.ViewStaffs.Size = new System.Drawing.Size(405, 170);
             this.ViewStaffs.TabIndex = 8;
             this.ViewStaffs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewStaffs_CellContentClick);
             this.ViewStaffs.SelectionChanged += new System.EventHandler(this.ViewStaffs_SelectionChanged);
@@ -140,7 +142,7 @@
             // stanic
             // 
             this.stanic.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stanic.Location = new System.Drawing.Point(331, 137);
+            this.stanic.Location = new System.Drawing.Point(331, 123);
             this.stanic.Name = "stanic";
             this.stanic.Size = new System.Drawing.Size(281, 21);
             this.stanic.TabIndex = 10;
@@ -148,7 +150,7 @@
             // staaddress
             // 
             this.staaddress.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.staaddress.Location = new System.Drawing.Point(331, 242);
+            this.staaddress.Location = new System.Drawing.Point(331, 217);
             this.staaddress.Name = "staaddress";
             this.staaddress.Size = new System.Drawing.Size(281, 21);
             this.staaddress.TabIndex = 11;
@@ -157,7 +159,7 @@
             // cmdz
             // 
             this.cmdz.FormattingEnabled = true;
-            this.cmdz.Location = new System.Drawing.Point(331, 191);
+            this.cmdz.Location = new System.Drawing.Point(331, 173);
             this.cmdz.Name = "cmdz";
             this.cmdz.Size = new System.Drawing.Size(281, 21);
             this.cmdz.TabIndex = 12;
@@ -167,7 +169,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(202, 296);
+            this.label6.Location = new System.Drawing.Point(215, 290);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 16);
             this.label6.TabIndex = 13;
@@ -177,7 +179,7 @@
             // cmdCourse
             // 
             this.cmdCourse.FormattingEnabled = true;
-            this.cmdCourse.Location = new System.Drawing.Point(331, 291);
+            this.cmdCourse.Location = new System.Drawing.Point(331, 285);
             this.cmdCourse.Name = "cmdCourse";
             this.cmdCourse.Size = new System.Drawing.Size(281, 21);
             this.cmdCourse.TabIndex = 14;
@@ -189,15 +191,35 @@
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(304, 28);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(267, 28);
+            this.label7.Size = new System.Drawing.Size(246, 28);
             this.label7.TabIndex = 15;
-            this.label7.Text = "COURSE REGISTRATION";
+            this.label7.Text = "STAFF REGISTRATION";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(211, 258);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 16);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Date & Time";
+            // 
+            // cmdTime
+            // 
+            this.cmdTime.FormattingEnabled = true;
+            this.cmdTime.Location = new System.Drawing.Point(331, 253);
+            this.cmdTime.Name = "cmdTime";
+            this.cmdTime.Size = new System.Drawing.Size(281, 21);
+            this.cmdTime.TabIndex = 17;
             // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 651);
+            this.ClientSize = new System.Drawing.Size(836, 583);
+            this.Controls.Add(this.cmdTime);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmdCourse);
             this.Controls.Add(this.label6);
@@ -213,6 +235,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StaffForm";
             this.Text = "StaffForm";
             this.Load += new System.EventHandler(this.StaffForm_Load);
@@ -238,5 +261,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmdCourse;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmdTime;
     }
 }

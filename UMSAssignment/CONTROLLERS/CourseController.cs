@@ -17,7 +17,7 @@ namespace UMSAssignment.CONTROLLERS
         {
         
         }
-        public List<Course> GetAllLecture()
+        public List<Course> GetAllCourses()
         {
             var courses = new List<Course>();
 
@@ -25,14 +25,14 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Lecturers", conn);
+                    var cmd = new SQLiteCommand("SELECT * FROM Courses", conn);
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         courses.Add(new Course
                         {
                             CourseId = reader.GetInt32(0),
-                            CourseName = (UserCourse)reader.GetInt32(1),
+                            CourseName = reader.GetString(1),
                             
                         });
                     }
@@ -40,87 +40,82 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllLecture: " + ex.Message);
+                Console.WriteLine("Error in GetAllcourse: " + ex.Message);
             }
 
             return courses;
         }
-        public void AddLecturer(Course course)
+        public void AddCourse(Course course)
         {
             try
             {
+                string query = "INSERT INTO Courses(CourseName) VALUES (@Name)";
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("INSERT INTO Lecturers(Name, CourseId) VALUES (@Name, CourseId)", conn);
+                    var cmd = new SQLiteCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", course.CourseName);
-                    cmd.Parameters.AddWithValue("@CourseId", course.CourseId);
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in AddLecturer: " + ex.Message);
+                Console.WriteLine("Error in AddCourse: " + ex.Message);
             }
         }
 
-        public void UpdateLectuter(Course course)
+
+        public void UpdateCourse(Course course)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("UPDATE Lecturers SET Name = @Name, WHERE CourseId = @CourseId", conn);
-                    cmd.Parameters.AddWithValue("@Name", course.CourseName);
+                    var cmd = new SQLiteCommand("UPDATE Courses SET CourseName = @CourseName WHERE CourseId = @CourseId", conn);
+                    cmd.Parameters.AddWithValue("@CourseName", course.CourseName);
                     cmd.Parameters.AddWithValue("@CourseId", course.CourseId);
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery ();
+
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in UpdateLectuter: " + ex.Message);
+                Console.WriteLine("Error in UpdateCourse: " + ex.Message);
             }
         }
-        public void DeleteLecturer(int Id)
+        public void DeleteCourse(int CourseId)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("DELETE FROM Lecturers WHERE LecturerId = @Id", conn);
-                    command.Parameters.AddWithValue("@Id", Id);
+                    var command = new SQLiteCommand("DELETE FROM Courses WHERE CourseId = @Id", conn);
+                    command.Parameters.AddWithValue("@Id", CourseId);
                     command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in DeleteLecturer: " + ex.Message);
+                Console.WriteLine("Error in DeleteCourse: " + ex.Message);
             }
         }
 
-        public Lecturer GetLecturerById(int Id)
+        public Course GetCourseById(int Id)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Lecturers WHERE LecturerId = @Id", conn);
+                    var cmd = new SQLiteCommand("SELECT * FROM Courses WHERE CourseId = @Id", conn);
                     cmd.Parameters.AddWithValue("@Id", Id);
 
                     using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return new Lecturer
+                            return new Course
                             {
-                                Id = reader.GetInt32(0),
-                                LecturerName = reader.GetString(1),
-                                LecturerAddress = reader.GetString(2),
-                                LecturerNIC = reader.GetString(3),
-                                LecturerGender = (UserGender)reader.GetInt32(4),
-                                LecturerPhone = reader.GetString(5),
-                                LecturerEmail = reader.GetString(6),
-                                TimetableId = reader.GetInt32(7),
-                                UserId = reader.GetInt32(8),
+                                CourseId = reader.GetInt32(0),
+                                CourseName = reader.GetString(1),
                             };
                         }
                     }
@@ -128,7 +123,7 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetLecturerById: " + ex.Message);
+                Console.WriteLine("Error in GetCourseyId: " + ex.Message);
             }
 
             return null;

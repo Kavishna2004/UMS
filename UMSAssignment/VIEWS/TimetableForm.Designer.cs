@@ -46,7 +46,7 @@
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(847, 346);
+            this.btn_add.Location = new System.Drawing.Point(630, 313);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(85, 35);
             this.btn_add.TabIndex = 0;
@@ -66,7 +66,7 @@
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(847, 422);
+            this.btn_update.Location = new System.Drawing.Point(630, 389);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(85, 35);
             this.btn_update.TabIndex = 2;
@@ -77,7 +77,7 @@
             // btn_dlt
             // 
             this.btn_dlt.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dlt.Location = new System.Drawing.Point(847, 507);
+            this.btn_dlt.Location = new System.Drawing.Point(630, 460);
             this.btn_dlt.Name = "btn_dlt";
             this.btn_dlt.Size = new System.Drawing.Size(85, 35);
             this.btn_dlt.TabIndex = 3;
@@ -141,11 +141,12 @@
             // ViewTimetable
             // 
             this.ViewTimetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewTimetable.Location = new System.Drawing.Point(178, 316);
+            this.ViewTimetable.Location = new System.Drawing.Point(79, 313);
             this.ViewTimetable.Name = "ViewTimetable";
-            this.ViewTimetable.Size = new System.Drawing.Size(571, 254);
+            this.ViewTimetable.Size = new System.Drawing.Size(504, 188);
             this.ViewTimetable.TabIndex = 11;
             this.ViewTimetable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewTimetable_CellContentClick);
+            this.ViewTimetable.SelectionChanged += new System.EventHandler(this.ViewTimetable_SelectionChanged);
             // 
             // label4
             // 
@@ -170,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 596);
+            this.ClientSize = new System.Drawing.Size(836, 583);
             this.Controls.Add(this.ttime);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ViewTimetable);
@@ -183,6 +184,7 @@
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_add);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TimetableForm";
             this.Text = "TimetableForm";
             ((System.ComponentModel.ISupportInitialize)(this.ViewTimetable)).EndInit();

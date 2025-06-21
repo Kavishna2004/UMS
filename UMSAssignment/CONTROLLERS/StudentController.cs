@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
 using UMSAssignment.REPOSITORIE;
@@ -25,27 +26,24 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand(@"
-                        SELECT st.Id, st.Name, st.NIC, st.Gender, st.Address, st.Email, st.Phone, st.DOB, st.UserId, st.CourseId, Cou.Name AS CourseName
-                        FROM Student St
-                        LEFT JOIN Course Cou ON St.CourseId = Cou.Id", conn);
+                    var cmd = new SQLiteCommand("SELECT * FROM Students", conn);
 
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         Student student = new Student
-                        {
-                            Id = reader.GetInt32(0),
+                        { 
+                            StudentId = reader.GetInt32(0),
                             StudentName = reader.GetString(1),
-                            StudentNIC = reader.GetString(2),
-                            StudentGender = (UserGender)reader.GetInt32(3),
-                            StudentAddress = reader.GetString(4),
+                            StudentAddress = reader.GetString(2),
+                            StudentNIC = reader.GetString(3),
+                            StudentGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,                            
                             StudentEmail = reader.GetString(5),
                             StudentPhone = reader.GetString(6),
-                            DOB = reader.GetString(7),
-                            CourseId = (UserCourse)reader.GetInt32(8),
+                            StudentDOB = reader.GetString(7),
+                            CourseId = reader.GetInt32(8),
                             GroupId = reader.GetInt32(9),
-                            UserId = reader.GetInt32(11),
+                            UserId = reader.GetInt32(10),
                         };
                         students.Add(student);
                     }
@@ -54,6 +52,7 @@ namespace UMSAssignment.CONTROLLERS
             catch (Exception ex)
             {
                 Console.WriteLine("Error in GetAllStudents: " + ex.Message);
+                throw;
             }
 
             return students;
@@ -65,23 +64,25 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("INSERT INTO Students (Name, Address, NIC, Gender, Email, Phone, DOB, CourseId) VALUES (@Name, @Address, @NIC, @Gender, @Email, @Phone, @DOB, @CourseId)", conn);
+                    var command = new SQLiteCommand("INSERT INTO Students (StudentName, StudentAddress, StudentNIC, StudentGender, StudentEmail, StudentPhone, StudentDOB, CourseId, GroupId, UserId) VALUES (@Name, @Address, @NIC, @Gender, @Email, @Phone, @DOB, @CourseId, @GroupId, @UserId)", conn);
                     command.Parameters.AddWithValue("@Name", student.StudentName);
-                    command.Parameters.AddWithValue("@NIC", student.StudentNIC);
-                    command.Parameters.AddWithValue("@Gender", student.StudentGender);
                     command.Parameters.AddWithValue("@Address", student.StudentAddress);
+                    command.Parameters.AddWithValue("@NIC", student.StudentNIC);
+                    command.Parameters.AddWithValue("@Gender", student.StudentGender.ToString()); 
                     command.Parameters.AddWithValue("@Email", student.StudentEmail);
                     command.Parameters.AddWithValue("@Phone", student.StudentPhone);
-                    command.Parameters.AddWithValue("@DOB", student.DOB);
+                    command.Parameters.AddWithValue("@DOB", student.StudentDOB);
                     command.Parameters.AddWithValue("@CourseId", student.CourseId);
                     command.Parameters.AddWithValue("@GroupId", student.GroupId);
                     command.Parameters.AddWithValue("@UserId", student.UserId);
                     command.ExecuteNonQuery();
                 }
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error in AddStudent: " + ex.Message);
+                MessageBox.Show("Add Error: " + ex.Message);
             }
         }
         public void UpdateStudent(Student student)
@@ -90,19 +91,20 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("UPDATE Students SET Name = @Name, Address = @Address, NIC = @NIC, Gender = @Gender, Email = @Email, Phone = @Phone, DOB = @DOB, CourseId = @CourseId WHERE Id = @Id", conn);
+                    var command = new SQLiteCommand("UPDATE Students SET StudentName = @Name, StudentAddress = @Address, StudentNIC = @NIC, StudentGender = @Gender, StudentEmail = @Email, StudentPhone = @Phone, StudentDOB = @DOB, CourseId = @CourseId, GroupId = @GroupId, UserId = @UserId WHERE StudentId = @StudentId", conn);
                     command.Parameters.AddWithValue("@Name", student.StudentName);
-                    command.Parameters.AddWithValue("@NIC", student.StudentNIC);
-                    command.Parameters.AddWithValue("@Gender", student.StudentGender);
                     command.Parameters.AddWithValue("@Address", student.StudentAddress);
+                    command.Parameters.AddWithValue("@NIC", student.StudentNIC);
+                    command.Parameters.AddWithValue("@Gender", student.StudentGender.ToString());
                     command.Parameters.AddWithValue("@Email", student.StudentEmail);
                     command.Parameters.AddWithValue("@Phone", student.StudentPhone);
-                    command.Parameters.AddWithValue("@DOB", student.DOB);
-                    command.Parameters.AddWithValue("@CourseId", student.Id);
-                    command.Parameters.AddWithValue("@GroupId", student.Id);
-                    command.Parameters.AddWithValue("@Id", student.Id);
-                    command.Parameters.AddWithValue("@UserId", student.Id);
+                    command.Parameters.AddWithValue("@DOB", student.StudentDOB);
+                    command.Parameters.AddWithValue("@CourseId", student.CourseId);
+                    command.Parameters.AddWithValue("@GroupId", student.GroupId);
+                    command.Parameters.AddWithValue("@UserId", student.UserId);
+                    command.Parameters.AddWithValue("@StudentId", student.StudentId);
                     command.ExecuteNonQuery();
+                    //transaction.Commit();
                 }
             }
             catch (Exception ex)
@@ -116,8 +118,8 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("DELETE FROM Students WHERE Id = @Id", conn);
-                    command.Parameters.AddWithValue("@Id", Id);
+                    var command = new SQLiteCommand("DELETE FROM Students WHERE StudentId = @StudentId", conn);
+                    command.Parameters.AddWithValue("@StudentId", Id);
                     command.ExecuteNonQuery();
                 }
             }
@@ -134,8 +136,8 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Students WHERE Id = @Id", conn);
-                    cmd.Parameters.AddWithValue("@Id", Id);
+                    var cmd = new SQLiteCommand("SELECT * FROM Students WHERE StudentId = @StudentId", conn);
+                    cmd.Parameters.AddWithValue("@StudentId", Id);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -143,17 +145,17 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             return new Student
                             {
-                                Id = reader.GetInt32(0),
+                                StudentId = reader.GetInt32(0),
                                 StudentName = reader.GetString(1),
-                                StudentNIC = reader.GetString(2),
-                                StudentGender = (UserGender)reader.GetInt32(3),
-                                StudentAddress = reader.GetString(4),
+                                StudentAddress = reader.GetString(2),
+                                StudentNIC = reader.GetString(3),
+                                StudentGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,
                                 StudentEmail = reader.GetString(5),
                                 StudentPhone = reader.GetString(6),
-                                DOB = reader.GetString(7),
-                                //CourseId = (UserCourse)reader.GetInt32(8),
-                                //GroupId = reader.GetInt32(9),
-                                //UserId = reader.GetInt32(11),
+                                StudentDOB = reader.GetString(7),
+                                CourseId = reader.GetInt32(8),
+                                GroupId = reader.GetInt32(9),
+                                UserId = reader.GetInt32(10),
                             };
                         }
                     }

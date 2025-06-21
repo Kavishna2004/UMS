@@ -38,7 +38,7 @@ namespace UMSAssignment.CONTROLLERS
                             {
                                 var user = new User
                                 {
-                                    Id = Convert.ToInt32(reader["UserId"]),
+                                    UserId = Convert.ToInt32(reader["UserId"]),
                                     UserName = reader["UserName"].ToString(),
                                     UserEmail = reader["UserEmail"].ToString(),
                                     Role = (UserRole)Convert.ToInt32(reader["Role"]),
@@ -76,7 +76,7 @@ namespace UMSAssignment.CONTROLLERS
                             {
                                 var user = new User
                                 {
-                                    Id = Convert.ToInt32(reader["UserId"]),
+                                    UserId = Convert.ToInt32(reader["UserId"]),
                                     UserName = reader["UserName"].ToString(),
                                     UserEmail = reader["UserEmail"].ToString(),
                                     Role = (UserRole)Convert.ToInt32(reader["Role"]),
@@ -142,7 +142,7 @@ namespace UMSAssignment.CONTROLLERS
                         cmd.Parameters.AddWithValue("@UserName", user.UserName);
                         cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
                         cmd.Parameters.AddWithValue("@Role", (int)user.Role);
-                        cmd.Parameters.AddWithValue("@UserId", user.Id);
+                        cmd.Parameters.AddWithValue("@UserId", user.UserId);
 
                         return cmd.ExecuteNonQuery() > 0;
                     }

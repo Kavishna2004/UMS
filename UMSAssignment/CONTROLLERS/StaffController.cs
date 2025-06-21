@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
 using UMSAssignment.REPOSITORIE;
@@ -26,21 +27,22 @@ namespace UMSAssignment.CONTROLLERS
                 using (var conn = DbConfig.GetConnection())
                 {
                     var cmd = new SQLiteCommand(@"SELECT * FROM Staffs", conn);
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    using (var reader = cmd.ExecuteReader()) 
                     {
-                        Staff staff = new Staff
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(0),
-                            StaffName = reader.GetString(1),
-                            StaffNIC = reader.GetString(2),
-                            StaffGender = (UserGender)reader.GetInt32(3),
-                            StaffAddress = reader.GetString(4),
-                            StaffTimeslot = reader.GetInt32(5),
-                            CourseId = (UserCourse)reader.GetInt32(6),
-                            UserId = reader.GetInt32(7),
-                        };
-                        staffs.Add(staff);
+                            staffs.Add(new Staff
+                            {
+                                StaffId = reader.GetInt32(0),
+                                StaffName = reader.GetString(1),
+                                StaffNIC = reader.GetString(2),
+                                StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
+                                StaffAddress = reader.GetString(4),
+                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(5)),
+                                CourseId = reader.GetInt32(6),
+                                UserId = reader.GetInt32(7)
+                            });
+                        }
                     }
                 }
             }
@@ -57,20 +59,32 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("INSERT INTO Staffs (Name, NIC, Gender, Address, Timeslot, CourseId, UserId) VALUES (@Name, @NIC, @Gender, @Address, @Timeslot, @CourseId, @UserId)", conn);
+                    var command = new SQLiteCommand("INSERT INTO Staffs (StaffName, StaffNIC, StaffGender, StaffAddress, Timeslot, CourseId, UserId)" +
+                        " VALUES (@Name, @NIC, @Gender, @Address, @Timeslot, @CourseId, @UserId)", conn);
                     command.Parameters.AddWithValue("@Name", staff.StaffName);
                     command.Parameters.AddWithValue("@NIC", staff.StaffNIC);
-                    command.Parameters.AddWithValue("@Gender", staff.StaffGender);
-                    command.Parameters.AddWithValue("@Address", staff.StaffAddress);  
-                    command.Parameters.AddWithValue("@Timeslot", staff.StaffTimeslot);
-                    command.Parameters.AddWithValue("@CourseId", staff.Id);
-                    command.Parameters.AddWithValue("@UserId", staff.Id);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@Gender", staff.StaffGender.ToString());
+                    command.Parameters.AddWithValue("@Address", staff.StaffAddress);
+                    command.Parameters.AddWithValue("@Timeslot", staff.Timeslot.ToString());
+                    command.Parameters.AddWithValue("@CourseId", staff.CourseId);
+                    command.Parameters.AddWithValue("@UserId", staff.UserId);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows Inserted: " + rowsAffected);
+
+                   /* if (rowsAffected == 0)
+                    {
+                        MessageBox.Show("Insert failed: No rows affected.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Insert success!");
+                    }*/
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error in AddStaff: " + ex.Message);
+                //throw;
             }
         }
 
@@ -81,15 +95,16 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("UPDATE Staffs SET Name = @Name, NIC = @NIC, Gender = @Gender, Address = @Address, Timeslot = @Timeslot, CourseId = @CourseId, UserId = @UserId WHERE Id = @Id", conn);
+                    var command = new SQLiteCommand("UPDATE Staffs SET StaffName = @Name, StaffNIC = @NIC, StaffGender = @Gender, StaffAddress = @Address," +
+                        " Timeslot = @Timeslot, CourseId = @CourseId, UserId = @UserId WHERE StaffId = @StaffId", conn);
                     command.Parameters.AddWithValue("@Name", staff.StaffName);
                     command.Parameters.AddWithValue("@NIC", staff.StaffNIC);
                     command.Parameters.AddWithValue("@Gender", staff.StaffGender);
                     command.Parameters.AddWithValue("@Address", staff.StaffAddress);
-                    command.Parameters.AddWithValue("@Timeslot", staff.StaffTimeslot);
-                    command.Parameters.AddWithValue("@CourseId", staff.Id);
-                    command.Parameters.AddWithValue("@UserId", staff.Id);
-                    command.Parameters.AddWithValue("@Id", staff.Id);  
+                    command.Parameters.AddWithValue("@Timeslot", staff.Timeslot);
+                    command.Parameters.AddWithValue("@CourseId", staff.CourseId);
+                    command.Parameters.AddWithValue("@UserId", staff.UserId);
+                    command.Parameters.AddWithValue("@StaffId", staff.StaffId);  
                     command.ExecuteNonQuery();
                 }
             }
@@ -98,20 +113,20 @@ namespace UMSAssignment.CONTROLLERS
                 Console.WriteLine("Error in UpdateStaff: " + ex.Message);
             }
         }
-        public void DeleteStudent(int staffId)
+        public void DeleteStaff(int staffId)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("DELETE FROM Staffs WHERE Id = @Id", conn);
+                    var command = new SQLiteCommand("DELETE FROM Staffs WHERE StaffId = @Id", conn);
                     command.Parameters.AddWithValue("@Id", staffId);
                     command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in DeleteStudent: " + ex.Message);
+                Console.WriteLine("Error in DeleteStaff: " + ex.Message);
             }
         }
         public Staff GetStaffById(int staffId)
@@ -120,7 +135,7 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Staffs WHERE Id = @Id", conn);
+                    var cmd = new SQLiteCommand("SELECT * FROM Staffs WHERE StaffId = @Id", conn);
                     cmd.Parameters.AddWithValue("@Id", staffId);
 
                     using (var reader = cmd.ExecuteReader())
@@ -129,13 +144,13 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             return new Staff
                             {
-                                Id = reader.GetInt32(0),
+                                StaffId = reader.GetInt32(0),
                                 StaffName = reader.GetString(1),
-                                StaffNIC = reader.GetString(2),   
-                                StaffGender = (UserGender)reader.GetInt32(3),
+                                StaffNIC = reader.GetString(2),
+                                StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
                                 StaffAddress = reader.GetString(4),
-                                StaffTimeslot = reader.GetInt32(5),
-                                CourseId = (UserCourse)reader.GetInt32(6),
+                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(5)),
+                                CourseId = reader.GetInt32(6),
                                 UserId = reader.GetInt32(7),
                             };
                         }

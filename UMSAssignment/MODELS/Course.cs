@@ -10,7 +10,7 @@ namespace UMSAssignment.MODELS
     internal class Course 
     {
         public int CourseId {  get; set; }
-        public UserCourse CourseName { get; set; }
+        public string CourseName { get; set; }
 
     }
 }

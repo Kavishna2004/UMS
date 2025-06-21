@@ -7,16 +7,16 @@ using UMSAssignment.ENUMS;
 
 namespace UMSAssignment.MODELS
 {
-    internal class Lecturer : CommonModel
+    internal class Lecturer
     {
-       /* public int LecturerId { get; set; }*/
+        public int LecturerId { get; set; }
         public string LecturerName { get; set; }
         public string LecturerNIC { get; set; }
         public UserGender LecturerGender { get; set; }
         public string LecturerAddress { get; set; }
         public string LecturerPhone { get; set; }
         public string  LecturerEmail {  get; set; }
-        public UserCourse CourseId { get; set; }
+        public int CourseId { get; set; }
         public int TimetableId { get; set; }
         public int UserId { get; set; }
     }

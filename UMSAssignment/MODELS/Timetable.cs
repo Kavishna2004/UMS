@@ -7,11 +7,11 @@ using UMSAssignment.ENUMS;
 
 namespace UMSAssignment.MODELS
 {
-    internal class Timetable : CommonModel
+    internal class Timetable 
     {
-        /*public int TimetableId { get; set; }*/
-        public UserSubject SubjectId { get; set; }
-        public string TimeSlot { get; set; }
+        public int TimetableId { get; set; }
+        public int SubjectId { get; set; }
+        public UserTimeslot TimeSlot { get; set; }
         public UserRoom RoomId { get; set; }
     }
 }

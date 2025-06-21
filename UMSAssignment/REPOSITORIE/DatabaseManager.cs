@@ -20,7 +20,7 @@ namespace UMSAssignment.REPOSITORIE
             using (var conn = DbConfig.GetConnection())
             {
                 string createTableQuery = @"
-                    CREATE TABLE IF NOT EXISTS Courses(
+                    CREATE TABLE IF NOT EXISTS Courses (
                         CourseId INTEGER PRIMARY KEY AUTOINCREMENT,
                         CourseName TEXT NOT NULL
                     );
@@ -57,6 +57,7 @@ namespace UMSAssignment.REPOSITORIE
                         LecturerGender TEXT NOT NULL,
                         LecturerAddress TEXT NOT NULL,
                         LecturerPhone TEXT NOT NULL,
+                        LecturerEmail TEXT NOT NULL,
                         CourseId INTEGER,
                         TimetableId INTEGER,
                         UserId INTEGER,
@@ -139,14 +140,11 @@ namespace UMSAssignment.REPOSITORIE
                         FOREIGN KEY (TimetableId) REFERENCES Timetables(TimetableId)
                     );
                         
-                    CREATE TABLE IF NOT EXISTS Timetables(
+                    CREATE TABLE IF NOT EXISTS Timetables (
                         TimetableId INTEGER PRIMARY KEY AUTOINCREMENT,
-                        Timeslot TEXT NOT NULL,
-                        RoomId INTEGER,
-                        SubjectId INTEGER,
-                        PRIMARY KEY (RoomId, SubjectId),
-                        FOREIGN KEY (RoomId) REFERENCES Rooms(RoomId),
-                        FOREIGN KEY (SubjectId) REFERENCES Subjects(SubjectId)
+                        SubjectId INTEGER NOT NULL,
+                        RoomId INTEGER NOT NULL,
+                        TimeSlot TEXT NOT NULL
                     );
 
                     CREATE TABLE IF NOT EXISTS Staffs(
@@ -155,7 +153,7 @@ namespace UMSAssignment.REPOSITORIE
                         StaffNIC TEXT NOT NULL,
                         StaffGender TEXT NOT NULL,
                         StaffAddress TEXT NOT NULL,
-                        StaffTimeslot INTEGER NOT NULL,
+                        StaffTimeslot TEXT NOT NULL,
                         CourseId INTEGER,
                         UserId INTEGER,
                         FOREIGN KEY (CourseId) REFERENCES Courses(CourseId),
@@ -166,6 +164,7 @@ namespace UMSAssignment.REPOSITORIE
                 {
                     cmd.ExecuteNonQuery();
                 }
+
             }
         }
     }

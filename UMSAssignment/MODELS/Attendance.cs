@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UMSAssignment.MODELS
 {
-    internal class Attendance : CommonModel
+    internal class Attendance 
     {
-      /*  public  int AttendanceId { get; set; }*/
+        public int AttendanceId { get; set; }
         public int StudentId { get; set; }
         public int TimetableId { get; set; }
         public string Timestamp { get; set; }

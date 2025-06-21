@@ -31,7 +31,7 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             attendances.Add(new Attendance
                             {
-                                Id = Convert.ToInt32(reader["AttendanceId"]),
+                                AttendanceId = Convert.ToInt32(reader["AttendanceId"]),
                                 Timestamp = reader["Timestamp"].ToString(),
                                 Status = reader["Status"].ToString(),
                                 StudentId = Convert.ToInt32(reader["StudentId"]),

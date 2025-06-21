@@ -8,8 +8,8 @@ namespace UMSAssignment.ENUMS
 {
     internal enum UserGender
     {
-        Male = 001,
-        Female = 002,
-        Other = 003
+        Male ,
+        Female,
+        Other 
     }
 }

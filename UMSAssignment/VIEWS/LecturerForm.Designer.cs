@@ -135,7 +135,7 @@
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(787, 344);
+            this.btn_add.Location = new System.Drawing.Point(699, 303);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 8;
@@ -146,7 +146,7 @@
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(787, 410);
+            this.btn_update.Location = new System.Drawing.Point(699, 369);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(75, 23);
             this.btn_update.TabIndex = 9;
@@ -157,7 +157,7 @@
             // btn_dlt
             // 
             this.btn_dlt.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dlt.Location = new System.Drawing.Point(787, 486);
+            this.btn_dlt.Location = new System.Drawing.Point(699, 439);
             this.btn_dlt.Name = "btn_dlt";
             this.btn_dlt.Size = new System.Drawing.Size(75, 23);
             this.btn_dlt.TabIndex = 10;
@@ -168,11 +168,12 @@
             // ViewLecturer
             // 
             this.ViewLecturer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewLecturer.Location = new System.Drawing.Point(105, 344);
+            this.ViewLecturer.Location = new System.Drawing.Point(109, 303);
             this.ViewLecturer.Name = "ViewLecturer";
-            this.ViewLecturer.Size = new System.Drawing.Size(609, 203);
+            this.ViewLecturer.Size = new System.Drawing.Size(554, 174);
             this.ViewLecturer.TabIndex = 11;
             this.ViewLecturer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewLecturer_CellContentClick);
+            this.ViewLecturer.SelectionChanged += new System.EventHandler(this.ViewLecturer_SelectionChanged);
             // 
             // cmdCourse
             // 
@@ -239,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 589);
+            this.ClientSize = new System.Drawing.Size(820, 544);
             this.Controls.Add(this.cmdGender);
             this.Controls.Add(this.leemail);
             this.Controls.Add(this.lenic);
@@ -259,6 +260,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LecturerForm";
             this.Text = "LecturerForm";
             this.Load += new System.EventHandler(this.LecturerForm_Load);

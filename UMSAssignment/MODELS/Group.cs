@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UMSAssignment.MODELS
 {
-    internal class Group : CommonModel
+    internal class Group 
     {
-       /* public int GroupId { get; set; }*/
+        public int GroupId { get; set; }
         public string GroupName { get; set; }
     }
 }

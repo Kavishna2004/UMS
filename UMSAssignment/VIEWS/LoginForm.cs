@@ -23,10 +23,28 @@ namespace UMSAssignment.VIEWS
             var controller = new LoginController();
             controller.EnsureAdminExists();
         }
+        public void SetUserRole(string role) 
+        {
+            
+        }
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            string UserName;
+            string UserName = tusername.Text;
+            string Password = tpassword.Text;
+
+            if (UserName == "Admin" && Password == "Admin123")
+            {
+                InterFace form = new InterFace();
+                //form.SetUserRole("Admin");
+                form.Show();
+                this.Hide();
+            }
+            else 
+            {
+                MessageBox.Show("Invalid login");
+            }
+
             try
             {
                 using (var conn = DbConfig.GetConnection())

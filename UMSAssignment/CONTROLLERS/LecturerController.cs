@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.MobileControls;
+using System.Windows.Forms;
 using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
 using UMSAssignment.REPOSITORIE;
@@ -19,8 +20,6 @@ namespace UMSAssignment.CONTROLLERS
         {
         
         }
-
-
         public List<Lecturer> GetAllLecture()
         {
             var lecturers = new List<Lecturer>();
@@ -33,24 +32,28 @@ namespace UMSAssignment.CONTROLLERS
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        lecturers.Add(new Lecturer
+                        Lecturer lecturer = new Lecturer
                         {
-                            Id = reader.GetInt32(0),
+                            LecturerId = reader.GetInt32(0),
                             LecturerName = reader.GetString(1),
-                            LecturerAddress = reader.GetString(2),
-                            LecturerNIC = reader.GetString(3),
-                            LecturerGender = (UserGender)reader.GetInt32(4),
+                            LecturerNIC = reader.GetString(2),
+                            LecturerGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,
+                            LecturerAddress = reader.GetString(4),
                             LecturerPhone = reader.GetString(5),
                             LecturerEmail = reader.GetString(6),
-                            TimetableId = reader.GetInt32(7),
-                            UserId = reader.GetInt32(8),
-                        });
+                            CourseId = reader.GetInt32(7),
+                            TimetableId = reader.GetInt32(8),
+                            UserId = reader.GetInt32(9),
+                            
+                        };
+                        lecturers.Add(lecturer);
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error in GetAllLecture: " + ex.Message);
+                throw;
             }
 
             return lecturers;
@@ -59,23 +62,29 @@ namespace UMSAssignment.CONTROLLERS
         {
             try
             {
+                string query= "INSERT INTO Lecturers(LecturerName, LecturerNIC, LecturerGender, LecturerAddress, LecturerPhone, LecturerEmail, CourseId, TimetableId, UserId)" +
+                    " VALUES (@Name, @NIC, @Gender, @Address, @Phone, @Email, @CourseId, @TimetableId, @UserId)";
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("INSERT INTO Lecturers(Name, Address, NIC, Gender, Phone, Email, TimetableId, UserId) VALUES (@Name, @Address, @NIC, @Gender, @Phone, @Email, @TimetableId, @UserId)", conn);
+                    var cmd = new SQLiteCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", lecturer.LecturerName);
-                    cmd.Parameters.AddWithValue("@Address", lecturer.LecturerAddress);  
                     cmd.Parameters.AddWithValue("@NIC", lecturer.LecturerNIC);
                     cmd.Parameters.AddWithValue("@Gender", lecturer.LecturerGender);
+                    cmd.Parameters.AddWithValue("@Address", lecturer.LecturerAddress);
                     cmd.Parameters.AddWithValue("@Phone", lecturer.LecturerPhone);
                     cmd.Parameters.AddWithValue("@Email", lecturer.LecturerEmail);
-                    cmd.Parameters.AddWithValue("@TimetableId", lecturer.Id);
-                    cmd.Parameters.AddWithValue("@UserId", lecturer.Id);
+                    cmd.Parameters.AddWithValue("@CourseId", lecturer.CourseId);
+                    cmd.Parameters.AddWithValue("@TimetableId", lecturer.TimetableId);
+                    cmd.Parameters.AddWithValue("@UserId", lecturer.UserId);
+                    cmd.Parameters.AddWithValue("@LecturerId", lecturer.LecturerId);
+
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error in AddLecturer: " + ex.Message);
+               
             }
         }
 
@@ -85,21 +94,29 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("UPDATE Lecturers SET Name = @Name, Address = @Address, NIC = @NIC, Gender = @Gender, Phone = @Phone, Email = @Email, TimetableId = @TimetableId WHERE LecturerId = @LecturerId", conn);
+                    var cmd = new SQLiteCommand("UPDATE Lecturers SET LecturerName = @Name, LecturerNIC = @NIC, LecturerGender = @Gender,  LecturerAddress = @Address,LecturerPhone = @Phone," +
+                        " LecturerEmail = @Email, CourseId = @CourseId, TimetableId = @TimetableId, UserId = @UserId WHERE LecturerId = @LecturerId", conn);
                     cmd.Parameters.AddWithValue("@Name", lecturer.LecturerName);
-                    cmd.Parameters.AddWithValue("@Address", lecturer.LecturerAddress);
                     cmd.Parameters.AddWithValue("@NIC", lecturer.LecturerNIC);
                     cmd.Parameters.AddWithValue("@Gender", lecturer.LecturerGender);
+                    cmd.Parameters.AddWithValue("@Address", lecturer.LecturerAddress);
                     cmd.Parameters.AddWithValue("@Phone", lecturer.LecturerPhone);
                     cmd.Parameters.AddWithValue("@Email", lecturer.LecturerEmail);
-                    cmd.Parameters.AddWithValue("@TimetableId", lecturer.Id);
-                    cmd.Parameters.AddWithValue("@LecturerId", lecturer.Id);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@CourseId", lecturer.CourseId);
+                    cmd.Parameters.AddWithValue("@TimetableId", lecturer.TimetableId);
+                    cmd.Parameters.AddWithValue("@UserId", lecturer.UserId);
+                    cmd.Parameters.AddWithValue("@LecturerId", lecturer.LecturerId);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected == 0)
+                    {
+                        MessageBox.Show("Update failed: No matching lecturer found.");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in UpdateLectuter: " + ex.Message);
+                MessageBox.Show("Error in UpdateLectuter: " + ex.Message);
             }
         }
         public void DeleteLecturer(int Id)
@@ -134,15 +151,16 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             return new Lecturer
                             {
-                                Id = reader.GetInt32(0),
+                                LecturerId = reader.GetInt32(0),
                                 LecturerName = reader.GetString(1),
-                                LecturerAddress = reader.GetString(2),
-                                LecturerNIC = reader.GetString(3),
-                                LecturerGender = (UserGender)reader.GetInt32(4),
+                                LecturerNIC = reader.GetString(2),
+                                LecturerGender = (UserGender)reader.GetInt32(3),
+                                LecturerAddress = reader.GetString(4),
                                 LecturerPhone = reader.GetString(5),
                                 LecturerEmail = reader.GetString(6),
-                                TimetableId = reader.GetInt32(7),
-                                UserId = reader.GetInt32(8),
+                                CourseId = reader.GetInt32(7),
+                                TimetableId = reader.GetInt32(8),
+                                UserId = reader.GetInt32(9),
                             };
                         }
                     }

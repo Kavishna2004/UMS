@@ -34,11 +34,14 @@
             this.btn_register = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btn_login);
             this.panel1.Controls.Add(this.btn_register);
@@ -61,7 +64,7 @@
             // btn_login
             // 
             this.btn_login.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.Location = new System.Drawing.Point(53, 173);
+            this.btn_login.Location = new System.Drawing.Point(53, 239);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(86, 32);
             this.btn_login.TabIndex = 1;
@@ -82,19 +85,32 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(200, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(863, 47);
+            this.panel3.Size = new System.Drawing.Size(863, 49);
             this.panel3.TabIndex = 1;
             // 
             // MainPanel
             // 
+            this.MainPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.MainPanel.Location = new System.Drawing.Point(200, 47);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(863, 602);
             this.MainPanel.TabIndex = 2;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(170, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(412, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "UnicomTIC Management System";
             // 
             // MainForm
             // 
@@ -104,11 +120,14 @@
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -121,5 +140,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Button btn_register;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -37,10 +37,10 @@ namespace UMSAssignment.CONTROLLERS
                             {
                                 timetables.Add(new Timetable
                                 {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    TimeSlot = reader["TimeSlot"].ToString(),
-                                    SubjectId = (UserSubject)Convert.ToInt32(reader["Id"]),
-                                    RoomId = (UserRoom)Convert.ToInt32(reader["Id"])
+                                    TimetableId = reader.GetInt32(0),
+                                    TimeSlot = (UserTimeslot)reader.GetInt32(1),
+                                    SubjectId = reader.GetInt32(2),
+                                    RoomId = (UserRoom)reader.GetInt32(3),
 
 
                                 });
@@ -67,8 +67,8 @@ namespace UMSAssignment.CONTROLLERS
                     using (var cmd = new SQLiteCommand(insertQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@TimeSlot", timetable.TimeSlot);
-                        cmd.Parameters.AddWithValue("@SubjectId", timetable.Id);
-                        cmd.Parameters.AddWithValue("@RoomId", timetable.Id);
+                        cmd.Parameters.AddWithValue("@SubjectId", timetable.TimetableId);
+                        cmd.Parameters.AddWithValue("@RoomId", timetable.TimetableId);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -96,9 +96,9 @@ namespace UMSAssignment.CONTROLLERS
                     using (var cmd = new SQLiteCommand(updateQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@TimeSlot", timetable.TimeSlot);
-                        cmd.Parameters.AddWithValue("@SubjectId", timetable.Id);
-                        cmd.Parameters.AddWithValue("@RoomId", timetable.Id);
-                        cmd.Parameters.AddWithValue("@TimetableId", timetable.Id);
+                        cmd.Parameters.AddWithValue("@SubjectId", timetable.SubjectId);
+                        cmd.Parameters.AddWithValue("@RoomId", timetable.RoomId);
+                        cmd.Parameters.AddWithValue("@TimetableId", timetable.TimetableId);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -132,13 +132,14 @@ namespace UMSAssignment.CONTROLLERS
                 return false;
             }
         }
-        public Staff GetTimetableById(int timetableId)
+        public Timetable GetTimetableById(int timetableId)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Timetables WHERE Id = @Id", conn);
+                    conn.Open(); // Ensure the connection is opened
+                    var cmd = new SQLiteCommand("SELECT * FROM Timetables WHERE TimetableId = @Id", conn);
                     cmd.Parameters.AddWithValue("@Id", timetableId);
 
                     using (var reader = cmd.ExecuteReader())
@@ -147,10 +148,10 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             return new Timetable
                             {
-                                Id = reader.GetInt32(0),
-                                SubjectId = (UserSubject)reader.GetInt32(1),
-                                RoomId = (UserRoom)reader.GetInt32(2),   
-                                TimeSlot = reader.GetString(3)
+                                TimetableId = Convert.ToInt32(reader["TimetableId"]),
+                                TimeSlot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader["TimeSlot"].ToString()),
+                                SubjectId = Convert.ToInt32(reader["SubjectId"]),
+                                RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader["RoomId"].ToString())
                             };
                         }
                     }
@@ -158,10 +159,11 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetStaffById: " + ex.Message);
+                Console.WriteLine("Error in GetTimetableById: " + ex.Message);
             }
 
             return null;
         }
     }
 }
+

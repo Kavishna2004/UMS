@@ -29,7 +29,7 @@ namespace UMSAssignment.CONTROLLERS
                     {
                         Exam exam = new Exam
                         {
-                            Id = reader.GetInt32(0),
+                            ExamId = reader.GetInt32(0),
                             ExamName = reader.GetString(1),
                             SubjectId = reader.GetInt32(2),
                         };
@@ -52,7 +52,7 @@ namespace UMSAssignment.CONTROLLERS
                 {
                     var cmd = new SQLiteCommand("INSERT INTO Exams (ExamName, SubjectId) VALUES (@Name, @Id)", conn);
                     cmd.Parameters.AddWithValue("@Name", exam.ExamName);
-                    cmd.Parameters.AddWithValue("@SubjectId", exam.Id);
+                    cmd.Parameters.AddWithValue("@SubjectId", exam.ExamId);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -71,7 +71,7 @@ namespace UMSAssignment.CONTROLLERS
                     var cmd = new SQLiteCommand("UPDATE Exams SET ExamName = @Name, SubjectId = @SubjectId WHERE Id = @Id", conn);
                     cmd.Parameters.AddWithValue("@Name", exam.ExamName);
                     cmd.Parameters.AddWithValue("@SubjectId", exam.SubjectId);
-                    cmd.Parameters.AddWithValue("@Id", exam.Id);
+                    cmd.Parameters.AddWithValue("@Id", exam.ExamId);
                     cmd.ExecuteNonQuery();
                 }
             }

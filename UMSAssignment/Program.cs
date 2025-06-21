@@ -30,7 +30,13 @@ namespace UMSAssignment
             //controller.EnsureAdminExists(); 
 
             // Show Login form
-            Application.Run(new LoginForm());
+            //Application.Run(new LoginForm());
+            //Application.Run(new LecturerForm());
+
+            //Application.Run(new StudentForm());
+            //Application.Run(new StaffForm());
+            //Application.Run(new CourseForm());
+
         }
     }
 }

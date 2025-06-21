@@ -64,8 +64,8 @@ namespace UMSAssignment.VIEWS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ExamForm form = new ExamForm();
-            LoadForm(form);
+            /*ExamForm form = new ExamForm();
+            LoadForm(form);*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,8 +76,8 @@ namespace UMSAssignment.VIEWS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MarkForm form = new MarkForm();
-            LoadForm(form);
+            /*MarkForm form = new MarkForm();
+            LoadForm(form);*/
         }
 
         private void button4_Click(object sender, EventArgs e)
