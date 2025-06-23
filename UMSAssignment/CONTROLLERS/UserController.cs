@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,71 +19,108 @@ namespace UMSAssignment.CONTROLLERS
     {
         private readonly string ConnectionString;
 
-        public UserController()
-        {
+        private List<User> users = new List<User>();
+        private int nextId = 1;
 
-        }
-        //iwe Users=======================================================================================================================================
-        public List<UserDto> GetAllUsers()
+       /* private string HashPassword(string password)
         {
-            var users = new List<UserDto>();
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }*/
+        public string AddUser(UserDto dto, string password)
+        {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    using (var cmd = new SQLiteCommand("SELECT * FROM Users", conn))
+                    string query = "INSERT INTO Users (UserName, UserEmail, Password, Role) VALUES (@name, @email, @pass, @role)";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                var user = new User
-                                {
-                                    UserId = Convert.ToInt32(reader["UserId"]),
-                                    UserName = reader["UserName"].ToString(),
-                                    UserEmail = reader["UserEmail"].ToString(),
-                                    Role = (UserRole)Convert.ToInt32(reader["Role"]),
-                                    PasswordHash = reader["PasswordHash"].ToString()
-                                };
-                                users.Add(UserMapper.ToDto(user));
-                            }
-                        }
+                        cmd.Parameters.AddWithValue("@name", dto.UserName);
+                        cmd.Parameters.AddWithValue("@email", dto.UserEmail);
+                        cmd.Parameters.AddWithValue("@pass", password);
+                        cmd.Parameters.AddWithValue("@role", dto.Role.ToString());
+                        cmd.ExecuteNonQuery();
                     }
                 }
+                return "User added successfully.";
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllUsers: " + ex.Message);
+                return $"Add User DB Error: {ex.Message}";
             }
-            return users;
         }
         //=================================================================================================================================================
 
 
-        //Get user=========================================================================================================================================
+        public string UpdateUser(UserDto dto)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "UPDATE Users SET UserName = @name, UserEmail = @email, Role = @role WHERE UserId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", dto.UserName);
+                        cmd.Parameters.AddWithValue("@email", dto.UserEmail);
+                        cmd.Parameters.AddWithValue("@role", dto.Role.ToString());
+                        cmd.Parameters.AddWithValue("@id", dto.UserId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "User updated successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"Update User DB Error: {ex.Message}";
+            }
+        }
+        public string DeleteUser(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "DELETE FROM Users WHERE UserId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "User deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"Delete User DB Error: {ex.Message}";
+            }
+        }
+
         public UserDto GetUserById(int id)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    
-                    using (var cmd = new SQLiteCommand("SELECT * FROM Users WHERE UserId = @Id", conn))
+                    string query = "SELECT UserId, UserName, UserEmail, Role FROM Users WHERE UserId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.Parameters.AddWithValue("@id", id);
                         using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                var user = new User
+                                return new UserDto
                                 {
-                                    UserId = Convert.ToInt32(reader["UserId"]),
-                                    UserName = reader["UserName"].ToString(),
-                                    UserEmail = reader["UserEmail"].ToString(),
-                                    Role = (UserRole)Convert.ToInt32(reader["Role"]),
-                                    PasswordHash = reader["PasswordHash"].ToString()
+                                    UserId = reader.GetInt32(0),
+                                    UserName = reader.GetString(1),
+                                    UserEmail = reader.GetString(2),
+                                    Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(3))
                                 };
-                                return UserMapper.ToDto(user);
                             }
                         }
                     }
@@ -90,330 +128,76 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetUserById: " + ex.Message);
+                MessageBox.Show("Get User Error: " + ex.Message);
             }
+
             return null;
+
         }
-        //===============================================================================================================================================
-
-
-        //Add user=======================================================================================================================================
-        public bool AddUser(UserDto userDto, string passwordHash)
-        {
-            try
-            {
-                var user = UserMapper.ToEntity(userDto, passwordHash);
-                using (var conn = DbConfig.GetConnection())
-                {
-                    conn.Open();
-                    string query = "INSERT INTO Users (UserName, UserEmail, Role, PasswordHash) VALUES (@UserName, @UserEmail, @Role, @PasswordHash)";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@UserName", user.UserName);
-                        cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-                        cmd.Parameters.AddWithValue("@Role", (int)user.Role);
-                        cmd.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in AddUser: " + ex.Message);
-                return false;
-            }
-        }
-        //============================================================================================================================================
-
-
-        //Update User=================================================================================================================================
-        public bool UpdateUser(UserDto userDto)
-        {
-            try
-            {
-                var user = UserMapper.ToEntity(userDto);
-                using (var conn = DbConfig.GetConnection())
-                {
-                    conn.Open();
-                    string query = "UPDATE Users SET UserName=@UserName, UserEmail=@UserEmail, Role=@Role WHERE UserId=@UserId";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@UserName", user.UserName);
-                        cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
-                        cmd.Parameters.AddWithValue("@Role", (int)user.Role);
-                        cmd.Parameters.AddWithValue("@UserId", user.UserId);
-
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in UpdateUser: " + ex.Message);
-                return false;
-            }
-        }
-        //=============================================================================================================================================
-
-
-        //Delete user==================================================================================================================================
-        public bool DeleteUser(int id)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    conn.Open();
-                    string query = "DELETE FROM Users WHERE UserId=@UserId";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@UserId", id);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteUser: " + ex.Message);
-                return false;
-            }
-        }
-        //============================================================================================================================================
-
-
-        //Login=======================================================================================================================================
-        private bool AuthenticateUser(string username, string password)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    conn.Open();
-
-                    string query = "SELECT * FROM Users WHERE UserName = @Username AND Password = @Password";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        cmd.Parameters.AddWithValue("@Password", password);
-
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                string role = reader["Role"].ToString();
-
-                                switch (role.ToLower())
-                                {
-                                    case "admin":
-                                        MessageBox.Show("Admin login successful (form not implemented)", "Success");
-                                        break;
-
-                                    case "student":
-                                        new StudentForm().Show();
-                                        break;
-
-                                    case "lecturer":
-                                        new LecturerForm().Show();
-                                        break;
-
-                                    case "staff":
-                                        MessageBox.Show("Staff login successful (form not implemented)", "Success");
-                                        break;
-
-                                    default:
-                                        MessageBox.Show("Unknown role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        return false;
-                                }
-
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
-        }
-        //=======================================================================================================================================
-    }
-
-
-}
-        /*// ADD USER =========================================================================================
-         * 
-
-        public void AddUser(UserDto userDto, string plainPassword)
-        {
-            string passwordHash = HashPassword(plainPassword);
-
-            using (var conn = DbConfig.GetConnection())
-            {
-                string query = @"INSERT INTO Users (UserName, UserEmail, PasswordHash, Role) 
-                         VALUES (@name, @email, @passwordHash, @role);";
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@name", userDto.UserName);
-                    cmd.Parameters.AddWithValue("@email", userDto.UserEmail);
-                    cmd.Parameters.AddWithValue("@passwordHash", passwordHash);
-                    cmd.Parameters.AddWithValue("@role", userDto.Role.ToString());
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        // Dummy hash function - replace with real hashing!
-        private string HashPassword(string password)
-        {
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
-        }
-
-
-        // ==================================================================================================
-
-        // GET ALL USER RECORD ==============================================================================
-
         public List<UserDto> GetAllUsers()
         {
-            var users = new List<UserDto>();
-
-            using (var conn = DbConfig.GetConnection())
+            List<UserDto> list = new List<UserDto>();
+            try
             {
-                string query = "SELECT UserId, UserName, UserEmail, PasswordHash, Role FROM Users";
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DbConfig.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = "SELECT UserId, UserName, UserEmail, Role FROM Users";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        var user = new User
+                        while (reader.Read())
                         {
-                            UserId = reader.GetInt32(0),
-                            UserName = reader.GetString(1),
-                            UserEmail = reader.GetString(2),
-                            PasswordHash = reader.GetString(3),
-                            Role = (UserRole)reader.GetInt32(4)
-                        };
-                        users.Add(UserMapper.ToDto(user));  // mapping here
+                            list.Add(new UserDto
+                            {
+                                UserId = reader.GetInt32(0),
+                                UserName = reader.GetString(1),
+                                UserEmail = reader.GetString(2),
+                                Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(3))
+                            });
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("List User Error: " + ex.Message);
+            }
+            return list;
+        }
 
-            return users;
+        //Login=======================================================================================================================================
+
+        public void EnsureAdminExists()
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = 'Admin'";
+                    using (var checkCmd = new SQLiteCommand(checkQuery, conn))
+                    {
+                        long count = (long)checkCmd.ExecuteScalar();
+
+                        if (count == 0)
+                        {
+                            string insertQuery = "INSERT INTO Users (Username, Password, Role) VALUES (@username, @password, @role)";
+                            using (var insertCmd = new SQLiteCommand(insertQuery, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@username", "Admin");
+                                insertCmd.Parameters.AddWithValue("@password", "Admin123");
+                                insertCmd.Parameters.AddWithValue("@role", UserRole.Admin.ToString());
+                                insertCmd.ExecuteNonQuery();
+                            }
+
+                            MessageBox.Show("Default Admin created: Username = Admin, Password = Admin123");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while ensuring default Admin: " + ex.Message);
+            }
         }
     }
 }
-*/
-
-// ===============================================================================================
-
-
-
-
-/* public List<UserDto> ReadAllUsers()
- {
-     var users = new List<UserDto>();
-     using (var conn = new SQLiteConnection(ConnectionString))
-     {
-         conn.Open();
-         using (var command = new SQLiteCommand("SELECT Id, FullName, Email, Status FROM Users", conn))
-         {
-             using (var reader = command.ExecuteReader())
-             {
-                 while (reader.Read())
-                 {
-                     var statusString = !reader.IsDBNull(3) ? reader.GetString(3) : null;
-                     var role = UserRole.Student;
-                     if (statusString != null)
-                     {
-                         Enum.TryParse(statusString, out role);
-                     }
-
-                     users.Add(new UserDto
-                     {
-                         DtoId = !reader.IsDBNull(0) ? reader.GetInt32(0) : 0,
-                         DtoName = !reader.IsDBNull(1) ? reader.GetString(1) : string.Empty,
-                         DtoEmail = !reader.IsDBNull(2) ? reader.GetString(2) : string.Empty,
-                         Role = role
-                     });
-                 }
-             }
-         }
-     }
-     return users;
- }*/
-
-/*   public void UpdateUser(UserDto userDto)
-   {
-       using (var conn = new SQLiteConnection(ConnectionString))
-       {
-           conn.Open();
-           using (var command = new SQLiteCommand(
-               "UPDATE Users SET Name = @Username, Email = @UserEmail, Role = @Role WHERE Id = @UserId",
-               conn))
-           {
-               command.Parameters.AddWithValue("@UserId", userDto.DtoId);
-               command.Parameters.AddWithValue("@Username", userDto.DtoName);
-               command.Parameters.AddWithValue("@UserEmail", userDto.DtoEmail);
-               command.Parameters.AddWithValue("@Status", userDto.Role.ToString());
-               command.ExecuteNonQuery();
-           }
-       }
-   }
-   public void DeleteUser(int id)
-   {
-       using (var conn = new SQLiteConnection(ConnectionString))
-       {
-           conn.Open();
-           using (var command = new SQLiteCommand(
-               "DELETE FROM Users WHERE Id = @Id",
-               conn))
-           {
-               command.Parameters.AddWithValue("@Id", id);
-               command.ExecuteNonQuery();
-           }
-       }
-   }
-   public UserDto ReadUser(int id)
-   {
-       using (var connection = new SQLiteConnection(ConnectionString))
-       {
-           connection.Open();
-           using (var command = new SQLiteCommand(
-               "SELECT Id, FullName, Email, Role FROM Users WHERE Id = @Id",
-               connection))
-           {
-               command.Parameters.AddWithValue("@Id", id);
-               using (var reader = command.ExecuteReader())
-               {
-                   if (reader.Read())
-                   {
-                       var roleString = !reader.IsDBNull(3) ? reader.GetString(3) : null;
-                       var role = UserRole.Student;
-                       if (roleString != null)
-                       {
-                           Enum.TryParse(roleString, out role);
-                       }
-
-                       return new UserDto
-                       {
-                           DtoId = !reader.IsDBNull(0) ? reader.GetInt32(0) : 0,
-                           DtoName = !reader.IsDBNull(1) ? reader.GetString(1) : string.Empty,
-                           DtoEmail = !reader.IsDBNull(2) ? reader.GetString(2) : string.Empty,
-                           Role = role
-                       };
-                   }
-               }
-           }
-           return null;
-       }
-   } //Idhukkana codinga ah kekkNum sir da
-}
-}
-
-                   */

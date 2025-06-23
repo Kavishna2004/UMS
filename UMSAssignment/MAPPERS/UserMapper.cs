@@ -23,8 +23,7 @@ namespace UMSAssignment.MAPPERS
                 Role = user.Role
             };
         }
-
-        public static User ToEntity(UserDto userDto, string passwordHash = null)
+        public static User ToEntity(UserDto userDto, string password = null)
         {
             if (userDto == null) return null;
 
@@ -34,7 +33,7 @@ namespace UMSAssignment.MAPPERS
                 UserName = userDto.UserName,
                 UserEmail = userDto.UserEmail,
                 Role = userDto.Role,
-                PasswordHash = passwordHash 
+                Password = password
             };
         }
     }

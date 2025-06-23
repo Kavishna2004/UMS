@@ -121,3 +121,44 @@ Z:\C#\FinalProjectOOP\UMSAssignment\UMSAssignment\obj\Debug\UMSAssignment.csproj
 Z:\C#\FinalProjectOOP\UMSAssignment\UMSAssignment\obj\Debug\UMSAssig.DEF16E73.Up2Date
 Z:\C#\FinalProjectOOP\UMSAssignment\UMSAssignment\obj\Debug\UMSAssignment.exe
 Z:\C#\FinalProjectOOP\UMSAssignment\UMSAssignment\obj\Debug\UMSAssignment.pdb
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\UMSAssignment.exe.config
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\UMSAssignment.exe
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\UMSAssignment.pdb
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Buffers.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Data.SQLite.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Memory.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Web.Http.dll
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.pdb
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Buffers.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Data.SQLite.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Memory.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\bin\Debug\System.Web.Http.xml
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.AssemblyReference.cache
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.Properties.Resources.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.CourseForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.InterFace.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.LecturerForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.LoginForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.MainForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.RegisterForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.StaffForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.StudentForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.SubjectForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.TimetableForm.resources
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.GenerateResource.cache
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.CoreCompileInputs.cache
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssig.DEF16E73.Up2Date
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.exe
+C:\Users\UT010336\Desktop\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.pdb

@@ -14,33 +14,144 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class StaffController
     {
-        public StaffController()
+        public string AddStaff(Staff staff)
         {
-
-        }
-        public List<Staff> GetAllStaffs()
-        {
-            var staffs = new List<Staff>();
-
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand(@"SELECT * FROM Staffs", conn);
-                    using (var reader = cmd.ExecuteReader()) 
+                    string query = @"INSERT INTO Staffs (StaffName, StaffNIC, StaffGender, StaffAddress, CourseId, UserId) 
+                                     VALUES (@name, @nic, @gender, @address, @courseId, @userId)";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", staff.StaffName);
+                        cmd.Parameters.AddWithValue("@nic", staff.StaffNIC);
+                        cmd.Parameters.AddWithValue("@gender", staff.StaffGender.ToString());
+                        cmd.Parameters.AddWithValue("@address", staff.StaffAddress);
+                        cmd.Parameters.AddWithValue("@courseId", staff.CourseId);
+                        cmd.Parameters.AddWithValue("@userId", staff.UserId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Staff added successfully.";
+            }
+            catch (Exception ex)
+            {
+                return "Add Staff Error: " + ex.Message;
+            }
+        }
+        public string UpdateStaff(Staff staff)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"UPDATE Staffs SET 
+                                     StaffName = @name,
+                                     StaffNIC = @nic,
+                                     StaffGender = @gender,
+                                     StaffAddress = @address,
+                                     CourseId = @courseId,
+                                     UserId = @userId
+                                     WHERE StaffId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", staff.StaffName);
+                        cmd.Parameters.AddWithValue("@nic", staff.StaffNIC);
+                        cmd.Parameters.AddWithValue("@gender", staff.StaffGender.ToString());
+                        cmd.Parameters.AddWithValue("@address", staff.StaffAddress);
+                        cmd.Parameters.AddWithValue("@courseId", staff.CourseId);
+                        cmd.Parameters.AddWithValue("@userId", staff.UserId);
+                        cmd.Parameters.AddWithValue("@id", staff.StaffId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Staff updated successfully.";
+            }
+            catch (Exception ex)
+            {
+                return "Update Staff Error: " + ex.Message;
+            }
+        }
+
+        public string DeleteStaff(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "DELETE FROM Staffs WHERE StaffId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Staff deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                return "Delete Staff Error: " + ex.Message;
+            }
+        }
+
+        public Staff GetStaffById(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT * FROM Staffs WHERE StaffId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Staff
+                                {
+                                    StaffId = reader.GetInt32(0),
+                                    StaffName = reader.GetString(1),
+                                    StaffNIC = reader.GetString(2),
+                                    StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
+                                    StaffAddress = reader.GetString(4),
+                                    CourseId = reader.GetInt32(5),
+                                    UserId = reader.GetInt32(6)
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Get Staff Error: " + ex.Message);
+            }
+            return null;
+        }
+        public List<Staff> GetAllStaffs()
+        {
+            List<Staff> list = new List<Staff>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT * FROM Staffs";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            staffs.Add(new Staff
+                            list.Add(new Staff
                             {
                                 StaffId = reader.GetInt32(0),
                                 StaffName = reader.GetString(1),
                                 StaffNIC = reader.GetString(2),
                                 StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
                                 StaffAddress = reader.GetString(4),
-                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(5)),
-                                CourseId = reader.GetInt32(6),
-                                UserId = reader.GetInt32(7)
+                                CourseId = reader.GetInt32(5),
+                                UserId = reader.GetInt32(6)
                             });
                         }
                     }
@@ -48,121 +159,48 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllStaffs: " + ex.Message);
+                MessageBox.Show("List Staffs Error: " + ex.Message);
             }
 
-            return staffs;
+            return list;
         }
-        public void AddStaff(Staff staff)
+        public List<Staff> SearchStaffs(string keyword)
         {
+            var list = new List<Staff>();
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("INSERT INTO Staffs (StaffName, StaffNIC, StaffGender, StaffAddress, Timeslot, CourseId, UserId)" +
-                        " VALUES (@Name, @NIC, @Gender, @Address, @Timeslot, @CourseId, @UserId)", conn);
-                    command.Parameters.AddWithValue("@Name", staff.StaffName);
-                    command.Parameters.AddWithValue("@NIC", staff.StaffNIC);
-                    command.Parameters.AddWithValue("@Gender", staff.StaffGender.ToString());
-                    command.Parameters.AddWithValue("@Address", staff.StaffAddress);
-                    command.Parameters.AddWithValue("@Timeslot", staff.Timeslot.ToString());
-                    command.Parameters.AddWithValue("@CourseId", staff.CourseId);
-                    command.Parameters.AddWithValue("@UserId", staff.UserId);
-                    int rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine("Rows Inserted: " + rowsAffected);
-
-                   /* if (rowsAffected == 0)
+                    string query = @"SELECT * FROM Staffs 
+                             WHERE StaffName LIKE @keyword OR StaffNIC LIKE @keyword";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        MessageBox.Show("Insert failed: No rows affected.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Insert success!");
-                    }*/
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in AddStaff: " + ex.Message);
-                //throw;
-            }
-        }
-
-
-        public void UpdateStaff(Staff staff)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var command = new SQLiteCommand("UPDATE Staffs SET StaffName = @Name, StaffNIC = @NIC, StaffGender = @Gender, StaffAddress = @Address," +
-                        " Timeslot = @Timeslot, CourseId = @CourseId, UserId = @UserId WHERE StaffId = @StaffId", conn);
-                    command.Parameters.AddWithValue("@Name", staff.StaffName);
-                    command.Parameters.AddWithValue("@NIC", staff.StaffNIC);
-                    command.Parameters.AddWithValue("@Gender", staff.StaffGender);
-                    command.Parameters.AddWithValue("@Address", staff.StaffAddress);
-                    command.Parameters.AddWithValue("@Timeslot", staff.Timeslot);
-                    command.Parameters.AddWithValue("@CourseId", staff.CourseId);
-                    command.Parameters.AddWithValue("@UserId", staff.UserId);
-                    command.Parameters.AddWithValue("@StaffId", staff.StaffId);  
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in UpdateStaff: " + ex.Message);
-            }
-        }
-        public void DeleteStaff(int staffId)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var command = new SQLiteCommand("DELETE FROM Staffs WHERE StaffId = @Id", conn);
-                    command.Parameters.AddWithValue("@Id", staffId);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteStaff: " + ex.Message);
-            }
-        }
-        public Staff GetStaffById(int staffId)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var cmd = new SQLiteCommand("SELECT * FROM Staffs WHERE StaffId = @Id", conn);
-                    cmd.Parameters.AddWithValue("@Id", staffId);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            return new Staff
+                            while (reader.Read())
                             {
-                                StaffId = reader.GetInt32(0),
-                                StaffName = reader.GetString(1),
-                                StaffNIC = reader.GetString(2),
-                                StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
-                                StaffAddress = reader.GetString(4),
-                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(5)),
-                                CourseId = reader.GetInt32(6),
-                                UserId = reader.GetInt32(7),
-                            };
+                                list.Add(new Staff
+                                {
+                                    StaffId = reader.GetInt32(0),
+                                    StaffName = reader.GetString(1),
+                                    StaffNIC = reader.GetString(2),
+                                    StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
+                                    StaffAddress = reader.GetString(4),
+                                    CourseId = reader.GetInt32(5),
+                                    UserId = reader.GetInt32(6)
+                                });
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetStaffById: " + ex.Message);
+                MessageBox.Show("Search Error: " + ex.Message);
             }
 
-            return null;
+            return list;
         }
     }
 }

@@ -29,33 +29,3 @@ namespace UMSAssignment.REPOSITORIE
         }
     }
 }
-/*Field Name	Type	Use
-👤 Student Name	text	மாணவரின் பெயர்
-🆔 Student ID / Register No	text/number	மாணவரின் பதிவு எண்
-📚 Subject	select (dropdown)	பாடப்பிரிவு தேர்வு
-📆 Exam Date	date	தேர்வு நடந்த தேதி
-📝 Marks Scored	number	பெற்ற மதிப்பெண்கள்
-🏅 Grade (optional)	text or auto-calculate	தரம் (A/B/C)*/
-/*
-| Control Type | Purpose / Use case                      | Example Name |
-| ------------------ | --------------------------------------- | -------------------------------- |
-| **TextBox * *        | மாணவரின் பெயர்(Student Name) | txtStudentName |
-| **TextBox * *        | மாணவரின் ID / Roll Number | txtStudentID |
-| **TextBox * *        | Subject Marks(Maths, Science, English) | txtMaths, txtScience, txtEnglish |
-| **Label * *          | Field title / description | lblStudentName, lblMaths |
-| **Button * *         | Data save பண்ண Button | btnSave |
-| **Button * *         | Data clear பண்ண Button | btnClear |
-| **Button * *         | Form close பண்ண Button | btnClose |
-| **ComboBox * *       | Exam Type(Midterm, Final) | cmbExamType |
-| **DateTimePicker * * | Exam Date | dtpExamDate |
-
-        Summary(சுருக்கம்):
-TextBoxes: Student name, ID, marks per subject
-
-ComboBox: Exam type
-
-Date picker: Exam date
-
-Buttons: Save, Clear, Close
-
-*/

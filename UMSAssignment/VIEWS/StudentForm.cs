@@ -21,41 +21,48 @@ namespace UMSAssignment.VIEWS
         private readonly CourseController courseController;
         private int selectedStudentId = -1;
 
-        public StudentForm()
+        private string currentRole;
+
+        public StudentForm(string role)
         {
             InitializeComponent();
             studentController = new StudentController();
             courseController = new CourseController();
 
+            currentRole = role;
+
             cmdGender.DataSource = Enum.GetValues(typeof(UserGender));
 
             LoadStudent();
             LoadCourse();
+            LoadControl();
         }
-        /* private void LoadStudent()
-         {
-             //ViewStudents.DataSource = null;
-             //ViewStudents.DataSource = studentController.GetAllStudents();
+        private void LoadControl()
+        {
+            btn_add.Visible = false;
+            btn_update.Visible = false;
+            btn_dlt.Visible = false;
+            stsearch.Visible = false;
+            ViewStudents.ReadOnly = true;
 
-             //if (ViewStudents.Columns.Contains("CourseId")) 
-             //{
-             //    ViewStudents.Columns["CourseId"].Visible = false;
-             //}
-             //ViewStudents.ClearSelection();
-             //if (cmdCourse.SelectedValue == null)
-             //{
-             //    MessageBox.Show("Please select a course!");
-             //    return;
-             //}
-             var students = studentController.GetAllStudents();
-             ViewStudents.DataSource = null;
-             ViewStudents.DataSource = students;
+            if (currentRole == "Admin")
+            {
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                btn_dlt.Visible = true;
+                stsearch.Visible = true;
+                ViewStudents.ReadOnly = false;
 
-             if (ViewStudents.Columns.Contains("CourseId"))
-                 ViewStudents.Columns["CourseId"].Visible = false;
-
-             ViewStudents.ClearSelection();
-         }*/
+            }
+            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff") 
+            {
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_dlt.Visible = false;
+                stsearch.Visible = false;
+                ViewStudents.ReadOnly = true;
+            }
+        }
 
         private void LoadStudent()
         {
@@ -90,6 +97,7 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("An error occurred while loading students: " + ex.Message);
             }
         }
+    
 
         private void LoadCourse()
         {
@@ -99,7 +107,6 @@ namespace UMSAssignment.VIEWS
             cmdCourse.ValueMember = "CourseId";
         }
 
-
         private void ClearForm()
         {
             stname.Clear();
@@ -108,6 +115,7 @@ namespace UMSAssignment.VIEWS
             staddress.Clear();
             stnumber.Clear();
             stdob.Clear();
+            stsearch.Clear();
             cmdCourse.SelectedIndex = -1;
         }
 
@@ -168,16 +176,7 @@ namespace UMSAssignment.VIEWS
 
         private void cmdCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //{
-            //    cmdGender.DataSource = null;
-            //    cmdGender.Items.Clear();
-            //    cmdGender.Items.Add("Select Gender");
-            //    foreach (var gender in Enum.GetValues(typeof(UserGender)))
-            //    {
-            //        cmdGender.Items.Add(gender);
-            //    }
-            //    cmdGender.SelectedIndex = 0;
-            //}
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -190,10 +189,9 @@ namespace UMSAssignment.VIEWS
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(stname.Text) || string.IsNullOrWhiteSpace(stnic.Text) || string.IsNullOrWhiteSpace(cmdGender.Text) ||
-                 string.IsNullOrWhiteSpace(staddress.Text) || string.IsNullOrWhiteSpace(stemail.Text) || string.IsNullOrWhiteSpace(stnumber.Text) ||
-                 string.IsNullOrWhiteSpace(stdob.Text) || string.IsNullOrWhiteSpace(cmdCourse.Text))
+                          string.IsNullOrWhiteSpace(staddress.Text) || string.IsNullOrWhiteSpace(stemail.Text) || string.IsNullOrWhiteSpace(stnumber.Text) ||
+                          string.IsNullOrWhiteSpace(stdob.Text) || string.IsNullOrWhiteSpace(cmdCourse.Text))
             {
                 MessageBox.Show("Please must fill in all student details.");
                 return;
@@ -204,11 +202,7 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Please select a Course.");
                 return;
             }
-            //if (cmdGender.SelectedValue == null) 
-            //{
-            //    MessageBox.Show("Please select your gender.");
-            //    return;
-            //}
+
             if ((UserGender)cmdGender.SelectedValue == (UserGender)(-1))
             {
                 MessageBox.Show("Please select your gender.");
@@ -263,7 +257,6 @@ namespace UMSAssignment.VIEWS
         {
 
         }
-
         private void StudentForm_Load(object sender, EventArgs e)
         {
             //cmdGender.DataSource = Enum.GetValues(typeof(UserGender));
@@ -289,12 +282,6 @@ namespace UMSAssignment.VIEWS
                     cmdCourse.SelectedValue = studentView.CourseId;
                 }
 
-                /*var course = courseController.GetCourseById(selectedCourseId);
-                if (course != null)
-                {
-                    cname.Text = course.CourseName;
-
-                }*/
             }
 
             else
@@ -303,37 +290,12 @@ namespace UMSAssignment.VIEWS
                 selectedStudentId = -1;
             }
         }
+
+        private void stsearch_TextChanged(object sender, EventArgs e)
+        {
+            var studentController = new StudentController();
+            ViewStudents.DataSource = studentController.SearchStudents(stsearch.Text.Trim());
+        }
     }
 }
-                /*if (ViewStudents.SelectedRows.Count > 0)
-                {
-                    var row = ViewStudents.SelectedRows[0];
-                    var studentView = row.DataBoundItem as Student;
-
-                    if (studentView is Student student)
-                    {
-                        selectedStudentId = studentView.StudentId;
-
-                        var students = studentController.GetStudentById(selectedStudentId);
-                        if (students != null)
-                        {
-                            stname.Text = student.StudentName;
-                            stnic.Text = student.StudentNIC;
-                            cmdGender.SelectedValue = student.StudentGender;
-                            stemail.Text = student.StudentEmail;
-                            staddress.Text = student.StudentAddress;
-                            stnumber.Text = student.StudentPhone;
-                            stdob.Text = student.StudentDOB;
-                            cmdCourse.SelectedValue = student.CourseId;
-                        }
-                    }
-                }
-        
-                else
-                {
-                    ClearInputs();
-                    selectedStudentId = -1;*/
-                /*}*/
-        
-    
-
+               

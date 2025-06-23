@@ -10,8 +10,8 @@ namespace UMSAssignment.MODELS
     internal class Timetable 
     {
         public int TimetableId { get; set; }
-        public int SubjectId { get; set; }
-        public UserTimeslot TimeSlot { get; set; }
+        public UserSubject SubjectId { get; set; }
+        public UserTimeslot Timeslot { get; set; }
         public UserRoom RoomId { get; set; }
     }
 }

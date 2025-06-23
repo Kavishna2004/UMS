@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UMSAssignment.ENUMS
 {
-    /*internal enum UserSubject
+    internal enum UserSubject
     {
         C,
         python,
@@ -20,5 +20,5 @@ namespace UMSAssignment.ENUMS
         SQlite,
         Oracle,
         HTML
-    }*/
+    }
 }

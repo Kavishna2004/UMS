@@ -128,5 +128,38 @@ namespace UMSAssignment.CONTROLLERS
 
             return null;
         }
+        public List<Course> SearchCourse(string keyword)
+        {
+            var list = new List<Course>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"SELECT * FROM Courses 
+                             WHERE CourseName LIKE @keyword";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(new Course
+                                {
+                                    CourseId = reader.GetInt32(0),
+                                    CourseName = reader.GetString(1)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+
+            return list;
+        }
     }
 }

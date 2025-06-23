@@ -22,32 +22,55 @@ namespace UMSAssignment.VIEWS
     {
         private readonly CourseController courseController;
         private int selectedCourseId = -1;
-        public CourseForm()
+
+        private string currentRole;
+
+        public CourseForm(string role)
         {
             InitializeComponent();
             courseController = new CourseController();
+            currentRole = role;
 
             LoadCourse();
+            LoadControl();
         }
 
         private void LoadCourse()
         {
             var list = courseController.GetAllCourses();
-            ViewCourse.AutoGenerateColumns = true;  // ✅ Ensures columns show
-            ViewCourse.DataSource = null;           // ✅ Clear previous data
+            ViewCourse.AutoGenerateColumns = true;  
+            ViewCourse.DataSource = null;          
             ViewCourse.DataSource = list;
 
+        }
+        private void LoadControl()
+        {
+            btn_add.Visible = false;
+            btn_update.Visible = false;
+            btn_dlt.Visible = false;
+            csearch.Visible = false;
+            ViewCourse.ReadOnly = true;
 
-            //List<Course> course = courseController.GetAllCourses();
+            if (currentRole == "Admin")
+            {
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                btn_dlt.Visible = true;
+                csearch.Visible = true;
+                ViewCourse.ReadOnly = false;
 
-            //cmdCourse.DataSource = course;
-            //cmdCourse.DisplayMember = "CourseName";
-            //cmdCourse.ValueMember = "CourseId";
-            // ✅ Load new data
+            }
+            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
+            {
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_dlt.Visible = false;
+                csearch.Visible = false;
+                ViewCourse.ReadOnly = true;
+            }
         }
 
-
-    private void ViewCourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ViewCourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
         }
@@ -105,7 +128,6 @@ namespace UMSAssignment.VIEWS
             MessageBox.Show("Course Updated Successfully");
 
         }
-
         private void btn_dlt_Click(object sender, EventArgs e)
         {
             if (selectedCourseId == -1)
@@ -130,7 +152,6 @@ namespace UMSAssignment.VIEWS
         {
             
         }
-
         private void ViewCourse_SelectionChanged(object sender, EventArgs e)
         {
             if (ViewCourse.SelectedRows.Count > 0)
@@ -143,12 +164,6 @@ namespace UMSAssignment.VIEWS
                     selectedCourseId = courseView.CourseId;
                     cname.Text = courseView.CourseName;
 
-                    /*var course = courseController.GetCourseById(selectedCourseId);
-                    if (course != null)
-                    {
-                        cname.Text = course.CourseName;
-
-                    }*/
                 }
             }
             else
@@ -156,6 +171,12 @@ namespace UMSAssignment.VIEWS
                 ClearInputs();
                 selectedCourseId = -1;
             }
+        }
+
+        private void csearch_TextChanged(object sender, EventArgs e)
+        {
+            var courseController = new CourseController();
+            ViewCourse.DataSource = courseController.SearchCourse(csearch.Text.Trim());
         }
     }
 }

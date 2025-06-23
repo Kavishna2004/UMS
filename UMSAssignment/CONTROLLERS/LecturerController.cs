@@ -173,5 +173,46 @@ namespace UMSAssignment.CONTROLLERS
 
             return null;
         }
+        public List<Lecturer> SearchLecturer(string keyword)
+        {
+            var list = new List<Lecturer>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"SELECT * FROM Lecturers 
+                             WHERE LecturerName LIKE @keyword";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(new Lecturer
+                                {
+                                    LecturerId = reader.GetInt32(0),
+                                    LecturerName = reader.GetString(1),
+                                    LecturerNIC = reader.GetString(2),
+                                    LecturerGender = (UserGender)reader.GetInt32(3),
+                                    LecturerAddress = reader.GetString(4),
+                                    LecturerPhone = reader.GetString(5),
+                                    LecturerEmail = reader.GetString(6),
+                                    CourseId = reader.GetInt32(7),
+                                    TimetableId = reader.GetInt32(8),
+                                    UserId = reader.GetInt32(9),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+
+            return list;
+        }
     }
 }

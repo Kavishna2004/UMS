@@ -13,11 +13,24 @@ namespace UMSAssignment.VIEWS
 {
     public partial class InterFace : Form
     {
+        private string currentRole;
         public InterFace()
         {
             InitializeComponent();
+            //currentRole = Role;
         }
+        /*private void LoadControl()
+        {
+            bool isAdmin = currentRole == "Admin";
 
+            btn_student.Visible = isAdmin;
+            btn_lecturer.Visible = isAdmin;
+            btn_.Visible = isAdmin;
+            lesearch.Visible = isAdmin;
+
+            ViewLecturer.ReadOnly = !isAdmin;
+        }
+*/
         public void LoadForm(object formObject)
         {
             if (this.mainpanel2.Controls.Count > 0)
@@ -39,26 +52,25 @@ namespace UMSAssignment.VIEWS
 
         private void btn_student_Click(object sender, EventArgs e)
         {
-            //StudentForm form = new StudentForm();
-            //LoadForm(form);
-            LoadForm(new StudentForm());
+            StudentForm form = new StudentForm(currentRole);
+            LoadForm(form);
         }
 
         private void btn_lecturer_Click(object sender, EventArgs e)
         {
-            LecturerForm form = new LecturerForm();
+            LecturerForm form = new LecturerForm(currentRole);
             LoadForm(form);
         }
 
         private void btn_staff_Click(object sender, EventArgs e)
         {
-            StaffForm form = new StaffForm();
+            StaffForm form = new StaffForm(currentRole);
             LoadForm(form);
         }
 
         private void btn_time_Click(object sender, EventArgs e)
         {
-            TimetableForm form = new TimetableForm();
+            TimetableForm form = new TimetableForm(currentRole);
             LoadForm(form);
         }
 
@@ -70,7 +82,7 @@ namespace UMSAssignment.VIEWS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CourseForm form = new CourseForm();
+            CourseForm form = new CourseForm(currentRole);
             LoadForm(form);
         }
 
@@ -82,6 +94,7 @@ namespace UMSAssignment.VIEWS
 
         private void button4_Click(object sender, EventArgs e)
         {
+            this.Close();
             LoginForm form = new LoginForm();
             LoadForm(form);
         }
@@ -95,64 +108,11 @@ namespace UMSAssignment.VIEWS
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            SubjectForm form = new SubjectForm(currentRole);
+            LoadForm(form);
+        }
     }
 }
-/*Step - by - step:
-1.StudentForm உருவாக்குங்க
-உங்க project-ல் StudentForm என்று ஒரு புதிய Form add பண்ணுங்க.
-
-csharp
-Copy
-Edit
-public partial class StudentForm : Form
-{
-    public StudentForm()
-    {
-        InitializeComponent();
-    }
-
-    // உங்கள் Student form UI மற்றும் logic இங்கே எழுதுங்கள்
-}
-2.MainForm - ல் Button Create பண்ணி, Click Event Handle பண்ணுங்க
-MainForm-ல் ஒரு button வைங்க (எ.கா: btn_studentManagement).
-
-Designer-ல் button drag & drop பண்ணி, அல்லது code-ல் add பண்ணி, click event attach பண்ணுங்க:
-
-csharp
-Copy
-Edit
-private void btn_studentManagement_Click(object sender, EventArgs e)
-{
-    LoadForm(new StudentForm());
-}
-3.LoadForm method இதுதான் உங்களுக்கு உதவும்:
-csharp
-Copy
-Edit
-public void LoadForm(object formObject)
-{
-    if (this.MainPanel.Controls.Count > 0)
-    {
-        this.MainPanel.Controls.RemoveAt(0);
-    }
-
-    Form form = formObject as Form;
-    form.TopLevel = false;
-    form.Dock = DockStyle.Fill;
-    this.MainPanel.Controls.Add(form);
-    this.MainPanel.Tag = form;
-    form.Show();
-}
-Short summary:
-StudentForm உருவாக்கு.
-
-MainForm - ல் button click event-ல் LoadForm(new StudentForm()) call பண்ணு.
-
-StudentForm MainPanel-ல் show ஆகும்.
-
-உதவி வேண்டுமா?
-நீங்கள் StudentForm-ல என்ன data காட்சிப்படுத்த விரும்புகிறீர்கள்? Table? Entry forms? சொல்லுங்க, code உதவித் தரலாம்னு!
-
-*/
-
-

@@ -35,6 +35,8 @@
             this.btn_dlt = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cname = new System.Windows.Forms.TextBox();
+            this.csearch = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ViewCourse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,11 +112,33 @@
             this.cname.Size = new System.Drawing.Size(218, 23);
             this.cname.TabIndex = 7;
             // 
+            // csearch
+            // 
+            this.csearch.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.csearch.Location = new System.Drawing.Point(385, 182);
+            this.csearch.Name = "csearch";
+            this.csearch.Size = new System.Drawing.Size(218, 23);
+            this.csearch.TabIndex = 8;
+            this.csearch.TextChanged += new System.EventHandler(this.csearch_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(211, 187);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 18);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Search";
+            // 
             // CourseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 544);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.csearch);
             this.Controls.Add(this.cname);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_dlt);
@@ -140,5 +164,7 @@
         private System.Windows.Forms.Button btn_dlt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox cname;
+        private System.Windows.Forms.TextBox csearch;
+        private System.Windows.Forms.Label label3;
     }
 }

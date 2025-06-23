@@ -10,7 +10,8 @@ namespace UMSAssignment.MODELS
     internal class Subject 
     {
         public int SubjectId { get; set; }
-        public string SubjectName { get; set; }
+        public UserSubject SubjectName { get; set; }
         public int CourseId { get; set; }
+        public string CourseName { get; set; }
     }
 }

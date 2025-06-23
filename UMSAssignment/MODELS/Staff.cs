@@ -15,7 +15,6 @@ namespace UMSAssignment.MODELS
         public string StaffNIC { get; set; }
         public UserGender StaffGender {  get; set; }
         public string StaffAddress { get; set; } 
-        public UserTimeslot Timeslot { get; set; }
         public int CourseId { get; set; }
         public int UserId { get; set; }
     }

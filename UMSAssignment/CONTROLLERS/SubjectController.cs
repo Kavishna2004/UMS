@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
 using UMSAssignment.REPOSITORIE;
@@ -12,123 +13,172 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class SubjectController
     {
-        public SubjectController() 
-        {
-        
-        }
-        public List<Subject> GetAllSubjects()
-        {
-            var subjects = new List<Subject>();
+        private List<Subject> subjects = new List<Subject>();
+        private int nextId = 1;
 
+        public string AddSubject(Subject subject)
+        {
             try
             {
-                using (var conn = DbConfig.GetConnection())
+                using (var conn = DbConfig.GetConnection()) // 👉 connectionString இல்ல, direct GetConnection
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Subjects", conn);
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    string query = "INSERT INTO Subjects (SubjectName, CourseId) VALUES (@name, @courseId)";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        subjects.Add(new Subject
-                        {
-                            SubjectId = reader.GetInt32(0),
-                            SubjectName = reader.GetString(1),
-                            CourseId = reader.GetInt32(2) 
-                        });
+                        cmd.Parameters.AddWithValue("@name", subject.SubjectName.ToString()); // enum → string
+                        cmd.Parameters.AddWithValue("@courseId", subject.CourseId);
+                        cmd.ExecuteNonQuery();
                     }
                 }
+                return "Subject added successfully.";
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllSubjects: " + ex.Message);
+                return $"Error while adding subject: {ex.Message}";
             }
-
-            return subjects;
         }
-
-
-        public void AddSubject(Subject subject)
+        public string UpdateSubject(Subject subject)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var command = new SQLiteCommand("INSERT INTO Subjects (Nam, CourseId, SubjectId) VALUES (@Name, @CourseId, @SubjectId)", conn);
-                    command.Parameters.AddWithValue("@Name", subject.SubjectName);
-                    command.Parameters.AddWithValue("@NIC", subject.CourseId);
-                    command.Parameters.AddWithValue("@SubjectId", subject.SubjectId);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in AddSubject: " + ex.Message);
-            }
-        }
-        public void UpdateSubject(Subject subject)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var command = new SQLiteCommand("UPDATE Subjects SET Name = @Name, CourseId = @CourseId WHERE SubjectId = @SubjectId", conn);
-                    command.Parameters.AddWithValue("@Name", subject.SubjectName);
-                    command.Parameters.AddWithValue("@NIC", subject.CourseId);
-                    command.Parameters.AddWithValue("@SubjectId", subject.SubjectId);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in UpdateSubject: " + ex.Message);
-            }
-        }
-        public void DeleteSubject(int subjectId)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var command = new SQLiteCommand("DELETE FROM Subjects WHERE SubjectId = @SubjectId", conn);
-                    command.Parameters.AddWithValue("@SubjectId", subjectId);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteSubject: " + ex.Message);
-            }
-        }
-
-
-        public Subject GetSubjectById(int subjectId)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var cmd = new SQLiteCommand("SELECT * FROM Subjects WHERE Id = @Id", conn);
-                    cmd.Parameters.AddWithValue("@Id", subjectId);
-
-                    using (var reader = cmd.ExecuteReader())
+                    string query = "UPDATE Subjects SET SubjectName = @name, CourseId = @courseId WHERE SubjectId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@name", subject.SubjectName.ToString());
+                        cmd.Parameters.AddWithValue("@courseId", subject.CourseId);
+                        cmd.Parameters.AddWithValue("@id", subject.SubjectId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Subject updated successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"Error while updating subject: {ex.Message}";
+            }
+        }
+        public string DeleteSubject(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "DELETE FROM Subjects WHERE SubjectId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Subject deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"Error while deleting subject: {ex.Message}";
+            }
+        }
+        public Subject GetSubjectById(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT SubjectId, SubjectName, CourseId FROM Subjects WHERE SubjectId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            return new Subject
+                            if (reader.Read())
                             {
-                                SubjectId = reader.GetInt32(0),
-                                SubjectName = reader.GetString(1),
-                                CourseId = reader.GetInt32(2),
-                            };
+                                return new Subject
+                                {
+                                    SubjectId = reader.GetInt32(0),
+                                    SubjectName = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
+                                    CourseId = reader.GetInt32(2)
+                                };
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetSubjectById: " + ex.Message);
+                MessageBox.Show("DB Fetch Error: " + ex.Message);
             }
 
             return null;
+        }
+
+        public List<Subject> GetAllSubjects()
+        {
+            List<Subject> subjectList = new List<Subject>();
+
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT SubjectId, SubjectName, CourseId FROM Subjects";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                subjectList.Add(new Subject
+                                {
+                                    SubjectId = reader.GetInt32(0),
+                                    SubjectName = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
+                                    CourseId = reader.GetInt32(2)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB Read Error: " + ex.Message);
+            }
+
+            return subjectList;
+        }
+        public List<Subject> SearchSubject(string keyword)
+        {
+            var list = new List<Subject>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"SELECT * FROM Subjects 
+                             WHERE SubjectName LIKE @keyword OR SubjectNIC LIKE @keyword";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(new Subject
+                                {
+                                    SubjectId = reader.GetInt32(0),
+                                    SubjectName = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
+                                    CourseId = reader.GetInt32(2)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+
+            return list;
         }
     }
 }

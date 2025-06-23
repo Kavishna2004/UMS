@@ -22,16 +22,48 @@ namespace UMSAssignment.VIEWS
         private readonly LecturerController lecturerController;
         private readonly CourseController courseController;
         private int selectedLecturerId = -1;
-        public LecturerForm()
+
+        private string currentRole;
+
+        public LecturerForm(string role)
         {
             InitializeComponent();
             lecturerController = new LecturerController();
             courseController = new CourseController();
 
+            currentRole = role;
+
             cmdGender.DataSource = Enum.GetValues(typeof(UserGender));
 
             LoadLecturer();
             LoadCourse();
+            LoadControl();
+        }
+        private void LoadControl()
+        {
+            btn_add.Visible = false;
+            btn_update.Visible = false;
+            btn_dlt.Visible = false;
+            lesearch.Visible = false;
+            ViewLecturer.ReadOnly = true;
+
+            if (currentRole == "Admin")
+            {
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                btn_dlt.Visible = true;
+                lesearch.Visible = true;
+                ViewLecturer.ReadOnly = false;
+
+            }
+            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
+            {
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_dlt.Visible = false;
+                lesearch.Visible = false;
+                ViewLecturer.ReadOnly = true;
+            }
         }
         private void LoadLecturer()
         {
@@ -87,9 +119,6 @@ namespace UMSAssignment.VIEWS
             cmdCourse.SelectedIndex = -1;
             selectedLecturerId = -1;
         }
-
-       
-
        
         private void label3_Click(object sender, EventArgs e)
         {
@@ -98,13 +127,7 @@ namespace UMSAssignment.VIEWS
 
         private void LecturerForm_Load(object sender, EventArgs e)
         {
-           /* cmdCourse.Items.Add("Web Development");
-            cmdCourse.Items.Add("Artificial Intelligent");
-            cmdCourse.Items.Add("");
-            cmdCourse.Items.Add("C");
-            cmdCourse.Items.Add("HTML");
-            cmdCourse.Items.Add("Java Script");
-*/
+          
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -117,12 +140,12 @@ namespace UMSAssignment.VIEWS
 
             if (string.IsNullOrWhiteSpace(lename.Text) || string.IsNullOrWhiteSpace(lenic.Text) || string.IsNullOrWhiteSpace(cmdGender.Text) ||
                  string.IsNullOrWhiteSpace(leaddress.Text) || string.IsNullOrWhiteSpace(lenumber.Text) ||
-                string.IsNullOrWhiteSpace(leemail.Text) || string.IsNullOrWhiteSpace(cmdCourse.Text)) 
+                string.IsNullOrWhiteSpace(leemail.Text) || string.IsNullOrWhiteSpace(cmdCourse.Text))
             {
                 MessageBox.Show("Please must fill in all lecturer details.");
                 return;
             }
-            if (cmdCourse.SelectedValue == null) 
+            if (cmdCourse.SelectedValue == null)
             {
                 MessageBox.Show("Please select a course!");
                 return;
@@ -132,16 +155,16 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Please select your gender.");
                 return;
             }
-            var lecturer = new Lecturer 
+            var lecturer = new Lecturer
             {
-                LecturerName= lename.Text,
-                LecturerNIC= lenic.Text,
+                LecturerName = lename.Text,
+                LecturerNIC = lenic.Text,
                 LecturerGender = (UserGender)cmdGender.SelectedItem,
                 LecturerAddress = leaddress.Text,
                 LecturerPhone = lenumber.Text,
-                LecturerEmail=leemail.Text,
-                CourseId= (int)cmdCourse.SelectedValue,
-                TimetableId = 1, 
+                LecturerEmail = leemail.Text,
+                CourseId = (int)cmdCourse.SelectedValue,
+                TimetableId = 1,
                 UserId = 1
             };
 
@@ -164,9 +187,6 @@ namespace UMSAssignment.VIEWS
             lenumber.Text = "";
             leemail.Text = "";
         }
-
-
-
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (selectedLecturerId == -1)
@@ -182,7 +202,7 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Please must fill in all lecturer details.");
                 return;
             }
-          
+
             var lecturer = new Lecturer
             {
                 LecturerId = selectedLecturerId,
@@ -237,32 +257,16 @@ namespace UMSAssignment.VIEWS
 
         private void cmdCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            {
-                /*cmdCourse.Items.Clear();
-                cmdCourse.Items.Add("Select Course");
-                foreach (var gender in Enum.GetValues(typeof(UserCourse)))
-                {
-                    cmdCourse.Items.Add(gender);
-                }
-                cmdCourse.SelectedIndex = 0;*/
-            }
+           
         }
 
         private void cmdGender_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*{
-                cmdGender.Items.Clear();
-                cmdGender.Items.Add("Select Gender");  
-                foreach (var gender in Enum.GetValues(typeof(UserGender)))
-                {
-                    cmdGender.Items.Add(gender);
-                }
-                cmdGender.SelectedIndex = 0; 
-            }*/
+            
         }
 
         private void ViewLecturer_SelectionChanged(object sender, EventArgs e)
-        { 
+        {
             if (ViewLecturer.SelectedRows.Count > 0)
             {
                 var row = ViewLecturer.SelectedRows[0];
@@ -290,31 +294,12 @@ namespace UMSAssignment.VIEWS
                 ClearInputs();
                 selectedLecturerId = -1;
             }
-            /* if (e.RowIndex >= 0)
-             {
-                 var lecturerView = ViewLecturer.Rows[e.RowIndex].DataBoundItem as Lecturer;
-                 if (lecturerView != null)
-                 {
-                     selectedLecturerId = lecturerView.LecturerId;
-                     var lecturer = lecturerController.GetLecturerById(selectedLecturerId);
+        }
 
-                     if (lecturer != null)
-                     {
-                         lename.Text = lecturer.LecturerName;
-                         lenic.Text = lecturer.LecturerNIC;
-                         cmdGender.SelectedValue = lecturer.LecturerGender;
-                         leemail.Text = lecturer.LecturerEmail;
-                         leaddress.Text = lecturer.LecturerAddress;
-                         lenumber.Text = lecturer.LecturerPhone;
-                         cmdCourse.SelectedValue = lecturer.CourseId;
-                     }
-                 }
-             }
-             else
-             {
-                 ClearInputs();
-                 selectedLecturerId = -1;
-             }*/
+        private void lesearch_TextChanged(object sender, EventArgs e)
+        {
+            var lecturerController = new LecturerController();
+            ViewLecturer.DataSource = lecturerController.SearchLecturer(lesearch.Text.Trim());
         }
     }
 }

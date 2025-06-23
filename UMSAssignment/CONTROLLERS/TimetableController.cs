@@ -17,33 +17,92 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class TimetableController
     {
-        public TimetableController()
+        public string AddTimetable(Timetable timetable)
         {
-
-        }
-
-        public static List<Timetable> GetAllTimetables()
-        {
-            var timetables = new List<Timetable>();
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    using (var cmd = new SQLiteCommand("SELECT * FROM Timetables", conn))
+                    string query = "INSERT INTO Timetables (Subject, Timeslot, Room) VALUES (@subject, @timeslot, @room)";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@subject", timetable.SubjectId.ToString());
+                        cmd.Parameters.AddWithValue("@timeslot", timetable.Timeslot.ToString());
+                        cmd.Parameters.AddWithValue("@room", timetable.RoomId.ToString());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Timetable added successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"DB Add Error: {ex.Message}";
+            }
+        }
+        public string UpdateTimetable(Timetable timetable)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "UPDATE Timetables SET Subject = @subject, Timeslot = @timeslot, Room = @room WHERE TimetableId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@subject", timetable.SubjectId.ToString());
+                        cmd.Parameters.AddWithValue("@timeslot", timetable.Timeslot.ToString());
+                        cmd.Parameters.AddWithValue("@room", timetable.RoomId.ToString());
+                        cmd.Parameters.AddWithValue("@id", timetable.TimetableId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Timetable updated successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"DB Update Error: {ex.Message}";
+            }
+        }
+        public string DeleteTimetable(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "DELETE FROM Timetables WHERE TimetableId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return "Timetable deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                return $"DB Delete Error: {ex.Message}";
+            }
+        }
+        public Timetable GetTimetableById(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT TimetableId, Subject, Timeslot, Room FROM Timetables WHERE TimetableId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
                         using (var reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
+                            if (reader.Read())
                             {
-                                timetables.Add(new Timetable
+                                return new Timetable
                                 {
                                     TimetableId = reader.GetInt32(0),
-                                    TimeSlot = (UserTimeslot)reader.GetInt32(1),
-                                    SubjectId = reader.GetInt32(2),
-                                    RoomId = (UserRoom)reader.GetInt32(3),
-
-
-                                });
+                                    SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
+                                    Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(2)),
+                                    RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader.GetString(3))
+                                };
                             }
                         }
                     }
@@ -51,118 +110,40 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllTimetables: " + ex.Message);
+                MessageBox.Show("DB Fetch Error: " + ex.Message);
             }
-            return timetables;
+            return null;
         }
 
-
-        public bool AddTimetable(Timetable timetable)
+        public List<Timetable> GetAllTimetables()
         {
+            List<Timetable> list = new List<Timetable>();
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string insertQuery = "INSERT INTO Timetables (TimeSlot, SubjectId, RoomId) VALUES (@TimeSlot, @SubjectId, @RoomId)";
-                    using (var cmd = new SQLiteCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@TimeSlot", timetable.TimeSlot);
-                        cmd.Parameters.AddWithValue("@SubjectId", timetable.TimetableId);
-                        cmd.Parameters.AddWithValue("@RoomId", timetable.TimetableId);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in AddTimetable: " + ex.Message);
-                return false;
-            }
-        }
-        public bool UpdateTimetable(Timetable timetable)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    string updateQuery = @"
-                        UPDATE Timetables
-                        SET TimeSlot = @TimeSlot,
-                            SubjectId = @SubjectId,
-                            RoomId = @RoomId
-                        WHERE TimetableId = @TimetableId";
-                    using (var cmd = new SQLiteCommand(updateQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@TimeSlot", timetable.TimeSlot);
-                        cmd.Parameters.AddWithValue("@SubjectId", timetable.SubjectId);
-                        cmd.Parameters.AddWithValue("@RoomId", timetable.RoomId);
-                        cmd.Parameters.AddWithValue("@TimetableId", timetable.TimetableId);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in UpdateTimetable: " + ex.Message);
-                return false;
-            }
-        }
-        public bool DeleteTimetable(int id)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    string deleteQuery = "DELETE FROM Timetables WHERE TimetableId = @Id";
-                    using (var cmd = new SQLiteCommand(deleteQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Id", id);
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteTimetable: " + ex.Message);
-                return false;
-            }
-        }
-        public Timetable GetTimetableById(int timetableId)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    conn.Open(); // Ensure the connection is opened
-                    var cmd = new SQLiteCommand("SELECT * FROM Timetables WHERE TimetableId = @Id", conn);
-                    cmd.Parameters.AddWithValue("@Id", timetableId);
-
+                    string query = "SELECT TimetableId, Subject, Timeslot, Room FROM Timetables";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            return new Timetable
+                            list.Add(new Timetable
                             {
-                                TimetableId = Convert.ToInt32(reader["TimetableId"]),
-                                TimeSlot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader["TimeSlot"].ToString()),
-                                SubjectId = Convert.ToInt32(reader["SubjectId"]),
-                                RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader["RoomId"].ToString())
-                            };
+                                TimetableId = reader.GetInt32(0),
+                                SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
+                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(2)),
+                                RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader.GetString(3))
+                            });
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetTimetableById: " + ex.Message);
+                MessageBox.Show("DB List Error: " + ex.Message);
             }
-
-            return null;
+            return list;
         }
     }
 }

@@ -42,7 +42,6 @@
             this.stemail = new System.Windows.Forms.TextBox();
             this.stnumber = new System.Windows.Forms.TextBox();
             this.stsearch = new System.Windows.Forms.TextBox();
-            this.btn_search = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_dlt = new System.Windows.Forms.Button();
@@ -51,26 +50,29 @@
             this.label9 = new System.Windows.Forms.Label();
             this.stdob = new System.Windows.Forms.TextBox();
             this.cmdGender = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ViewStudents)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(80, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.Size = new System.Drawing.Size(46, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(80, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 16);
+            this.label2.Size = new System.Drawing.Size(29, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "NIC";
             // 
@@ -87,10 +89,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(485, 118);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 17);
+            this.label4.Size = new System.Drawing.Size(54, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Gender";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -98,40 +101,44 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(73, 184);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 16);
+            this.label5.Size = new System.Drawing.Size(53, 18);
             this.label5.TabIndex = 4;
             this.label5.Text = "Address";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(475, 238);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 16);
+            this.label6.Size = new System.Drawing.Size(38, 18);
             this.label6.TabIndex = 5;
             this.label6.Text = "Email";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label8.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(475, 302);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 16);
+            this.label8.Size = new System.Drawing.Size(47, 18);
             this.label8.TabIndex = 7;
             this.label8.Text = "Course";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label7.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(80, 238);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 16);
+            this.label7.Size = new System.Drawing.Size(74, 18);
             this.label7.TabIndex = 8;
             this.label7.Text = "PH.Number";
             // 
@@ -183,17 +190,7 @@
             this.stsearch.Name = "stsearch";
             this.stsearch.Size = new System.Drawing.Size(233, 21);
             this.stsearch.TabIndex = 15;
-            // 
-            // btn_search
-            // 
-            this.btn_search.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_search.Location = new System.Drawing.Point(83, 312);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(75, 23);
-            this.btn_search.TabIndex = 16;
-            this.btn_search.Text = "Search";
-            this.btn_search.UseVisualStyleBackColor = true;
-            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
+            this.stsearch.TextChanged += new System.EventHandler(this.stsearch_TextChanged);
             // 
             // btn_add
             // 
@@ -251,10 +248,11 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label9.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(457, 175);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 16);
+            this.label9.Size = new System.Drawing.Size(82, 18);
             this.label9.TabIndex = 22;
             this.label9.Text = "Date of Birth";
             // 
@@ -275,11 +273,23 @@
             this.cmdGender.Size = new System.Drawing.Size(233, 22);
             this.cmdGender.TabIndex = 24;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(80, 314);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 18);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Search";
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 544);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.cmdGender);
             this.Controls.Add(this.stdob);
             this.Controls.Add(this.label9);
@@ -288,7 +298,6 @@
             this.Controls.Add(this.btn_dlt);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.btn_search);
             this.Controls.Add(this.stsearch);
             this.Controls.Add(this.stnumber);
             this.Controls.Add(this.stemail);
@@ -329,7 +338,6 @@
         private System.Windows.Forms.TextBox stemail;
         private System.Windows.Forms.TextBox stnumber;
         private System.Windows.Forms.TextBox stsearch;
-        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_dlt;
@@ -338,5 +346,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox stdob;
         private System.Windows.Forms.ComboBox cmdGender;
+        private System.Windows.Forms.Label label10;
     }
 }

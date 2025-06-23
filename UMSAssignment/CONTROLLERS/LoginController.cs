@@ -21,8 +21,6 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    conn.Open();
-
                     string query = "SELECT COUNT(*) FROM Users WHERE Role = @Role";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {

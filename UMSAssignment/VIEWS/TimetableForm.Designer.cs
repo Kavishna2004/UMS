@@ -39,14 +39,14 @@
             this.cmdRoom = new System.Windows.Forms.ComboBox();
             this.ViewTimetable = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.ttime = new System.Windows.Forms.DateTimePicker();
+            this.cmbDay = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ViewTimetable)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(630, 313);
+            this.btn_add.Location = new System.Drawing.Point(630, 265);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(85, 35);
             this.btn_add.TabIndex = 0;
@@ -66,7 +66,7 @@
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(630, 389);
+            this.btn_update.Location = new System.Drawing.Point(630, 340);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(85, 35);
             this.btn_update.TabIndex = 2;
@@ -77,7 +77,7 @@
             // btn_dlt
             // 
             this.btn_dlt.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dlt.Location = new System.Drawing.Point(630, 460);
+            this.btn_dlt.Location = new System.Drawing.Point(630, 403);
             this.btn_dlt.Name = "btn_dlt";
             this.btn_dlt.Size = new System.Drawing.Size(85, 35);
             this.btn_dlt.TabIndex = 3;
@@ -114,9 +114,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(200, 194);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 18);
+            this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Date and Time:";
+            this.label3.Text = "Date :";
             // 
             // cmdSubject
             // 
@@ -141,7 +141,7 @@
             // ViewTimetable
             // 
             this.ViewTimetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewTimetable.Location = new System.Drawing.Point(79, 313);
+            this.ViewTimetable.Location = new System.Drawing.Point(95, 265);
             this.ViewTimetable.Name = "ViewTimetable";
             this.ViewTimetable.Size = new System.Drawing.Size(504, 188);
             this.ViewTimetable.TabIndex = 11;
@@ -158,21 +158,20 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "TIMETABLE ";
             // 
-            // ttime
+            // cmbDay
             // 
-            this.ttime.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ttime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.ttime.Location = new System.Drawing.Point(350, 194);
-            this.ttime.Name = "ttime";
-            this.ttime.Size = new System.Drawing.Size(233, 24);
-            this.ttime.TabIndex = 13;
+            this.cmbDay.FormattingEnabled = true;
+            this.cmbDay.Location = new System.Drawing.Point(350, 191);
+            this.cmbDay.Name = "cmbDay";
+            this.cmbDay.Size = new System.Drawing.Size(233, 21);
+            this.cmbDay.TabIndex = 16;
             // 
             // TimetableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 583);
-            this.Controls.Add(this.ttime);
+            this.Controls.Add(this.cmbDay);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ViewTimetable);
             this.Controls.Add(this.cmdRoom);
@@ -206,6 +205,6 @@
         private System.Windows.Forms.ComboBox cmdRoom;
         private System.Windows.Forms.DataGridView ViewTimetable;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker ttime;
+        private System.Windows.Forms.ComboBox cmbDay;
     }
 }

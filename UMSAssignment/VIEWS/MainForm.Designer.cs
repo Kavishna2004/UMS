@@ -33,8 +33,8 @@
             this.btn_login = new System.Windows.Forms.Button();
             this.btn_register = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +50,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 649);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
@@ -93,15 +94,6 @@
             this.panel3.Size = new System.Drawing.Size(863, 49);
             this.panel3.TabIndex = 1;
             // 
-            // MainPanel
-            // 
-            this.MainPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.MainPanel.Location = new System.Drawing.Point(200, 47);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(863, 602);
-            this.MainPanel.TabIndex = 2;
-            this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -111,6 +103,15 @@
             this.label2.Size = new System.Drawing.Size(412, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "UnicomTIC Management System";
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.MainPanel.Location = new System.Drawing.Point(200, 47);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(863, 602);
+            this.MainPanel.TabIndex = 2;
+            this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // MainForm
             // 

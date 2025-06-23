@@ -55,5 +55,10 @@ namespace UMSAssignment.VIEWS
             LoadForm(new LoginForm());
             //MessageBox.Show("Login Successfull!");
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

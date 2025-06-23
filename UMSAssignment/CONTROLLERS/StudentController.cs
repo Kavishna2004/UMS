@@ -32,12 +32,12 @@ namespace UMSAssignment.CONTROLLERS
                     while (reader.Read())
                     {
                         Student student = new Student
-                        { 
+                        {
                             StudentId = reader.GetInt32(0),
                             StudentName = reader.GetString(1),
                             StudentAddress = reader.GetString(2),
                             StudentNIC = reader.GetString(3),
-                            StudentGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,                            
+                            StudentGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,
                             StudentEmail = reader.GetString(5),
                             StudentPhone = reader.GetString(6),
                             StudentDOB = reader.GetString(7),
@@ -68,7 +68,7 @@ namespace UMSAssignment.CONTROLLERS
                     command.Parameters.AddWithValue("@Name", student.StudentName);
                     command.Parameters.AddWithValue("@Address", student.StudentAddress);
                     command.Parameters.AddWithValue("@NIC", student.StudentNIC);
-                    command.Parameters.AddWithValue("@Gender", student.StudentGender.ToString()); 
+                    command.Parameters.AddWithValue("@Gender", student.StudentGender.ToString());
                     command.Parameters.AddWithValue("@Email", student.StudentEmail);
                     command.Parameters.AddWithValue("@Phone", student.StudentPhone);
                     command.Parameters.AddWithValue("@DOB", student.StudentDOB);
@@ -77,7 +77,7 @@ namespace UMSAssignment.CONTROLLERS
                     command.Parameters.AddWithValue("@UserId", student.UserId);
                     command.ExecuteNonQuery();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -128,8 +128,6 @@ namespace UMSAssignment.CONTROLLERS
                 Console.WriteLine("Error in DeleteStudent: " + ex.Message);
             }
         }
-
-
         public Student GetStudentById(int Id)
         {
             try
@@ -159,6 +157,7 @@ namespace UMSAssignment.CONTROLLERS
                             };
                         }
                     }
+
                 }
             }
             catch (Exception ex)
@@ -167,6 +166,48 @@ namespace UMSAssignment.CONTROLLERS
             }
 
             return null;
+        }
+        public List<Student> SearchStudents(string keyword)
+        {
+            var list = new List<Student>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"SELECT * FROM Students 
+                             WHERE StudentName LIKE @keyword OR StudentNIC LIKE @keyword";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                list.Add(new Student
+                                {
+                                    StudentId = reader.GetInt32(0),
+                                    StudentName = reader.GetString(1),
+                                    StudentAddress = reader.GetString(2),
+                                    StudentNIC = reader.GetString(3),
+                                    StudentGender = Enum.TryParse<UserGender>(reader.GetString(4), out var gender) ? gender : UserGender.Male,
+                                    StudentEmail = reader.GetString(5),
+                                    StudentPhone = reader.GetString(6),
+                                    StudentDOB = reader.GetString(7),
+                                    CourseId = reader.GetInt32(8),
+                                    GroupId = reader.GetInt32(9),
+                                    UserId = reader.GetInt32(10),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+
+            return list;
         }
     }
 }

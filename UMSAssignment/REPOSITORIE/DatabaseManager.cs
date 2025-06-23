@@ -28,6 +28,7 @@ namespace UMSAssignment.REPOSITORIE
                     CREATE TABLE IF NOT EXISTS Users(
                         UserId INTEGER PRIMARY KEY AUTOINCREMENT,
                         UserName TEXT NOT NULL,
+                        UserEmail TEXT NOT NULL,
                         Password TEXT NOT NULL,
                         Role TEXT NOT NULL
                     );
@@ -144,7 +145,7 @@ namespace UMSAssignment.REPOSITORIE
                         TimetableId INTEGER PRIMARY KEY AUTOINCREMENT,
                         SubjectId INTEGER NOT NULL,
                         RoomId INTEGER NOT NULL,
-                        TimeSlot TEXT NOT NULL
+                        Timeslot TEXT NOT NULL
                     );
 
                     CREATE TABLE IF NOT EXISTS Staffs(

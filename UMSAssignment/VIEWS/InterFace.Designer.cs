@@ -37,8 +37,9 @@
             this.btn_student = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.mainpanel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.mainpanel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +47,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btn_staff);
@@ -73,7 +75,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(31, 454);
+            this.button2.Location = new System.Drawing.Point(31, 100);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(146, 41);
             this.button2.TabIndex = 2;
@@ -84,7 +86,7 @@
             // btn_staff
             // 
             this.btn_staff.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_staff.Location = new System.Drawing.Point(31, 280);
+            this.btn_staff.Location = new System.Drawing.Point(31, 389);
             this.btn_staff.Name = "btn_staff";
             this.btn_staff.Size = new System.Drawing.Size(146, 41);
             this.btn_staff.TabIndex = 3;
@@ -95,7 +97,7 @@
             // btn_time
             // 
             this.btn_time.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_time.Location = new System.Drawing.Point(31, 374);
+            this.btn_time.Location = new System.Drawing.Point(31, 469);
             this.btn_time.Name = "btn_time";
             this.btn_time.Size = new System.Drawing.Size(146, 41);
             this.btn_time.TabIndex = 2;
@@ -106,7 +108,7 @@
             // btn_lecturer
             // 
             this.btn_lecturer.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_lecturer.Location = new System.Drawing.Point(31, 187);
+            this.btn_lecturer.Location = new System.Drawing.Point(31, 313);
             this.btn_lecturer.Name = "btn_lecturer";
             this.btn_lecturer.Size = new System.Drawing.Size(146, 41);
             this.btn_lecturer.TabIndex = 1;
@@ -117,7 +119,7 @@
             // btn_student
             // 
             this.btn_student.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_student.Location = new System.Drawing.Point(31, 100);
+            this.btn_student.Location = new System.Drawing.Point(31, 172);
             this.btn_student.Name = "btn_student";
             this.btn_student.Size = new System.Drawing.Size(146, 41);
             this.btn_student.TabIndex = 0;
@@ -145,6 +147,16 @@
             this.panel2.Size = new System.Drawing.Size(836, 100);
             this.panel2.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(180, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(412, 31);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "UnicomTIC Management System";
+            // 
             // mainpanel2
             // 
             this.mainpanel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -155,15 +167,16 @@
             this.mainpanel2.TabIndex = 2;
             this.mainpanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.mainpanel2_Paint);
             // 
-            // label2
+            // button1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(180, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(412, 31);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "UnicomTIC Management System";
+            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(31, 241);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 41);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Subject Management";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // InterFace
             // 
@@ -198,5 +211,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

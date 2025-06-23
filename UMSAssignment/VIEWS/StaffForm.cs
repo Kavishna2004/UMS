@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -13,70 +14,92 @@ using System.Xml.Linq;
 using UMSAssignment.CONTROLLERS;
 using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
+using UMSAssignment.REPOSITORIE;
 using UMSAssignment.VIEWS;
 
 namespace UMSAssignment.VIEWS
 {
     public partial class StaffForm : Form
     {
-        private readonly StaffController staffController;
-        private readonly CourseController courseController;
         private int selectedStaffId = -1;
+        private string currentRole;
 
-        public StaffForm()
+        public StaffForm(string role)
         {
             InitializeComponent();
-            staffController = new StaffController();
-            courseController = new CourseController();
+            currentRole = role;
 
             cmdz.DataSource = Enum.GetValues(typeof(UserGender));
-            cmdTime.DataSource = Enum.GetValues(typeof(UserTimeslot));
 
             LoadStaff();
             LoadCourse();
+            LoadControl();
+        }
+        private void LoadControl()
+        {
+            btn_add.Visible = false;
+            btn_update.Visible = false;
+            btn_dlt.Visible = false;
+            btn_clear.Visible = false;
+            stasearch.Visible = false;
+            ViewStaffs.ReadOnly = true;
+
+            if (currentRole == "Admin")
+            {
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                btn_dlt.Visible = true;
+                btn_clear.Visible = true;
+                stasearch.Visible = true;
+                ViewStaffs.ReadOnly = false;
+
+            }
+            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
+            {
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_dlt.Visible = false;
+                btn_clear.Visible = false;
+                stasearch.Visible = false;
+                ViewStaffs.ReadOnly = true;
+            }
         }
         private void LoadStaff()
         {
-            var staffs = staffController.GetAllStaffs();
-            ViewStaffs.DataSource = staffs;
-
-            MessageBox.Show("Staffs count: " + staffs.Count);
-
-            ViewStaffs.DataSource = null;
-            ViewStaffs.DataSource = staffs;
-            //ViewStaffs.Columns.Clear();
-            //ViewStaffs.DataSource = staffController.GetAllStaffs();/*
-            
-            if (ViewStaffs.Columns.Contains("CourseId"))
-            {
-                ViewStaffs.Columns["CourseId"].Visible = false;
-            }
-            ViewStaffs.ClearSelection();
-            
-            if (cmdCourse.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a course!");
-                return;
-            }
+            var staffController = new StaffController();
+            ViewStaffs.DataSource = staffController.GetAllStaffs();
         }
         private void LoadCourse()
         {
-            var courses = courseController.GetAllCourses();
-            cmdCourse.DataSource = courses;
-            cmdCourse.DisplayMember = "CourseName";
-            cmdCourse.ValueMember = "CourseId";
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT CourseId, CourseName FROM Courses";
+                    using (var adapter = new SQLiteDataAdapter(query, conn))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        cmdCourse.DisplayMember = "CourseName";
+                        cmdCourse.ValueMember = "CourseId";
+                        cmdCourse.DataSource = table;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Course load failed: " + ex.Message);
+            }
         }
         private void ClearForm() 
         {
+            selectedStaffId = -1;
             staname.Clear();
             stanic.Clear();
             staaddress.Clear();
-            cmdCourse.SelectedIndex = -1;
-            cmdTime.SelectedIndex = -1;
+            stasearch.Clear();
             cmdz.SelectedIndex = -1;
-            selectedStaffId = -1;
-           
-
+            cmdCourse.SelectedIndex = -1;
         }
         private void StaffForm_Load(object sender, EventArgs e)
         {
@@ -85,100 +108,59 @@ namespace UMSAssignment.VIEWS
 
         private void btn_dlt_Click(object sender, EventArgs e)
         {
-            if (selectedStaffId == -1) 
+            if (selectedStaffId == -1)
             {
-                MessageBox.Show("Please select a staff to delete.");
+                MessageBox.Show("Please select a staff from the table to delete.");
                 return;
             }
-            var confirmResult = MessageBox.Show("Are you sure to delete this staff?", "Confirm Delete", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
-            {
-                staffController.DeleteStaff(selectedStaffId);
-                LoadStaff();
-                ClearForm();
-                MessageBox.Show("Staff Deleted Successfully");
 
-            }
+            var staffController = new StaffController();
+            MessageBox.Show(staffController.DeleteStaff(selectedStaffId));
+            LoadStaff();
+            ClearForm();
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(staname.Text) || string.IsNullOrWhiteSpace(stanic.Text) || string.IsNullOrWhiteSpace(cmdz.Text) ||
-               string.IsNullOrWhiteSpace(staaddress.Text) || string.IsNullOrWhiteSpace(cmdTime.Text))
-            {
-                MessageBox.Show("Please must fill in all staff details.");
-                return;
-            }
-
-            if (cmdz.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a course.");
-                return;
-            }
-
             var staff = new Staff
             {
                 StaffName = staname.Text,
                 StaffNIC = stanic.Text,
+                StaffGender = (UserGender)cmdz.SelectedItem,
                 StaffAddress = staaddress.Text,
-                StaffGender = (UserGender)cmdz.SelectedValue,
-                Timeslot = (UserTimeslot)cmdTime.SelectedValue,
-                CourseId = (int)cmdCourse.SelectedValue,
-                UserId = 3
-                
+                CourseId = Convert.ToInt32(cmdCourse.SelectedValue),
+                //UserId = int.Parse(txtUserId.Text)
             };
 
-            Console.WriteLine("Inserted Staff: " + staff.StaffName);
-            Console.WriteLine("Gender: " + (int)staff.StaffGender);
-            Console.WriteLine("Timeslot: " + (int)staff.Timeslot);
-            Console.WriteLine("CourseId: " + staff.CourseId);
-            Console.WriteLine("UserId: " + staff.UserId);
-
-
-
-            staffController.AddStaff(staff);
+            var staffController = new StaffController();
+            MessageBox.Show(staffController.AddStaff(staff));
             LoadStaff();
             ClearForm();
-            MessageBox.Show("Staff Added Successfully");
         }
-        private void ClearInputs() 
-        {
-            staname.Text = "";
-            stanic.Text = "";
-            staaddress.Text = "";
-            
-
-        }
+       
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (selectedStaffId == -1)
             {
-                MessageBox.Show("Please select a staff to update.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(staname.Text) || string.IsNullOrWhiteSpace(stanic.Text) || string.IsNullOrWhiteSpace(cmdz.Text) ||
-               string.IsNullOrWhiteSpace(staaddress.Text))
-            {
-                MessageBox.Show("Please enter the Details!.");
+                MessageBox.Show("Please select a staff from the table to update.");
                 return;
             }
 
             var staff = new Staff
             {
+                StaffId = selectedStaffId,
                 StaffName = staname.Text,
                 StaffNIC = stanic.Text,
+                StaffGender = (UserGender)cmdz.SelectedItem,
                 StaffAddress = staaddress.Text,
-                StaffGender = (UserGender)cmdz.SelectedValue,
-                Timeslot = (UserTimeslot)cmdTime.SelectedValue,
-                CourseId = (int)cmdCourse.SelectedValue,
-                UserId = 3
+                CourseId = Convert.ToInt32(cmdCourse.SelectedValue),
+                //UserId = int.Parse(txtUserId.Text)
             };
 
-            staffController.UpdateStaff(staff);
+            var staffController = new StaffController();
+            MessageBox.Show(staffController.UpdateStaff(staff));
             LoadStaff();
             ClearForm();
-            MessageBox.Show("Staff Updated Successfully");
 
         }
 
@@ -189,18 +171,8 @@ namespace UMSAssignment.VIEWS
 
         private void cmdz_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*{
-                cmdz.Items.Clear();
-                cmdz.Items.Add("Select Gender");
-                foreach (var gender in Enum.GetValues(typeof(UserGender)))
-                {
-                    cmdz.Items.Add(gender);
-                }
-                cmdz.SelectedIndex = 0;
-            }*/
+            
         }
-
-               
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -209,16 +181,7 @@ namespace UMSAssignment.VIEWS
 
         private void cmdCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*{
-                cmdCourse.Items.Clear();
-                cmdCourse.Items.Add("Select Your Course");
-                foreach (var course in Enum.GetValues(typeof(UserCourse)))
-                {
-                    cmdCourse.Items.Add(course);
-                }
-                cmdCourse.SelectedIndex = 0;
-            }
-*/
+           
         }
 
         private void ViewStaffs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -230,31 +193,27 @@ namespace UMSAssignment.VIEWS
             if (ViewStaffs.SelectedRows.Count > 0)
             {
                 var row = ViewStaffs.SelectedRows[0];
-                var staffView = row.DataBoundItem as Staff;
+                selectedStaffId = Convert.ToInt32(row.Cells["StaffId"].Value);
 
-                if (staffView != null)
-                {
-                    selectedStaffId = staffView.StaffId;
-
-                    var staff = staffController.GetStaffById(selectedStaffId);
-                    if (staff != null)
-                    {
-                        staname.Text = staff.StaffName;
-                        staaddress.Text = staff.StaffAddress;
-                        cmdTime.SelectedValue = staff.Timeslot;
-                        cmdz.SelectedValue = staff.StaffGender;
-                        cmdCourse.SelectedValue = staff.CourseId;
-                        
-                    }
-                }
-            }
-            else
-            {
-                ClearInputs();
-                selectedStaffId = -1;
+                staname.Text = row.Cells["StaffName"].Value.ToString();
+                stanic.Text = row.Cells["StaffNIC"].Value.ToString();
+                cmdz.SelectedItem = Enum.Parse(typeof(UserGender), row.Cells["StaffGender"].Value.ToString());
+                staaddress.Text = row.Cells["StaffAddress"].Value.ToString();
+                cmdCourse.SelectedValue = Convert.ToInt32(row.Cells["CourseId"].Value);
+                //txtUserId.Text = row.Cells["UserId"].Value.ToString();
             }
         }
 
+        private void stasearch_TextChanged(object sender, EventArgs e)
+        {
+            var staffController = new StaffController();
+            ViewStaffs.DataSource = staffController.SearchStaffs(stasearch.Text.Trim());
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
     }
     
 }
