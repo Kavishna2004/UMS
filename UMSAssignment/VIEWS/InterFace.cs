@@ -114,5 +114,11 @@ namespace UMSAssignment.VIEWS
             SubjectForm form = new SubjectForm(currentRole);
             LoadForm(form);
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            AttendanceForm form = new AttendanceForm(currentRole);
+            LoadForm(form);
+        }
     }
 }

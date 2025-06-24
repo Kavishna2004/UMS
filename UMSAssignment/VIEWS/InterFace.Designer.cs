@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_staff = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.mainpanel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +48,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button2);
@@ -60,6 +62,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 683);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(31, 199);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 41);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Subject Management";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button4
             // 
@@ -75,7 +88,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(31, 100);
+            this.button2.Location = new System.Drawing.Point(31, 77);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(146, 41);
             this.button2.TabIndex = 2;
@@ -86,7 +99,7 @@
             // btn_staff
             // 
             this.btn_staff.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_staff.Location = new System.Drawing.Point(31, 389);
+            this.btn_staff.Location = new System.Drawing.Point(31, 324);
             this.btn_staff.Name = "btn_staff";
             this.btn_staff.Size = new System.Drawing.Size(146, 41);
             this.btn_staff.TabIndex = 3;
@@ -97,7 +110,7 @@
             // btn_time
             // 
             this.btn_time.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_time.Location = new System.Drawing.Point(31, 469);
+            this.btn_time.Location = new System.Drawing.Point(31, 392);
             this.btn_time.Name = "btn_time";
             this.btn_time.Size = new System.Drawing.Size(146, 41);
             this.btn_time.TabIndex = 2;
@@ -108,7 +121,7 @@
             // btn_lecturer
             // 
             this.btn_lecturer.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_lecturer.Location = new System.Drawing.Point(31, 313);
+            this.btn_lecturer.Location = new System.Drawing.Point(31, 256);
             this.btn_lecturer.Name = "btn_lecturer";
             this.btn_lecturer.Size = new System.Drawing.Size(146, 41);
             this.btn_lecturer.TabIndex = 1;
@@ -119,7 +132,7 @@
             // btn_student
             // 
             this.btn_student.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_student.Location = new System.Drawing.Point(31, 172);
+            this.btn_student.Location = new System.Drawing.Point(31, 142);
             this.btn_student.Name = "btn_student";
             this.btn_student.Size = new System.Drawing.Size(146, 41);
             this.btn_student.TabIndex = 0;
@@ -167,16 +180,16 @@
             this.mainpanel2.TabIndex = 2;
             this.mainpanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.mainpanel2_Paint);
             // 
-            // button1
+            // button3
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(31, 241);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 41);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Subject Management";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button3.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(31, 456);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(146, 41);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Attendance Management";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // InterFace
             // 
@@ -212,5 +225,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }

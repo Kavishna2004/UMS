@@ -41,6 +41,7 @@
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.ViewAttendance = new System.Windows.Forms.DataGridView();
             this.dtTimestamp = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ViewAttendance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,11 +180,22 @@
             this.dtTimestamp.Size = new System.Drawing.Size(200, 20);
             this.dtTimestamp.TabIndex = 12;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(261, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 27);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Attendance";
+            // 
             // AttendanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dtTimestamp);
             this.Controls.Add(this.ViewAttendance);
             this.Controls.Add(this.cmbStatus);
@@ -221,5 +233,6 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.DataGridView ViewAttendance;
         private System.Windows.Forms.DateTimePicker dtTimestamp;
+        private System.Windows.Forms.Label label5;
     }
 }
