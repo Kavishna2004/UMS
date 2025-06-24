@@ -33,10 +33,11 @@ namespace UMSAssignment.VIEWS
         }
         private void LoadControl()
         {
-            btn_add.Visible = false;
-            btn_update.Visible = false;
-            btn_dlt.Visible = false;
-            subsearch.Visible = false;
+
+            btn_add.Visible = true;
+            btn_update.Visible = true;
+            btn_dlt.Visible = true;
+            subsearch.Visible = true;
             dataGridView1.ReadOnly = true;
 
             if (currentRole == "Admin")

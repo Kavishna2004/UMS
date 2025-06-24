@@ -204,3 +204,45 @@ Z:\C#\LastOOP\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.Core
 Z:\C#\LastOOP\clone github\UMS\UMSAssignment\obj\Debug\UMSAssig.DEF16E73.Up2Date
 Z:\C#\LastOOP\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.exe
 Z:\C#\LastOOP\clone github\UMS\UMSAssignment\obj\Debug\UMSAssignment.pdb
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.AssemblyReference.cache
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.Properties.Resources.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.AttendanceForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.CourseForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.InterFace.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.LecturerForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.LoginForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.MainForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.RegisterForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.StaffForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.StudentForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.SubjectForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.VIEWS.TimetableForm.resources
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.GenerateResource.cache
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.csproj.CoreCompileInputs.cache
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.exe
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssignment.pdb
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\UMSAssignment.exe.config
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\UMSAssignment.exe
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\UMSAssignment.pdb
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Buffers.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Data.SQLite.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Memory.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Net.Http.Formatting.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Numerics.Vectors.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Threading.Tasks.Extensions.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Web.Http.dll
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.pdb
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\Newtonsoft.Json.Bson.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Buffers.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Data.SQLite.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Memory.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Net.Http.Formatting.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Numerics.Vectors.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Threading.Tasks.Extensions.xml
+Z:\C#\wwww\UMS\UMSAssignment\bin\Debug\System.Web.Http.xml
+Z:\C#\wwww\UMS\UMSAssignment\obj\Debug\UMSAssig.DEF16E73.Up2Date

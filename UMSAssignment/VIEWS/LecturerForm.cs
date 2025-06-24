@@ -41,14 +41,14 @@ namespace UMSAssignment.VIEWS
         }
         private void LoadControl()
         {
-            btn_add.Visible = false;
-            btn_update.Visible = false;
-            btn_dlt.Visible = false;
-            lesearch.Visible = false;
+            btn_add.Visible = true;
+            btn_update.Visible = true;
+            btn_dlt.Visible = true;
+            lesearch.Visible = true;
             ViewLecturer.ReadOnly = true;
 
 
-            if (currentRole != null && currentRole.ToLower() == "admin")
+            if (currentRole != null && currentRole == "Admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
@@ -57,7 +57,7 @@ namespace UMSAssignment.VIEWS
                 ViewLecturer.ReadOnly = false;
             }
 
-            else if (currentRole.ToLower() == "lecturer" || currentRole.ToLower() == "student" || currentRole.ToLower() == "staff")
+            else if (currentRole== "Lecturer" || currentRole == "Student" || currentRole == "Staff")
             {
 
                 ViewLecturer.ReadOnly = true;

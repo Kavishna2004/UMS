@@ -21,7 +21,7 @@ namespace UMSAssignment
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
+            Application.Run(new MainForm());
             Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
 
@@ -36,7 +36,7 @@ namespace UMSAssignment
             //Application.Run(new StudentForm());
             //Application.Run(new StaffForm());
             //Application.Run(new CourseForm());
-            Application.Run(new AttendanceForm());
+            //Application.Run(new AttendanceForm());
 
         }
     }
