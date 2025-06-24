@@ -44,7 +44,8 @@ namespace UMSAssignment.VIEWS
             stasearch.Visible = false;
             ViewStaffs.ReadOnly = true;
 
-            if (currentRole == "Admin")
+
+            if (currentRole != null && currentRole.ToLower() == "admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
@@ -52,15 +53,11 @@ namespace UMSAssignment.VIEWS
                 btn_clear.Visible = true;
                 stasearch.Visible = true;
                 ViewStaffs.ReadOnly = false;
-
             }
-            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
+
+            else if (currentRole.ToLower() == "lecturer" || currentRole.ToLower() == "student" || currentRole.ToLower() == "staff")
             {
-                btn_add.Visible = false;
-                btn_update.Visible = false;
-                btn_dlt.Visible = false;
-                btn_clear.Visible = false;
-                stasearch.Visible = false;
+
                 ViewStaffs.ReadOnly = true;
             }
         }

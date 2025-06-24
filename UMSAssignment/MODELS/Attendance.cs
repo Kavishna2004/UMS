@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UMSAssignment.ENUMS;
 
 namespace UMSAssignment.MODELS
 {
@@ -12,6 +13,6 @@ namespace UMSAssignment.MODELS
         public int StudentId { get; set; }
         public int TimetableId { get; set; }
         public string Timestamp { get; set; }
-        public string Status { get; set; }
+        public UserAttendance Status { get; set; }
     }
 }

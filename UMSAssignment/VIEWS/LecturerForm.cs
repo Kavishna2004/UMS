@@ -47,21 +47,19 @@ namespace UMSAssignment.VIEWS
             lesearch.Visible = false;
             ViewLecturer.ReadOnly = true;
 
-            if (currentRole == "Admin")
+
+            if (currentRole != null && currentRole.ToLower() == "admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
                 btn_dlt.Visible = true;
                 lesearch.Visible = true;
                 ViewLecturer.ReadOnly = false;
-
             }
-            else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
+
+            else if (currentRole.ToLower() == "lecturer" || currentRole.ToLower() == "student" || currentRole.ToLower() == "staff")
             {
-                btn_add.Visible = false;
-                btn_update.Visible = false;
-                btn_dlt.Visible = false;
-                lesearch.Visible = false;
+
                 ViewLecturer.ReadOnly = true;
             }
         }
@@ -81,7 +79,7 @@ namespace UMSAssignment.VIEWS
                 ViewLecturer.DataSource = null;
                 ViewLecturer.DataSource = lecturers;
 
-                // Hide unnecessary columns
+              
                 if (ViewLecturer.Columns.Contains("CourseId"))
                     ViewLecturer.Columns["CourseId"].Visible = false;
 
