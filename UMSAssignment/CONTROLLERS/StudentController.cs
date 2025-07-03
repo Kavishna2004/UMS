@@ -104,7 +104,6 @@ namespace UMSAssignment.CONTROLLERS
                     command.Parameters.AddWithValue("@UserId", student.UserId);
                     command.Parameters.AddWithValue("@StudentId", student.StudentId);
                     command.ExecuteNonQuery();
-                    //transaction.Commit();
                 }
             }
             catch (Exception ex)

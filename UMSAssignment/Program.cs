@@ -33,10 +33,12 @@ namespace UMSAssignment
             //Application.Run(new LoginForm());
             //Application.Run(new LecturerForm());
 
-            //Application.Run(new StudentForm());
+            //Application.Run(new StudentForm("Admin"));
             //Application.Run(new StaffForm());
             //Application.Run(new CourseForm());
             //Application.Run(new AttendanceForm());
+            Application.Run(new ExamForm());
+
 
         }
     }

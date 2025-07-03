@@ -12,21 +12,21 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class AttendanceController
     {
-        public string AddAttendance(Attendance attendance)
+        public string AddAttendance(Attendances attendance)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
                    
-                    string query = @"INSERT INTO Attendances (Timestamp, Status, StudentId, TimetableId)
-                                     VALUES (@Timestamp, @Status, @StudentId, @TimetableId)";
+                    string query = @"INSERT INTO Attendances (Timestamp, Status, StudentId)
+                                     VALUES (@Timestamp, @Status, @StudentId)";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Timestamp", attendance.Timestamp);
                         cmd.Parameters.AddWithValue("@Status", attendance.Status.ToString());
                         cmd.Parameters.AddWithValue("@StudentId", attendance.StudentId);
-                        cmd.Parameters.AddWithValue("@TimetableId", attendance.TimetableId);
+                        //cmd.Parameters.AddWithValue("@TimetableId", attendance.TimetableId);
                         cmd.ExecuteNonQuery();
                     }
                     return "Attendance added successfully.";
@@ -38,21 +38,20 @@ namespace UMSAssignment.CONTROLLERS
             }
         }
 
-        public string UpdateAttendance(Attendance attendance)
+        public string UpdateAttendance(Attendances attendance)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
                     string query = @"UPDATE Attendances SET Timestamp=@Timestamp, Status=@Status, 
-                                     StudentId=@StudentId, TimetableId=@TimetableId
-                                     WHERE AttendanceId=@AttendanceId";
+                                     StudentId=@StudentId WHERE AttendanceId=@AttendanceId";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Timestamp", attendance.Timestamp);
                         cmd.Parameters.AddWithValue("@Status", attendance.Status.ToString());
                         cmd.Parameters.AddWithValue("@StudentId", attendance.StudentId);
-                        cmd.Parameters.AddWithValue("@TimetableId", attendance.TimetableId);
+                        //cmd.Parameters.AddWithValue("@TimetableId", attendance.TimetableId);
                         cmd.Parameters.AddWithValue("@AttendanceId", attendance.AttendanceId);
                         cmd.ExecuteNonQuery();
                     }
@@ -87,9 +86,9 @@ namespace UMSAssignment.CONTROLLERS
             }
         }
 
-        public List<Attendance> GetAllAttendances()
+        public List<Attendances> GetAllAttendances()
         {
-            var list = new List<Attendance>();
+            var list = new List<Attendances>();
             try
             {
                 using (var conn = DbConfig.GetConnection())
@@ -101,13 +100,13 @@ namespace UMSAssignment.CONTROLLERS
                     {
                         while (reader.Read())
                         {
-                            list.Add(new Attendance
+                            list.Add(new Attendances
                             {
                                 AttendanceId = Convert.ToInt32(reader["AttendanceId"]),
                                 Timestamp = reader["Timestamp"].ToString(),
                                 Status = (UserAttendance)Enum.Parse(typeof(UserAttendance), reader["Status"].ToString()),
                                 StudentId = Convert.ToInt32(reader["StudentId"]),
-                                TimetableId = Convert.ToInt32(reader["TimetableId"])
+                                //TimetableId = Convert.ToInt32(reader["TimetableId"])
                             });
                         }
                     }
@@ -120,7 +119,7 @@ namespace UMSAssignment.CONTROLLERS
             return list;
         }
 
-        public Attendance GetAttendanceById(int id)
+        public Attendances GetAttendanceById(int id)
         {
             try
             {
@@ -135,13 +134,13 @@ namespace UMSAssignment.CONTROLLERS
                         {
                             if (reader.Read())
                             {
-                                return new Attendance
+                                return new Attendances
                                 {
                                     AttendanceId = Convert.ToInt32(reader["AttendanceId"]),
                                     Timestamp = reader["Timestamp"].ToString(),
                                     Status = (UserAttendance)Enum.Parse(typeof(UserAttendance), reader["Status"].ToString()),
                                     StudentId = Convert.ToInt32(reader["StudentId"]),
-                                    TimetableId = Convert.ToInt32(reader["TimetableId"])
+                                    //TimetableId = Convert.ToInt32(reader["TimetableId"])
                                 };
                             }
                         }

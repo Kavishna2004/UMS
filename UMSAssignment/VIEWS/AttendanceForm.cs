@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,34 +28,34 @@ namespace UMSAssignment.VIEWS
             cmbStatus.DataSource = Enum.GetValues(typeof(UserAttendance));
 
             LoadStudents();
-            LoadTimetables();
+            //LoadTimetables();
             LoadControl();
 
             LoadAttendanceData();
         }
         private void LoadControl()
         {
-          
+
             btn_add.Visible = true;
             btn_update.Visible = true;
             btn_dlt.Visible = true;
             btn_clear.Visible = true;
-            ViewAttendance.ReadOnly = true;
+            dataGridView1.ReadOnly = true;
 
-           
+
             if (currentRole != null && currentRole == "Admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
                 btn_dlt.Visible = true;
                 btn_clear.Visible = true;
-                ViewAttendance.ReadOnly = false;
+                dataGridView1.ReadOnly = false;
             }
-           
+
             else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
             {
 
-                ViewAttendance.ReadOnly = true;
+                dataGridView1.ReadOnly = true;
             }
         }
         private void LoadStudents()
@@ -79,60 +80,50 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Student load error: " + ex.Message);
             }
         }
-
-        private void LoadTimetables()
+        private void ClearForm()
         {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    string query = "SELECT TimetableId FROM Timetables"; // Simplified
-                    using (var adapter = new SQLiteDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        cmbTimetable.DataSource = dt;
-                        cmbTimetable.ValueMember = "TimetableId";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Timetable load error: " + ex.Message);
-            }
+            dtTimestamp.Value = DateTime.Now;
+            cmbStatus.SelectedIndex = 0;
+            cmbStudent.SelectedIndex = -1;
+            selectedId = -1;
         }
+
         private void LoadAttendanceData()
         {
             try
             {
                 var controller = new AttendanceController();
-                ViewAttendance.AutoGenerateColumns = true;
-                ViewAttendance.DataSource = controller.GetAllAttendances();
+                dataGridView1.AutoGenerateColumns = true;
+                dataGridView1.DataSource = controller.GetAllAttendances();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Load failed: " + ex.Message);
             }
         }
-        private void ClearForm()
+        
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dtTimestamp.Value = DateTime.Now;
-            cmbStatus.SelectedIndex = 0;
-            cmbStudent.SelectedIndex = -1;
-            cmbTimetable.SelectedIndex = -1;
-            selectedId = -1;
-        }
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                var row = dataGridView1.SelectedRows[0];
+                selectedId = Convert.ToInt32(row.Cells["AttendanceId"].Value);
 
+                dtTimestamp.Value = Convert.ToDateTime(row.Cells["Timestamp"].Value);
+                cmbStatus.SelectedItem = Enum.Parse(typeof(UserAttendance), row.Cells["Status"].Value.ToString());
+                cmbStudent.SelectedValue = Convert.ToInt32(row.Cells["StudentId"].Value);
+            }
+        }
+        
         private void btn_add_Click(object sender, EventArgs e)
         {
             try
             {
-                var attendance = new Attendance
+                var attendance = new Attendances
                 {
                     Timestamp = dtTimestamp.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                     Status = (UserAttendance)cmbStatus.SelectedItem,
                     StudentId = Convert.ToInt32(cmbStudent.SelectedValue),
-                    TimetableId = Convert.ToInt32(cmbTimetable.SelectedValue)
                 };
 
                 var controller = new AttendanceController();
@@ -157,13 +148,12 @@ namespace UMSAssignment.VIEWS
 
             try
             {
-                var attendance = new Attendance
+                var attendance = new Attendances
                 {
                     AttendanceId = selectedId,
                     Timestamp = dtTimestamp.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                     Status = (UserAttendance)cmbStatus.SelectedItem,
                     StudentId = Convert.ToInt32(cmbStudent.SelectedValue),
-                    TimetableId = Convert.ToInt32(cmbTimetable.SelectedValue)
                 };
 
                 var controller = new AttendanceController();
@@ -200,21 +190,7 @@ namespace UMSAssignment.VIEWS
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void ViewAttendance_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (ViewAttendance.SelectedRows.Count > 0)
-            {
-                var row = ViewAttendance.SelectedRows[0];
-                selectedId = Convert.ToInt32(row.Cells["AttendanceId"].Value);
-
-                dtTimestamp.Value = Convert.ToDateTime(row.Cells["Timestamp"].Value);
-                cmbStatus.SelectedItem = Enum.Parse(typeof(UserAttendance), row.Cells["Status"].Value.ToString());
-                cmbStudent.SelectedValue = Convert.ToInt32(row.Cells["StudentId"].Value);
-                cmbTimetable.SelectedValue = Convert.ToInt32(row.Cells["TimetableId"].Value);
-            }
+            ClearForm();
         }
     }
 }

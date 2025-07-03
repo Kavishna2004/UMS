@@ -8,12 +8,11 @@ namespace UMSAssignment.ENUMS
 {
     internal enum UserTimeslot
     {
-        Sunday,    
-        Monday,    
-        Tuesday,   
-        Wednesday, 
-        Thursday,  
-        Friday,    
-        Saturday   
+        Day1,
+        Day2,
+        Dya3,
+        Day4,
+        Day5,
+        day6
     }
 }

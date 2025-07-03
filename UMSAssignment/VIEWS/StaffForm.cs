@@ -31,9 +31,10 @@ namespace UMSAssignment.VIEWS
 
             cmdz.DataSource = Enum.GetValues(typeof(UserGender));
 
-            LoadStaff();
+            //LoadStaff();
             LoadCourse();
             LoadControl();
+            RefreshStaffGrid();
         }
         private void LoadControl()
         {
@@ -61,11 +62,18 @@ namespace UMSAssignment.VIEWS
                 ViewStaffs.ReadOnly = true;
             }
         }
-        private void LoadStaff()
+        private void RefreshStaffGrid()
         {
             var staffController = new StaffController();
-            ViewStaffs.DataSource = staffController.GetAllStaffs();
+            var allStaff = staffController.GetAllStaffs();
+
+            ViewStaffs.AutoGenerateColumns = true;
+            ViewStaffs.DataSource = null;
+            ViewStaffs.DataSource = allStaff;
+
+            ViewStaffs.ClearSelection();
         }
+
         private void LoadCourse()
         {
             try
@@ -88,6 +96,7 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Course load failed: " + ex.Message);
             }
         }
+        
         private void ClearForm() 
         {
             selectedStaffId = -1;
@@ -97,6 +106,7 @@ namespace UMSAssignment.VIEWS
             stasearch.Clear();
             cmdz.SelectedIndex = -1;
             cmdCourse.SelectedIndex = -1;
+            ViewStaffs.ClearSelection();
         }
         private void StaffForm_Load(object sender, EventArgs e)
         {
@@ -113,12 +123,63 @@ namespace UMSAssignment.VIEWS
 
             var staffController = new StaffController();
             MessageBox.Show(staffController.DeleteStaff(selectedStaffId));
-            LoadStaff();
+
+            RefreshStaffGrid(); 
             ClearForm();
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(staname.Text) ||
+                    string.IsNullOrWhiteSpace(stanic.Text) ||
+                    cmdz.SelectedItem == null ||
+                    cmdCourse.SelectedValue == null)
+                {
+                    MessageBox.Show("Please fill all details!");
+                    return;
+                }
+
+                var staff = new Staff
+                {
+                    StaffName = staname.Text,
+                    StaffNIC = stanic.Text,
+                    StaffGender = (UserGender)cmdz.SelectedItem,
+                    StaffAddress = staaddress.Text,
+                    CourseId = Convert.ToInt32(cmdCourse.SelectedValue),
+                    UserId = 3
+                };
+
+                var staffController = new StaffController();
+                string result = staffController.AddStaff(staff);
+                MessageBox.Show(result);
+
+                RefreshStaffGrid(); 
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Add Error: " + ex.Message);
+            }
+            /*if (string.IsNullOrWhiteSpace(staname.Text) ||
+                string.IsNullOrWhiteSpace(stanic.Text) ||
+                cmdz.SelectedItem == null ||
+                cmdCourse.SelectedValue == null)
+            {
+                MessageBox.Show(" Please Fill all required details! ");
+                return;
+            }
+            *//*int userId = 0;
+            if (!string.IsNullOrWhiteSpace(txtUserId.Text))
+            {
+                if (!int.TryParse(txtUserId.Text, out userId))
+                {
+                    MessageBox.Show("Invalid User ID.");
+                    return;
+                }
+            }
+*//*
             var staff = new Staff
             {
                 StaffName = staname.Text,
@@ -126,13 +187,15 @@ namespace UMSAssignment.VIEWS
                 StaffGender = (UserGender)cmdz.SelectedItem,
                 StaffAddress = staaddress.Text,
                 CourseId = Convert.ToInt32(cmdCourse.SelectedValue),
-                //UserId = int.Parse(txtUserId.Text)
+                UserId = 3
             };
 
             var staffController = new StaffController();
-            MessageBox.Show(staffController.AddStaff(staff));
-            LoadStaff();
-            ClearForm();
+            string result = staffController.AddStaff(staff);
+            MessageBox.Show(result);
+
+            LoadStaff();*/
+            //ClearForm();
         }
        
         private void btn_update_Click(object sender, EventArgs e)
@@ -151,14 +214,14 @@ namespace UMSAssignment.VIEWS
                 StaffGender = (UserGender)cmdz.SelectedItem,
                 StaffAddress = staaddress.Text,
                 CourseId = Convert.ToInt32(cmdCourse.SelectedValue),
-                //UserId = int.Parse(txtUserId.Text)
+                UserId = 3
             };
 
             var staffController = new StaffController();
             MessageBox.Show(staffController.UpdateStaff(staff));
-            LoadStaff();
-            ClearForm();
 
+            RefreshStaffGrid(); 
+            ClearForm();
         }
 
         private void staaddress_TextChanged(object sender, EventArgs e)
@@ -194,10 +257,15 @@ namespace UMSAssignment.VIEWS
 
                 staname.Text = row.Cells["StaffName"].Value.ToString();
                 stanic.Text = row.Cells["StaffNIC"].Value.ToString();
-                cmdz.SelectedItem = Enum.Parse(typeof(UserGender), row.Cells["StaffGender"].Value.ToString());
+
+              
+                if (Enum.TryParse(row.Cells["StaffGender"].Value.ToString(), out UserGender genderValue))
+                {
+                    cmdz.SelectedItem = genderValue;
+                }
+
                 staaddress.Text = row.Cells["StaffAddress"].Value.ToString();
                 cmdCourse.SelectedValue = Convert.ToInt32(row.Cells["CourseId"].Value);
-                //txtUserId.Text = row.Cells["UserId"].Value.ToString();
             }
         }
 

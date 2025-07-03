@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
@@ -17,18 +18,18 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class TimetableController
     {
-        public string AddTimetable(Timetable timetable)
+        public string AddTimetable(Timetable t)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "INSERT INTO Timetables (Subject, Timeslot, Room) VALUES (@subject, @timeslot, @room)";
-                    using (var cmd = new SQLiteCommand(query, conn))
+                    string q = "INSERT INTO Timetables (SubjectId, Timeslot, RoomId) VALUES (@s,@ts,@r)";
+                    using (var cmd = new SQLiteCommand(q, conn))
                     {
-                        cmd.Parameters.AddWithValue("@subject", timetable.SubjectId.ToString());
-                        cmd.Parameters.AddWithValue("@timeslot", timetable.Timeslot.ToString());
-                        cmd.Parameters.AddWithValue("@room", timetable.RoomId.ToString());
+                        cmd.Parameters.AddWithValue("@s", t.SubjectId.ToString());
+                        cmd.Parameters.AddWithValue("@ts", t.Timeslot.ToString());
+                        cmd.Parameters.AddWithValue("@r", t.RoomId.ToString());
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -36,22 +37,23 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                return $"DB Add Error: {ex.Message}";
+                return "Add Error: " + ex.Message;
             }
         }
-        public string UpdateTimetable(Timetable timetable)
+
+        public string UpdateTimetable(Timetable t)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "UPDATE Timetables SET Subject = @subject, Timeslot = @timeslot, Room = @room WHERE TimetableId = @id";
-                    using (var cmd = new SQLiteCommand(query, conn))
+                    string q = "UPDATE Timetables SET SubjectId=@s, Timeslot=@ts, RoomId=@r WHERE TimetableId=@id";
+                    using (var cmd = new SQLiteCommand(q, conn))
                     {
-                        cmd.Parameters.AddWithValue("@subject", timetable.SubjectId.ToString());
-                        cmd.Parameters.AddWithValue("@timeslot", timetable.Timeslot.ToString());
-                        cmd.Parameters.AddWithValue("@room", timetable.RoomId.ToString());
-                        cmd.Parameters.AddWithValue("@id", timetable.TimetableId);
+                        cmd.Parameters.AddWithValue("@s", t.SubjectId.ToString());
+                        cmd.Parameters.AddWithValue("@ts", t.Timeslot.ToString());
+                        cmd.Parameters.AddWithValue("@r", t.RoomId.ToString());
+                        cmd.Parameters.AddWithValue("@id", t.TimetableId);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -59,17 +61,18 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                return $"DB Update Error: {ex.Message}";
+                return "Update Error: " + ex.Message;
             }
         }
+
         public string DeleteTimetable(int id)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "DELETE FROM Timetables WHERE TimetableId = @id";
-                    using (var cmd = new SQLiteCommand(query, conn))
+                    string q = "DELETE FROM Timetables WHERE TimetableId=@id";
+                    using (var cmd = new SQLiteCommand(q, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         cmd.ExecuteNonQuery();
@@ -79,72 +82,46 @@ namespace UMSAssignment.CONTROLLERS
             }
             catch (Exception ex)
             {
-                return $"DB Delete Error: {ex.Message}";
+                return "Delete Error: " + ex.Message;
             }
-        }
-        public Timetable GetTimetableById(int id)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    string query = "SELECT TimetableId, Subject, Timeslot, Room FROM Timetables WHERE TimetableId = @id";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", id);
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                return new Timetable
-                                {
-                                    TimetableId = reader.GetInt32(0),
-                                    SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
-                                    Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(2)),
-                                    RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader.GetString(3))
-                                };
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("DB Fetch Error: " + ex.Message);
-            }
-            return null;
         }
 
-        public List<Timetable> GetAllTimetables()
+        public DataTable GetTimetableWithNames()
         {
-            List<Timetable> list = new List<Timetable>();
+            var dt = new DataTable();
+
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "SELECT TimetableId, Subject, Timeslot, Room FROM Timetables";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    using (var reader = cmd.ExecuteReader())
+
+                    string query = @"
+                SELECT 
+                    t.TimetableId,
+                    t.SubjectId,
+                    s.SubjectName,
+                    t.Timeslot,
+                    t.RoomId,
+                    r.RoomName
+                FROM Timetables t
+                JOIN Subjects s ON t.SubjectId = s.SubjectId
+                JOIN Rooms r ON t.RoomId = r.RoomId";
+
+                    using (var adapter = new SQLiteDataAdapter(query, conn))
                     {
-                        while (reader.Read())
-                        {
-                            list.Add(new Timetable
-                            {
-                                TimetableId = reader.GetInt32(0),
-                                SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader.GetString(1)),
-                                Timeslot = (UserTimeslot)Enum.Parse(typeof(UserTimeslot), reader.GetString(2)),
-                                RoomId = (UserRoom)Enum.Parse(typeof(UserRoom), reader.GetString(3))
-                            });
-                        }
+                        adapter.Fill(dt);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("DB List Error: " + ex.Message);
+                MessageBox.Show("Join Load Error: " + ex.Message);
             }
-            return list;
+
+            return dt;
         }
+
+
     }
 }
 

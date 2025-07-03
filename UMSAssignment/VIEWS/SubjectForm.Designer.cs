@@ -61,6 +61,7 @@
             this.cmbSubjectName.Name = "cmbSubjectName";
             this.cmbSubjectName.Size = new System.Drawing.Size(236, 24);
             this.cmbSubjectName.TabIndex = 3;
+            this.cmbSubjectName.SelectedIndexChanged += new System.EventHandler(this.cmbSubjectName_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -115,9 +116,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(174, 254);
+            this.dataGridView1.Location = new System.Drawing.Point(170, 254);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(420, 191);
+            this.dataGridView1.Size = new System.Drawing.Size(330, 191);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -125,7 +126,7 @@
             // btn_add
             // 
             this.btn_add.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(638, 263);
+            this.btn_add.Location = new System.Drawing.Point(554, 265);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(82, 38);
             this.btn_add.TabIndex = 14;
@@ -136,7 +137,7 @@
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(638, 329);
+            this.btn_update.Location = new System.Drawing.Point(554, 326);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(82, 38);
             this.btn_update.TabIndex = 15;
@@ -147,7 +148,7 @@
             // btn_dlt
             // 
             this.btn_dlt.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dlt.Location = new System.Drawing.Point(638, 407);
+            this.btn_dlt.Location = new System.Drawing.Point(554, 390);
             this.btn_dlt.Name = "btn_dlt";
             this.btn_dlt.Size = new System.Drawing.Size(82, 38);
             this.btn_dlt.TabIndex = 16;

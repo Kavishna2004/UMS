@@ -60,5 +60,10 @@ namespace UMSAssignment.VIEWS
         {
 
         }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

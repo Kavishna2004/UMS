@@ -45,26 +45,23 @@ namespace UMSAssignment.VIEWS
         }
         private void LoadControl()
         {
-            btn_add.Visible = true;
-            btn_update.Visible = true;
-            btn_dlt.Visible = true;
-            csearch.Visible = true;
-            ViewCourse.ReadOnly = true;
-
-
-            if (currentRole != null && currentRole == "Admin")
+            if ( currentRole == "Admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
                 btn_dlt.Visible = true;
                 csearch.Visible = true;
-                ViewCourse.ReadOnly = false;
+                ViewCourse.ReadOnly = true;
             }
 
             else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
             {
-
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_dlt.Visible = false;
+                csearch.Visible = false;
                 ViewCourse.ReadOnly = true;
+             
             }
         }
 

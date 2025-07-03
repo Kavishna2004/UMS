@@ -129,7 +129,7 @@
             // ViewStaffs
             // 
             this.ViewStaffs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewStaffs.Location = new System.Drawing.Point(223, 326);
+            this.ViewStaffs.Location = new System.Drawing.Point(229, 326);
             this.ViewStaffs.Name = "ViewStaffs";
             this.ViewStaffs.Size = new System.Drawing.Size(405, 170);
             this.ViewStaffs.TabIndex = 8;

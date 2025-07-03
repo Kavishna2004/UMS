@@ -209,5 +209,10 @@ namespace UMSAssignment.VIEWS
                 MessageBox.Show("Selection Error: " + ex.Message);
             }
         }
+
+        private void cmbSubjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

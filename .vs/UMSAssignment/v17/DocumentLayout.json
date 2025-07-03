@@ -1,0 +1,923 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\PROJECT\\new project UMS\\UMS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|z:\\project\\new project ums\\ums\\umsassignment\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|z:\\project\\new project ums\\ums\\umsassignment\\views\\lecturerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\lecturerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|z:\\project\\new project ums\\ums\\umsassignment\\views\\lecturerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\lecturerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\attendanceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\attendanceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|z:\\project\\new project ums\\ums\\umsassignment\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\usersubject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\usersubject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\userexam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\userexam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\repositorie\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\repositorie\\databasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\examform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\examform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\examform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\examform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\timetableform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\timetableform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\timetableform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\timetableform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\subjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\subjectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\timetablelecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\timetablelecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\subjectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\subjectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\courseform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\courseform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\timetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\timetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\attendances.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\attendances.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\userattendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\userattendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\lecturercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\lecturercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\mappers\\usermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\usertimeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\usertimeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\attendanceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\attendanceform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\userroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\userroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\mark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\mark.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\lecturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\lecturer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\enums\\usermarks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\enums\\usermarks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\subjectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\subjectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\courseform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\courseform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\studentform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\models\\subjectlecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\models\\subjectlecture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|Z:\\PROJECT\\new project UMS\\UMS\\umsassignment\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9459C6DA-CCB7-493C-97EA-2A269DEC24E7}|UMSAssignment\\UMSAssignment.csproj|solutionrelative:umsassignment\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|Z:\\C#\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Student.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Student.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Student.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Student.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Student.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T04:50:48.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LecturerForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAowPsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T04:50:22.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LecturerForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\LecturerForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LecturerForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\LecturerForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T04:50:21.154Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExamController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\ExamController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\ExamController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\ExamController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\ExamController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAUwH0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:07:28.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserExam.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserExam.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserExam.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserExam.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserExam.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:12:46.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserSubject.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserSubject.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserSubject.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserSubject.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserSubject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:45:59.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\CourseController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\CourseController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\CourseController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\CourseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T09:18:52.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TimetableController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\TimetableController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\TimetableController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\TimetableController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\TimetableController.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAqwHEAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:54:26.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ExamForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\ExamForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\ExamForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\ExamForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\ExamForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGUAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:29:57.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AttendanceForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\AttendanceForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\AttendanceForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:49:55.562Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DatabaseManager.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\REPOSITORIE\\DatabaseManager.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\REPOSITORIE\\DatabaseManager.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\REPOSITORIE\\DatabaseManager.cs",
+              "RelativeToolTip": "UMSAssignment\\REPOSITORIE\\DatabaseManager.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAgwHcAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:23:41.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Exam.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Exam.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Exam.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Exam.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Exam.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:16:13.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ExamForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\ExamForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\ExamForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\ExamForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\ExamForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:20:33.877Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TimetableForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAiwDMAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:54:35.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "TimetableForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\TimetableForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\TimetableForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\TimetableForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:53:38.57Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SubjectController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\SubjectController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\SubjectController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\SubjectController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\SubjectController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T08:55:07.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "TimetableLecture.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\TimetableLecture.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\TimetableLecture.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\TimetableLecture.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\TimetableLecture.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:54:45.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SubjectForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\SubjectForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\SubjectForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:25:47.496Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CourseForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\CourseForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\CourseForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\CourseForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\CourseForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:09:59.379Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Timetable.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Timetable.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Timetable.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Timetable.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Timetable.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T08:54:48.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Attendances.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Attendances.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Attendances.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Attendances.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Attendances.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T11:13:27.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AttendanceController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\AttendanceController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\AttendanceController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\AttendanceController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\AttendanceController.cs",
+              "ViewState": "AQIAAHwAAAAAAAAAAAAcwGgAAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T11:13:44.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UserAttendance.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserAttendance.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserAttendance.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserAttendance.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserAttendance.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:30:23.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "UserTimeslot.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTimeslot.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserTimeslot.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTimeslot.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserTimeslot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T09:37:42.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "UserMapper.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MAPPERS\\UserMapper.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MAPPERS\\UserMapper.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MAPPERS\\UserMapper.cs",
+              "RelativeToolTip": "UMSAssignment\\MAPPERS\\UserMapper.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACAAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T08:01:23.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\DTOS\\UserDto.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\DTOS\\UserDto.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\DTOS\\UserDto.cs",
+              "RelativeToolTip": "UMSAssignment\\DTOS\\UserDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T08:01:37.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\UserController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\UserController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\UserController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\UserController.cs",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAIwIcAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T09:39:08.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "StaffController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\StaffController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\StaffController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\StaffController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\StaffController.cs",
+              "ViewState": "AQIAAMMAAAAAAAAAAAAmwCQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:22:14.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Program.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\Program.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\Program.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\Program.cs",
+              "RelativeToolTip": "UMSAssignment\\Program.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwCcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:29:57.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LecturerController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\LecturerController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\LecturerController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\LecturerController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\LecturerController.cs",
+              "ViewState": "AQIAALkAAAAAAAAAAAAYwNIAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:22:10.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "InterFace.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\InterFace.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\InterFace.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\InterFace.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\InterFace.cs",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAMwH0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:15:13.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "User.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\User.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\User.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\User.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:26:09.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserRole.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserRole.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserRole.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserRole.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:21:22.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "AttendanceForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\AttendanceForm.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAADgv2oAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T06:54:16.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "InterFace.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\InterFace.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\InterFace.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\InterFace.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\InterFace.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:15:10.087Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\StudentController.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\CONTROLLERS\\StudentController.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\CONTROLLERS\\StudentController.cs",
+              "RelativeToolTip": "UMSAssignment\\CONTROLLERS\\StudentController.cs",
+              "ViewState": "AQIAALMAAAAAAAAAAAAuwGoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:21:53.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "UserRoom.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserRoom.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserRoom.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserRoom.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserRoom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T09:48:06.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Mark.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Mark.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Mark.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Mark.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Mark.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:10:03.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Subject.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Subject.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Subject.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Subject.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Subject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:10:21.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Staff.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Staff.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Staff.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Staff.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Staff.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:10:13.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Lecturer.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Lecturer.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Lecturer.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Lecturer.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Lecturer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:10:05.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Course.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Course.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Course.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Course.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Course.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:09:54.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Room.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Room.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\Room.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\Room.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\Room.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T07:09:41.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "UserTime.cs",
+              "DocumentMoniker": "Z:\\C#\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTime.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\C#\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTime.cs",
+              "ToolTip": "Z:\\C#\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTime.cs",
+              "RelativeToolTip": "..\\..\\..\\C#\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserTime.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T11:09:45.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "UserMarks.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserMarks.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\ENUMS\\UserMarks.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\ENUMS\\UserMarks.cs",
+              "RelativeToolTip": "UMSAssignment\\ENUMS\\UserMarks.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:13:07.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "CourseForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\CourseForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\CourseForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\CourseForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\CourseForm.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:10:00.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "StudentForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\StudentForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\StudentForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\StudentForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\StudentForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T07:40:58.64Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "StudentForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\StudentForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\StudentForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\StudentForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\StudentForm.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T07:41:00.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "SubjectForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\SubjectForm.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:25:48.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "SubjectLecture.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\SubjectLecture.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\MODELS\\SubjectLecture.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\MODELS\\SubjectLecture.cs",
+              "RelativeToolTip": "UMSAssignment\\MODELS\\SubjectLecture.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:38:19.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\MainForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\MainForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\MainForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\MainForm.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:20:53.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\MainForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\MainForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\MainForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:20:01.675Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LoginForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\LoginForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LoginForm.cs [Design]",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:17:04.212Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LoginForm.cs",
+              "RelativeDocumentMoniker": "UMSAssignment\\VIEWS\\LoginForm.cs",
+              "ToolTip": "Z:\\PROJECT\\new project UMS\\UMS\\UMSAssignment\\VIEWS\\LoginForm.cs",
+              "RelativeToolTip": "UMSAssignment\\VIEWS\\LoginForm.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T10:17:09.089Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

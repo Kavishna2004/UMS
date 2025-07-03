@@ -22,25 +22,17 @@ namespace UMSAssignment.CONTROLLERS
         private List<User> users = new List<User>();
         private int nextId = 1;
 
-       /* private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(bytes);
-            }
-        }*/
         public string AddUser(UserDto dto, string password)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "INSERT INTO Users (UserName, UserEmail, Password, Role) VALUES (@name, @email, @pass, @role)";
+                    string query = "INSERT INTO Users (UserName, Password, Role) VALUES (@name, @pass, @role)";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", dto.UserName);
-                        cmd.Parameters.AddWithValue("@email", dto.UserEmail);
+                        //cmd.Parameters.AddWithValue("@email", dto.UserEmail);
                         cmd.Parameters.AddWithValue("@pass", password);
                         cmd.Parameters.AddWithValue("@role", dto.Role.ToString());
                         cmd.ExecuteNonQuery();
@@ -62,11 +54,11 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "UPDATE Users SET UserName = @name, UserEmail = @email, Role = @role WHERE UserId = @id";
+                    string query = "UPDATE Users SET UserName = @name, Role = @role WHERE UserId = @id";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", dto.UserName);
-                        cmd.Parameters.AddWithValue("@email", dto.UserEmail);
+                        //cmd.Parameters.AddWithValue("@email", dto.UserEmail);
                         cmd.Parameters.AddWithValue("@role", dto.Role.ToString());
                         cmd.Parameters.AddWithValue("@id", dto.UserId);
                         cmd.ExecuteNonQuery();
@@ -106,7 +98,7 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "SELECT UserId, UserName, UserEmail, Role FROM Users WHERE UserId = @id";
+                    string query = "SELECT UserId, UserName, Role FROM Users WHERE UserId = @id";
                     using (var cmd = new SQLiteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
@@ -118,8 +110,8 @@ namespace UMSAssignment.CONTROLLERS
                                 {
                                     UserId = reader.GetInt32(0),
                                     UserName = reader.GetString(1),
-                                    UserEmail = reader.GetString(2),
-                                    Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(3))
+                                    //UserEmail = reader.GetString(2),
+                                    Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(2))
                                 };
                             }
                         }
@@ -141,7 +133,7 @@ namespace UMSAssignment.CONTROLLERS
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "SELECT UserId, UserName, UserEmail, Role FROM Users";
+                    string query = "SELECT UserId, UserName, Role FROM Users";
                     using (var cmd = new SQLiteCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -151,8 +143,8 @@ namespace UMSAssignment.CONTROLLERS
                             {
                                 UserId = reader.GetInt32(0),
                                 UserName = reader.GetString(1),
-                                UserEmail = reader.GetString(2),
-                                Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(3))
+                                //UserEmail = reader.GetString(2),
+                                Role = (UserRole)Enum.Parse(typeof(UserRole), reader.GetString(2))
                             });
                         }
                     }

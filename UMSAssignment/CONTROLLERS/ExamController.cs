@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UMSAssignment.ENUMS;
 using UMSAssignment.MODELS;
 using UMSAssignment.REPOSITORIE;
 
@@ -11,91 +12,134 @@ namespace UMSAssignment.CONTROLLERS
 {
     internal class ExamController
     {
-        public ExamController()
+        public string AddExam(Exam exam)
         {
-
-        }
-        public List<Exam> GetAllExam()
-        {
-            var exams = new List<Exam>();
-
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("SELECT * FROM Exams", conn);
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    string query = @"INSERT INTO Exams (ExamName, SubjectId) VALUES (@ExamName, @SubjectId)";
+                    using (var cmd = new SQLiteCommand(query, conn))
                     {
-                        Exam exam = new Exam
+                        cmd.Parameters.AddWithValue("@ExamName", exam.ExamName.ToString());
+                        cmd.Parameters.AddWithValue("@SubjectId", exam.SubjectId.ToString());
+                        cmd.ExecuteNonQuery();
+                    }
+                    return " Exam added successfully!";
+                }
+            }
+            catch (Exception ex)
+            {
+                return " Failed to add exam: " + ex.Message;
+            }
+        }
+
+        public string UpdateExam(Exam exam)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = @"UPDATE Exams SET ExamName=@ExamName, SubjectId=@SubjectId WHERE ExamId=@ExamId";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ExamName", exam.ExamName.ToString());
+                        cmd.Parameters.AddWithValue("@SubjectID", exam.SubjectId.ToString());
+                        cmd.Parameters.AddWithValue("@ExamId", exam.ExamId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return "Exam updated.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return " Update failed: " + ex.Message;
+            }
+        }
+
+        public string DeleteExam(int id)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "DELETE FROM Exams WHERE ExamId=@ExamId";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ExamId", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    return " Exam deleted.";
+                }
+            }
+            catch (Exception ex)
+            {
+                return " Delete failed: " + ex.Message;
+            }
+        }
+
+        public List<Exam> GetAllExams()
+        {
+            var exams = new List<Exam>();
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "SELECT * FROM Exams";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            ExamId = reader.GetInt32(0),
-                            ExamName = reader.GetString(1),
-                            SubjectId = reader.GetInt32(2),
-                        };
-                        exams.Add(exam);
+                            exams.Add(new Exam
+                            {
+                                ExamId = Convert.ToInt32(reader["ExamId"]),
+                                ExamName = (UserExam)Enum.Parse(typeof(UserExam), reader["ExamName"].ToString()),
+                                SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader["SubjectId"].ToString())
+
+                            });
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in GetAllExam: " + ex.Message);
+                Console.WriteLine("Fetch error: " + ex.Message);
             }
-
             return exams;
         }
-        public void AddExam(Exam exam)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var cmd = new SQLiteCommand("INSERT INTO Exams (ExamName, SubjectId) VALUES (@Name, @Id)", conn);
-                    cmd.Parameters.AddWithValue("@Name", exam.ExamName);
-                    cmd.Parameters.AddWithValue("@SubjectId", exam.ExamId);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in AddExam: " + ex.Message);
-            }
-        }
 
-        public void UpdateExam(Exam exam)
+        public Exam GetExamById(int id)
         {
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    var cmd = new SQLiteCommand("UPDATE Exams SET ExamName = @Name, SubjectId = @SubjectId WHERE Id = @Id", conn);
-                    cmd.Parameters.AddWithValue("@Name", exam.ExamName);
-                    cmd.Parameters.AddWithValue("@SubjectId", exam.SubjectId);
-                    cmd.Parameters.AddWithValue("@Id", exam.ExamId);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in UpdateExam: " + ex.Message);
-            }
-        }
-        public void DeleteExam(int Id)
-        {
-            try
-            {
-                using (var conn = DbConfig.GetConnection())
-                {
-                    var command = new SQLiteCommand("DELETE FROM Exams WHERE ExamId = @Id", conn);
-                    command.Parameters.AddWithValue("@Id", Id);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in DeleteExam: " + ex.Message);
-            }
-        }
+                    string query = "SELECT * FROM Exams WHERE ExamId = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new Exam
+                                {
+                                    ExamId = Convert.ToInt32(reader["ExamId"]),
+                                    ExamName = (UserExam)Enum.Parse(typeof(UserExam), reader["ExamName"].ToString()),
+                                    SubjectId = (UserSubject)Enum.Parse(typeof(UserSubject), reader["SubjectId"].ToString())
 
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetById error: " + ex.Message);
+            }
+            return null;
+        }
     }
 }

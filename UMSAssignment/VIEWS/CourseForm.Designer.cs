@@ -54,9 +54,9 @@
             // ViewCourse
             // 
             this.ViewCourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewCourse.Location = new System.Drawing.Point(222, 286);
+            this.ViewCourse.Location = new System.Drawing.Point(273, 280);
             this.ViewCourse.Name = "ViewCourse";
-            this.ViewCourse.Size = new System.Drawing.Size(426, 221);
+            this.ViewCourse.Size = new System.Drawing.Size(306, 224);
             this.ViewCourse.TabIndex = 2;
             this.ViewCourse.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewCourse_CellContentClick);
             this.ViewCourse.SelectionChanged += new System.EventHandler(this.ViewCourse_SelectionChanged);

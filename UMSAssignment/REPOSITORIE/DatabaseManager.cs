@@ -20,6 +20,11 @@ namespace UMSAssignment.REPOSITORIE
             using (var conn = DbConfig.GetConnection())
             {
                 string createTableQuery = @"
+
+                   --DROP TABLE Exams;
+
+
+
                     CREATE TABLE IF NOT EXISTS Courses (
                         CourseId INTEGER PRIMARY KEY AUTOINCREMENT,
                         CourseName TEXT NOT NULL
@@ -28,7 +33,6 @@ namespace UMSAssignment.REPOSITORIE
                     CREATE TABLE IF NOT EXISTS Users(
                         UserId INTEGER PRIMARY KEY AUTOINCREMENT,
                         UserName TEXT NOT NULL,
-                        UserEmail TEXT NOT NULL,
                         Password TEXT NOT NULL,
                         Role TEXT NOT NULL
                     );
@@ -136,9 +140,7 @@ namespace UMSAssignment.REPOSITORIE
                         Timestamp TEXT NOT NULL,
                         Status TEXT NOT NULL,
                         StudentId INTEGER,
-                        TimetableId INTEGER,
-                        FOREIGN KEY (StudentId) REFERENCES Students(StudentId),
-                        FOREIGN KEY (TimetableId) REFERENCES Timetables(TimetableId)
+                        FOREIGN KEY (StudentId) REFERENCES Students(StudentId)
                     );
                         
                     CREATE TABLE IF NOT EXISTS Timetables (
@@ -154,7 +156,7 @@ namespace UMSAssignment.REPOSITORIE
                         StaffNIC TEXT NOT NULL,
                         StaffGender TEXT NOT NULL,
                         StaffAddress TEXT NOT NULL,
-                        StaffTimeslot TEXT NOT NULL,
+                        StaffTimeslot TEXT,
                         CourseId INTEGER,
                         UserId INTEGER,
                         FOREIGN KEY (CourseId) REFERENCES Courses(CourseId),

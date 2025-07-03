@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
@@ -30,10 +31,15 @@ namespace UMSAssignment.CONTROLLERS
                         cmd.Parameters.AddWithValue("@address", staff.StaffAddress);
                         cmd.Parameters.AddWithValue("@courseId", staff.CourseId);
                         cmd.Parameters.AddWithValue("@userId", staff.UserId);
-                        cmd.ExecuteNonQuery();
+
+                        int rows = cmd.ExecuteNonQuery();
+
+                        if (rows > 0)
+                            return "Staff added successfully.";
+                        else
+                            return "Staff insert failed : No rows affected.";
                     }
                 }
-                return "Staff added successfully.";
             }
             catch (Exception ex)
             {
@@ -132,38 +138,45 @@ namespace UMSAssignment.CONTROLLERS
         }
         public List<Staff> GetAllStaffs()
         {
-            List<Staff> list = new List<Staff>();
+            var staffList = new List<Staff>();
+
             try
             {
                 using (var conn = DbConfig.GetConnection())
                 {
                     string query = "SELECT * FROM Staffs";
-                    using (var cmd = new SQLiteCommand(query, conn))
-                    using (var reader = cmd.ExecuteReader())
+
+                    var cmd = new SQLiteCommand(query, conn);
+                    var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection); 
+
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        var staff = new Staff
                         {
-                            list.Add(new Staff
-                            {
-                                StaffId = reader.GetInt32(0),
-                                StaffName = reader.GetString(1),
-                                StaffNIC = reader.GetString(2),
-                                StaffGender = (UserGender)Enum.Parse(typeof(UserGender), reader.GetString(3)),
-                                StaffAddress = reader.GetString(4),
-                                CourseId = reader.GetInt32(5),
-                                UserId = reader.GetInt32(6)
-                            });
-                        }
+                            StaffId = reader["StaffId"] != DBNull.Value ? Convert.ToInt32(reader["StaffId"]) : 0,
+                            StaffName = reader["StaffName"]?.ToString(),
+                            StaffNIC = reader["StaffNIC"]?.ToString(),
+                            StaffGender = Enum.TryParse(reader["StaffGender"]?.ToString(), out UserGender gender) ? gender : UserGender.Male,
+                            StaffAddress = reader["StaffAddress"]?.ToString(),
+                            CourseId = reader["CourseId"] != DBNull.Value ? Convert.ToInt32(reader["CourseId"]) : 0,
+                            UserId = reader["UserId"] != DBNull.Value ? Convert.ToInt32(reader["UserId"]) : 0
+                        };
+
+                        staffList.Add(staff);
                     }
+
+                    reader.Close(); 
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("List Staffs Error: " + ex.Message);
+                MessageBox.Show("Error loading staff list: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return list;
+            return staffList;
         }
+
+
         public List<Staff> SearchStaffs(string keyword)
         {
             var list = new List<Staff>();

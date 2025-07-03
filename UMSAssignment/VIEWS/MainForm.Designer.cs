@@ -35,6 +35,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.btn_exit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +88,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel3.Controls.Add(this.btn_exit);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(200, 0);
@@ -112,6 +114,17 @@
             this.MainPanel.Size = new System.Drawing.Size(863, 602);
             this.MainPanel.TabIndex = 2;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btn_exit
+            // 
+            this.btn_exit.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_exit.Location = new System.Drawing.Point(768, 6);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(92, 35);
+            this.btn_exit.TabIndex = 1;
+            this.btn_exit.Text = "EXIT";
+            this.btn_exit.UseVisualStyleBackColor = true;
+            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
             // MainForm
             // 
@@ -142,5 +155,6 @@
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_exit;
     }
 }

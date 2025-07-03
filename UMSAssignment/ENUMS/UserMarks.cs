@@ -9,7 +9,11 @@ namespace UMSAssignment.ENUMS
 {
     internal enum UserMarks
     {
-       Viva,
+        Viva,
+        Assignment,
+        InternalExam,
+        FinalExam,
+        Project
 
     }
 }

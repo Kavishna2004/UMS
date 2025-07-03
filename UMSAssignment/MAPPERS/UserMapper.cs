@@ -19,7 +19,6 @@ namespace UMSAssignment.MAPPERS
             {
                 UserId = user.UserId,
                 UserName = user.UserName,
-                UserEmail = user.UserEmail,
                 Role = user.Role
             };
         }
@@ -31,7 +30,6 @@ namespace UMSAssignment.MAPPERS
             {
                 UserId = userDto.UserId,
                 UserName = userDto.UserName,
-                UserEmail = userDto.UserEmail,
                 Role = userDto.Role,
                 Password = password
             };

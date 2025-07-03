@@ -18,109 +18,112 @@ namespace UMSAssignment.VIEWS
 {
     public partial class TimetableForm : Form
     {
-        private TimetableController timetableController = new TimetableController();
-        private SubjectController subjectController = new SubjectController();
+        private TimetableController tc = new TimetableController();
         private int selectedId = -1;
+        //private string currentRole;
 
-        private string currentRole;
+        private bool isLoadingSelection = false; 
 
         public TimetableForm(string role)
         {
             InitializeComponent();
+            //currentRole = role;
+
+            cmdSubject.DataSource = Enum.GetValues(typeof(UserSubject));
             cmbDay.DataSource = Enum.GetValues(typeof(UserTimeslot));
             cmdRoom.DataSource = Enum.GetValues(typeof(UserRoom));
 
-            currentRole = role;
-
-            LoadTimetables();
+            //LoadControl();
             LoadSubjects();
-            LoadControl();
-        }
-        private void LoadSubject()
-        {
-            ViewTimetable.DataSource = null;
-            ViewTimetable.DataSource = subjectController.GetAllSubjects();
+            RefreshGrid();
 
-            if (ViewTimetable.Columns.Contains("subjectId"))
-            {
-                ViewTimetable.Columns["subjectId"].Visible = false;
-            }
-            ViewTimetable.ClearSelection();
-            if (cmdSubject.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a subject!");
-                return;
-            }
+            ViewTimetable.SelectionChanged += ViewTimetable_SelectionChanged;
         }
-        private void LoadTimetables()
+
+        private void LoadSubjects()
         {
             try
             {
-                ViewTimetable.DataSource = null;
-                var all = timetableController.GetAllTimetables();
-
-                ViewTimetable.DataSource = all;
-
-                if (ViewTimetable.Columns.Contains("TimetableId"))
-                    ViewTimetable.Columns["TimetableId"].Visible = false;
-
-                selectedId = -1;
-                cmbDay.SelectedIndex = 0;
-                cmdRoom.SelectedIndex = 0;
-                selectedId = -1;
+                cmdSubject.DataSource = Enum.GetValues(typeof(UserSubject));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Load Error: " + ex.Message);
+                MessageBox.Show("LoadSubjects Error: " + ex.Message);
             }
         }
-        private void LoadControl()
+        private void RefreshGrid()
         {
-            btn_add.Visible = true;
-            btn_update.Visible = true;
-            btn_dlt.Visible = true;
-            ViewTimetable.ReadOnly = true;
+            try
+            {
+                ViewTimetable.SelectionChanged -= ViewTimetable_SelectionChanged;
 
+                var dt = tc.GetTimetableWithNames();
+                ViewTimetable.AutoGenerateColumns = true;
+                ViewTimetable.DataSource = dt;
+
+                foreach (DataGridViewColumn col in ViewTimetable.Columns)
+                {
+                    col.Visible = true;
+                }
+
+                MessageBox.Show("🟢 Rows loaded: " + dt.Rows.Count);
+
+                if (ViewTimetable.Columns["TimetableId"] != null)
+                    ViewTimetable.Columns["TimetableId"].Visible = false;
+
+                ViewTimetable.ClearSelection();
+                selectedId = -1;
+
+                ViewTimetable.SelectionChanged += ViewTimetable_SelectionChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("RefreshGrid Error: " + ex.Message);
+            }
+        }
+
+
+
+        /*private void LoadControl()
+        {
             if (currentRole == "Admin")
             {
                 btn_add.Visible = true;
                 btn_update.Visible = true;
                 btn_dlt.Visible = true;
-                ViewTimetable.ReadOnly = false;
-
+                ViewTimetable.ReadOnly = true;
             }
+
             else if (currentRole == "Lecturer" || currentRole == "Student" || currentRole == "Staff")
             {
                 btn_add.Visible = false;
                 btn_update.Visible = false;
                 btn_dlt.Visible = false;
                 ViewTimetable.ReadOnly = true;
+
             }
-        }
-        private void LoadSubjects()
-        {
-            var courses = subjectController.GetAllSubjects();
-            cmdSubject.DataSource = courses;
-            cmdSubject.DisplayMember = "CourseName";
-            cmdSubject.ValueMember = "CourseId";
-        }
+        }*/
+
         private void btn_add_Click(object sender, EventArgs e)
         {
             try
             {
-                UserSubject subject = (UserSubject)cmdSubject.SelectedItem;
-                UserTimeslot day = (UserTimeslot)cmbDay.SelectedItem;
-                UserRoom room = (UserRoom)cmdRoom.SelectedItem;
-
-                Timetable t = new Timetable
+                if (cmdSubject.SelectedItem == null)
                 {
-                    SubjectId = subject,
-                    Timeslot = day,
-                    RoomId = room
+                    MessageBox.Show("Please select a subject.");
+                    return;
+                }
+                UserSubject selectedSubject = (UserSubject)cmdSubject.SelectedItem;
+
+                var newT = new Timetable
+                {
+                    SubjectId = selectedSubject,
+                    Timeslot = (UserTimeslot)cmbDay.SelectedItem,
+                    RoomId = (UserRoom)cmdRoom.SelectedItem
                 };
 
-                MessageBox.Show(timetableController.AddTimetable(t));
-                LoadTimetables();
+                MessageBox.Show(tc.AddTimetable(newT));
+                RefreshGrid();
             }
             catch (Exception ex)
             {
@@ -134,30 +137,31 @@ namespace UMSAssignment.VIEWS
             {
                 if (selectedId == -1)
                 {
-                    MessageBox.Show("Select a timetable first.");
+                    MessageBox.Show("Select a timetable to update.");
                     return;
                 }
+                if (cmdSubject.SelectedIndex == -1) 
+                {
+                    MessageBox.Show("Select a subject to update.");
+                    return;
+                }
+                UserSubject selectedSubject = (UserSubject)cmdSubject.SelectedIndex;
 
-                UserSubject subject = (UserSubject)cmdSubject.SelectedItem;
-                UserTimeslot day = (UserTimeslot)cmbDay.SelectedItem;
-                UserRoom room = (UserRoom)cmdRoom.SelectedItem;
-
-                Timetable t = new Timetable
+                var t = new Timetable
                 {
                     TimetableId = selectedId,
-                    SubjectId = subject,
-                    Timeslot = day,
-                    RoomId = room
+                    SubjectId = selectedSubject,
+                    Timeslot = (UserTimeslot)cmbDay.SelectedItem,
+                    RoomId = (UserRoom)cmdRoom.SelectedItem
                 };
 
-                MessageBox.Show(timetableController.UpdateTimetable(t));
-                LoadTimetables();
+                MessageBox.Show(tc.UpdateTimetable(t));
+                RefreshGrid();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Update Error: " + ex.Message);
             }
-
         }
 
         private void btn_dlt_Click(object sender, EventArgs e)
@@ -170,9 +174,8 @@ namespace UMSAssignment.VIEWS
                     return;
                 }
 
-                MessageBox.Show(timetableController.DeleteTimetable(selectedId));
-                selectedId = -1;
-                LoadTimetables();
+                MessageBox.Show(tc.DeleteTimetable(selectedId));
+                RefreshGrid();
             }
             catch (Exception ex)
             {
@@ -199,19 +202,42 @@ namespace UMSAssignment.VIEWS
             try
             {
                 if (ViewTimetable.SelectedRows.Count == 0)
+                {
+                    selectedId = -1;
                     return;
+                }
 
-                DataGridViewRow row = ViewTimetable.SelectedRows[0];
+                var row = ViewTimetable.SelectedRows[0];
+
+                if (row.Cells["TimetableId"].Value == null)
+                {
+                    selectedId = -1;
+                    return;
+                }
 
                 selectedId = Convert.ToInt32(row.Cells["TimetableId"].Value);
-                cmdSubject.SelectedValue = row.Cells["SubjectId"].Value;
-                cmbDay.SelectedItem = Enum.Parse(typeof(UserTimeslot), row.Cells["Timeslot"].Value.ToString());
-                cmdRoom.SelectedItem = Enum.Parse(typeof(UserRoom), row.Cells["RoomId"].Value.ToString());
+
+                var subjVal = row.Cells["SubjectId"].Value;
+                if (subjVal != null && Enum.TryParse(subjVal.ToString(), out UserSubject us))
+                {
+                    cmdSubject.SelectedItem = us;
+                }
+
+                var tsVal = row.Cells["Timeslot"].Value;
+                if (tsVal != null && Enum.TryParse(tsVal.ToString(), out UserTimeslot ut))
+                {
+                    cmbDay.SelectedItem = ut;
+                }
+
+                var roomVal = row.Cells["RoomId"].Value;
+                if (roomVal != null && Enum.TryParse(roomVal.ToString(), out UserRoom ur))
+                {
+                    cmdRoom.SelectedItem = ur;
+                }
             }
-            
             catch (Exception ex)
             {
-                MessageBox.Show("Selection Error: " + ex.Message);
+                MessageBox.Show("SelectionChanged Error: " + ex.Message);
             }
         }
     }

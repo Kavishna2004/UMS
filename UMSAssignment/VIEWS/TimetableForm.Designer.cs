@@ -141,9 +141,9 @@
             // ViewTimetable
             // 
             this.ViewTimetable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ViewTimetable.Location = new System.Drawing.Point(95, 265);
+            this.ViewTimetable.Location = new System.Drawing.Point(183, 265);
             this.ViewTimetable.Name = "ViewTimetable";
-            this.ViewTimetable.Size = new System.Drawing.Size(504, 188);
+            this.ViewTimetable.Size = new System.Drawing.Size(400, 186);
             this.ViewTimetable.TabIndex = 11;
             this.ViewTimetable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ViewTimetable_CellContentClick);
             this.ViewTimetable.SelectionChanged += new System.EventHandler(this.ViewTimetable_SelectionChanged);

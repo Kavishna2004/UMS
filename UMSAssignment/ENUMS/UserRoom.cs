@@ -8,9 +8,9 @@ namespace UMSAssignment.ENUMS
 {
     internal enum UserRoom
     {
-        Lecturerroom ,
-        Mainlap ,
-        Minilap1 ,
-        Minilap2 
+        LecturerRoom ,
+        MainLap ,
+        MiniLap1 ,
+        MiniLap2 
     }
 }
